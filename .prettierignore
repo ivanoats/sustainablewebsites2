@@ -1,0 +1,10 @@
+node_modules
+.next
+out
+dist
+build
+.pnp
+styled-system
+coverage
+.nyc_output
+storybook-static

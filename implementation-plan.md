@@ -3,15 +3,15 @@
 ## Phase 1: Foundation & Core Pages (Weeks 1–2)
 **Goal:** Establish sustainable baseline with semantic HTML and core pages
 
-- [ ] Audit current project structure (Next.js setup, routing, component organization)
-- [ ] Set up or verify PandaCSS + ParkUI integration
-- [ ] Create semantic HTML layout (header, nav, main, footer landmarks)
-- [ ] Build **Home** page with value proposition and primary CTA
-- [ ] Build **Services** page (from `services.md`)
-- [ ] Build **About** page (from `about.md`)
-- [ ] Build **Contact** page with Netlify Forms integration
-- [ ] Create reusable component library with `.stories.tsx` files (e.g., CTA buttons, card, hero)
-- [ ] Establish TypeScript types for content, props, and API responses
+- [x] Audit current project structure (Next.js setup, routing, component organization)
+- [x] Set up or verify PandaCSS + ParkUI integration
+- [x] Create semantic HTML layout (header, nav, main, footer landmarks)
+- [x] Build **Home** page with value proposition and primary CTA
+- [x] Build **Services** page (from `services.md`)
+- [x] Build **About** page (from `about.md`)
+- [x] Build **Contact** page with Netlify Forms integration
+- [x] Create reusable component library with `.stories.tsx` files (e.g., CTA buttons, card, hero)
+- [x] Establish TypeScript types for content, props, and API responses
 
 ## Phase 2: Accessibility & Semantic Standards (Weeks 2–3)
 **Goal:** Ensure WCAG compliance and semantic correctness

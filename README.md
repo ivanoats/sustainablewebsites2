@@ -10,6 +10,12 @@ Sustainable Websites 2.0
 - ParkUI
 - PandaCSS
 - Netlify
+- ESLint
+- Prettier
+- Lighthouse
+- Pa11y
+- MarkdownLint
+
 
 ## Features
 

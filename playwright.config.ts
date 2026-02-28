@@ -13,7 +13,7 @@ export default defineConfig({
   reporter: 'html',
   globalSetup: './e2e/global-setup.ts',
   use: {
-    baseURL: 'http://localhost:3000',
+    baseURL: process.env.BASE_URL || 'http://localhost:3000',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
   },

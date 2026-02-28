@@ -51,4 +51,5 @@ storybook-static/
 styled-system/
 screenshots/
 playwright-report/
+test-results/
 .auth/

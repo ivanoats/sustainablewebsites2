@@ -13,6 +13,7 @@
     "format": "prettier --write .",
     "test": "vitest --passWithNoTests",
     "test:ui": "vitest --ui",
+    "screenshots": "playwright test e2e/screenshots.spec.ts",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -25,6 +26,7 @@
     "react-dom": "^19.2.4"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "@storybook/addon-essentials": "^8.6.17",
     "@storybook/react": "^8.6.17",
     "@testing-library/jest-dom": "^6.9.1",

@@ -49,3 +49,6 @@ storybook-static/
 
 # Panda CSS
 styled-system/
+screenshots/
+playwright-report/
+.auth/

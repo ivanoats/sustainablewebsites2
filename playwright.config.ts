@@ -1,5 +1,9 @@
 import { defineConfig, devices } from '@playwright/test';
 
+const webServerCommand = process.env.CI
+  ? 'npm run build && npm run start'
+  : 'npm run dev';
+
 export default defineConfig({
   testDir: './e2e',
   fullyParallel: true,
@@ -22,7 +26,7 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: 'npm run dev',
+    command: webServerCommand,
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,

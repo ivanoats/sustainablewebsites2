@@ -12,7 +12,7 @@ Playwright is configured in [`playwright.config.ts`](./playwright.config.ts) and
 Before making layout/styling changes, capture the current state:
 
 ```bash
-npm run screenshots
+npm run screenshots:before
 ```
 
 This creates screenshots in `screenshots/before/`:
@@ -26,17 +26,13 @@ This creates screenshots in `screenshots/before/`:
 Update components, styles, layout, etc.
 
 ### 3. Capture After Screenshots
-After changes, capture the new state:
+After changes, capture the new state with a single command:
 
 ```bash
-npm run screenshots
+npm run screenshots:after
 ```
 
-Then move the screenshots to `screenshots/after/`:
-
-```bash
-mv screenshots/before screenshots/after
-```
+This automatically saves screenshots to `screenshots/after/` — no manual directory moves needed.
 
 ### 4. Compare
 Compare the before and after screenshots side-by-side to validate visual changes.

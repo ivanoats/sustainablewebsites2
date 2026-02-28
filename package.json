@@ -13,7 +13,9 @@
     "format": "prettier --write .",
     "test": "vitest --passWithNoTests",
     "test:ui": "vitest --ui",
-    "screenshots": "playwright test e2e/screenshots.spec.ts",
+    "screenshots:before": "SCREENSHOT_DIR=screenshots/before playwright test e2e/screenshots.spec.ts",
+    "screenshots:after": "SCREENSHOT_DIR=screenshots/after playwright test e2e/screenshots.spec.ts",
+    "screenshots": "SCREENSHOT_DIR=screenshots/before playwright test e2e/screenshots.spec.ts",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },

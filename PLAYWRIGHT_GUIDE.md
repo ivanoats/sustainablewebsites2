@@ -6,6 +6,18 @@ This project uses Playwright to capture "before" and "after" screenshots for vis
 
 Playwright is configured in [`playwright.config.ts`](./playwright.config.ts) and screenshot tests are in [`e2e/screenshots.spec.ts`](./e2e/screenshots.spec.ts).
 
+Before running any screenshot scripts, install the required browser binaries:
+
+```bash
+npx playwright install
+```
+
+On CI or a fresh system you may also need the OS-level dependencies:
+
+```bash
+npx playwright install --with-deps
+```
+
 ## Workflow
 
 ### 1. Capture Before Screenshots

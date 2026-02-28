@@ -1,0 +1,12 @@
+{
+  "name": "sustainable-websites-com",
+  "version": "2.0.0",
+  "description": "Website for marketing green website services",
+  "license": "none",
+  "author": "Ivan Storck",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

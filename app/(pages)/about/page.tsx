@@ -1,4 +1,5 @@
 import { css } from '@/styled-system/css';
+import { Link } from '@/components/Link';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -55,19 +56,9 @@ export default function AboutPage() {
           <p className={css({ mb: '2rem' })}>
             In 2013, after a decade of managing servers, I made a conscious choice to pivot. I sold the
             hosting business to{' '}
-            <a
-              href="https://www.greengeeks.com/track/sustainableweb/cp-sw2"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={css({
-                color: 'green.600',
-                textDecoration: 'underline',
-                _hover: { color: 'green.700' },
-                _focusVisible: { outline: '2px solid', outlineColor: 'green.500' },
-              })}
-            >
+            <Link href="https://www.greengeeks.com/track/sustainableweb/cp-sw2" external>
               GreenGeeks
-            </a>{' '}
+            </Link>{' '}
             to focus on two other passions: raising my children and teaching the next generation of
             developers.
           </p>
@@ -77,37 +68,17 @@ export default function AboutPage() {
           </h2>
           <p className={css({ mb: '1.5rem' })}>
             Sustainability is as much about people and processes as it is about power usage. I founded{' '}
-            <a
-              href="https://www.codefellows.org/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={css({
-                color: 'green.600',
-                textDecoration: 'underline',
-                _hover: { color: 'green.700' },
-                _focusVisible: { outline: '2px solid', outlineColor: 'green.500' },
-              })}
-            >
+            <Link href="https://www.codefellows.org/" external>
               CodeFellows
-            </a>{' '}
+            </Link>{' '}
             to create a more sustainable model for technical education, moving away from the "gig
             economy" feel of adjunct professorship to build a lasting ecosystem for knowledge sharing.
           </p>
           <p className={css({ mb: '2rem' })}>
             For the last six years, I have served as a Senior Software Engineer and Architect at{' '}
-            <a
-              href="https://shop.lululemon.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={css({
-                color: 'green.600',
-                textDecoration: 'underline',
-                _hover: { color: 'green.700' },
-                _focusVisible: { outline: '2px solid', outlineColor: 'green.500' },
-              })}
-            >
+            <Link href="https://shop.lululemon.com/" external>
               lululemon
-            </a>
+            </Link>
             . There, I've operated at the highest levels of digital scale, learning how to optimize web
             development teams, streamline complex processes, and architect systems that serve millions.
           </p>
@@ -117,19 +88,9 @@ export default function AboutPage() {
           </h2>
           <p className={css({ mb: '1.5rem' })}>
             With the recent release of the{' '}
-            <a
-              href="https://www.w3.org/TR/web-sustainability-guidelines/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={css({
-                color: 'green.600',
-                textDecoration: 'underline',
-                _hover: { color: 'green.700' },
-                _focusVisible: { outline: '2px solid', outlineColor: 'green.500' },
-              })}
-            >
+            <Link href="https://www.w3.org/TR/web-sustainability-guidelines/" external>
               W3C Web Sustainability Guidelines
-            </a>{' '}
+            </Link>{' '}
             (WSG), the industry has reached a turning point. We now have the framework to move beyond
             simple carbon offsets and address the root of the problem: digital waste.
           </p>
@@ -166,18 +127,7 @@ export default function AboutPage() {
           </p>
           <p className={css({ fontSize: 'base' })}>
             Ready to make your digital products part of the solution?{' '}
-            <a
-              href="/contact"
-              className={css({
-                color: 'green.600',
-                textDecoration: 'underline',
-                _hover: { color: 'green.700' },
-                _focusVisible: { outline: '2px solid', outlineColor: 'green.500' },
-                fontWeight: '600',
-              })}
-            >
-              Get in touch
-            </a>{' '}
+            <Link href="/contact">Get in touch</Link>{' '}
             to discuss how we can help your organization lead on sustainability.
           </p>
         </article>
@@ -185,50 +135,25 @@ export default function AboutPage() {
         <footer className={css({ mt: '3rem', pt: '2rem', borderTop: '1px solid', borderColor: 'gray.200', color: 'gray.500', fontSize: 'sm' })}>
           <p>
             Sources:{' '}
-            <a
-              href="https://httparchive.org/reports/state-of-the-web#page-weight"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={css({ color: 'gray.600', _hover: { color: 'gray.700' } })}
-            >
+            <Link href="https://httparchive.org/reports/state-of-the-web#page-weight" external variant="subtle">
               HTTP Archive
-            </a>
+            </Link>
             ,{' '}
-            <a
-              href="https://www.iea.org/energy-system/buildings/data-centres-and-data-transmission-networks"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={css({ color: 'gray.600', _hover: { color: 'gray.700' } })}
-            >
+            <Link href="https://www.iea.org/energy-system/buildings/data-centres-and-data-transmission-networks" external variant="subtle">
               IEA
-            </a>
+            </Link>
             ,{' '}
-            <a
-              href="https://www.greenpeace.org/usa/internet-growing-to-suprass-television-should-be-powered-with-clean-energy/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={css({ color: 'gray.600', _hover: { color: 'gray.700' } })}
-            >
+            <Link href="https://www.greenpeace.org/usa/internet-growing-to-suprass-television-should-be-powered-with-clean-energy/" external variant="subtle">
               Greenpeace
-            </a>
+            </Link>
             ,{' '}
-            <a
-              href="https://www.ipcc.ch/sr15/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={css({ color: 'gray.600', _hover: { color: 'gray.700' } })}
-            >
+            <Link href="https://www.ipcc.ch/sr15/" external variant="subtle">
               IPCC
-            </a>
+            </Link>
             ,{' '}
-            <a
-              href="https://www.cell.com/patterns/pdfExtended/S2666-3899(21)00188-4"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={css({ color: 'gray.600', _hover: { color: 'gray.700' } })}
-            >
+            <Link href="https://www.cell.com/patterns/pdfExtended/S2666-3899(21)00188-4" external variant="subtle">
               Lancaster University
-            </a>
+            </Link>
           </p>
         </footer>
       </section>

@@ -1,41 +1,111 @@
+import { green } from "@/theme/colors/green";
+import { red } from "@/theme/colors/red";
+import { sage } from "@/theme/colors/sage";
+import { blue } from "@/theme/colors/blue";
+import { animationStyles } from "@/theme/animation-styles";
+import { zIndex } from "@/theme/tokens/z-index";
+import { shadows } from "@/theme/tokens/shadows";
+import { durations } from "@/theme/tokens/durations";
+import { colors } from "@/theme/tokens/colors";
+import { textStyles } from "@/theme/text-styles";
+import { layerStyles } from "@/theme/layer-styles";
+import { keyframes } from "@/theme/keyframes";
+import { globalCss } from "@/theme/global-css";
+import { conditions } from "@/theme/conditions";
+import { slotRecipes, recipes } from "@/theme/recipes";
 import { defineConfig } from '@pandacss/dev';
 
 export default defineConfig({
   preflight: true,
+
   include: [
     './app/**/*.{js,jsx,ts,tsx}',
   ],
+
   exclude: [],
+
   theme: {
     extend: {
       tokens: {
-        colors: {
-          primary: { value: '#10b981' },
-          secondary: { value: '#059669' },
-          accent: { value: '#f59e0b' },
-          neutral: { value: '#6b7280' },
-        },
-        spacing: {
-          xs: { value: '0.5rem' },
-          sm: { value: '1rem' },
-          md: { value: '1.5rem' },
-          lg: { value: '2rem' },
-          xl: { value: '3rem' },
-          '2xl': { value: '4rem' },
-        },
-        fontSizes: {
-          xs: { value: '0.75rem' },
-          sm: { value: '0.875rem' },
-          base: { value: '1rem' },
-          lg: { value: '1.125rem' },
-          xl: { value: '1.25rem' },
-          '2xl': { value: '1.5rem' },
-          '3xl': { value: '1.875rem' },
-          '4xl': { value: '2.25rem' },
-        },
+        colors: colors,
+
+        durations: durations,
+        zIndex: zIndex
       },
+
+      animationStyles: animationStyles,
+      recipes: recipes,
+      slotRecipes: slotRecipes,
+      keyframes: keyframes,
+      layerStyles: layerStyles,
+      textStyles: textStyles,
+
+      semanticTokens: {
+        colors: {
+          fg: {
+            default: {
+              value: {
+                _light: "{colors.gray.12}",
+                _dark: "{colors.gray.12}"
+              }
+            },
+
+            muted: {
+              value: {
+                _light: "{colors.gray.11}",
+                _dark: "{colors.gray.11}"
+              }
+            },
+
+            subtle: {
+              value: {
+                _light: "{colors.gray.10}",
+                _dark: "{colors.gray.10}"
+              }
+            }
+          },
+
+          border: {
+            value: {
+              _light: "{colors.gray.4}",
+              _dark: "{colors.gray.4}"
+            }
+          },
+
+          error: {
+            value: {
+              _light: "{colors.red.9}",
+              _dark: "{colors.red.9}"
+            }
+          },
+
+          blue: blue,
+          gray: sage,
+          red: red,
+          green: green
+        },
+
+        shadows: shadows,
+
+        radii: {
+          l1: {
+            value: "{radii.xs}"
+          },
+
+          l2: {
+            value: "{radii.sm}"
+          },
+
+          l3: {
+            value: "{radii.md}"
+          }
+        }
+      }
     },
   },
+
   jsxFramework: 'react',
   outdir: 'styled-system',
+  globalCss: globalCss,
+  conditions: conditions
 });

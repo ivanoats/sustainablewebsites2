@@ -1,4 +1,5 @@
 import { css } from '@/styled-system/css';
+import { Button, Field, Input, Textarea } from '@/components/ui';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -67,218 +68,48 @@ export default function ContactPage() {
               <input id="bot-field" name="bot-field" />
             </div>
 
-            {/* Name Field */}
-            <div>
-              <label
-                htmlFor="name"
-                className={css({
-                  display: 'block',
-                  mb: '0.5rem',
-                  fontWeight: '600',
-                  color: 'gray.900',
-                })}
-              >
+            <Field.Root required>
+              <Field.Label>
                 Name
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                required
-                className={css({
-                  width: '100%',
-                  px: '1rem',
-                  py: '0.75rem',
-                  border: '1px solid',
-                  borderColor: 'gray.300',
-                  borderRadius: 'md',
-                  fontSize: 'base',
-                  transition: 'border-color',
-                  _focus: {
-                    outline: 'none',
-                    borderColor: 'green.600',
-                    boxShadow: '0 0 0 3px rgba(16, 185, 129, 0.1)',
-                  },
-                })}
-              />
-            </div>
+                <Field.RequiredIndicator />
+              </Field.Label>
+              <Input id="name" name="name" type="text" required />
+            </Field.Root>
 
-            {/* Email Field */}
-            <div>
-              <label
-                htmlFor="email"
-                className={css({
-                  display: 'block',
-                  mb: '0.5rem',
-                  fontWeight: '600',
-                  color: 'gray.900',
-                })}
-              >
+            <Field.Root required>
+              <Field.Label>
                 Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                required
-                className={css({
-                  width: '100%',
-                  px: '1rem',
-                  py: '0.75rem',
-                  border: '1px solid',
-                  borderColor: 'gray.300',
-                  borderRadius: 'md',
-                  fontSize: 'base',
-                  transition: 'border-color',
-                  _focus: {
-                    outline: 'none',
-                    borderColor: 'green.600',
-                    boxShadow: '0 0 0 3px rgba(16, 185, 129, 0.1)',
-                  },
-                })}
-              />
-            </div>
+                <Field.RequiredIndicator />
+              </Field.Label>
+              <Input id="email" name="email" type="email" required />
+            </Field.Root>
 
-            {/* Company Field */}
-            <div>
-              <label
-                htmlFor="company"
-                className={css({
-                  display: 'block',
-                  mb: '0.5rem',
-                  fontWeight: '600',
-                  color: 'gray.900',
-                })}
-              >
-                Company
-              </label>
-              <input
-                type="text"
-                id="company"
-                name="company"
-                className={css({
-                  width: '100%',
-                  px: '1rem',
-                  py: '0.75rem',
-                  border: '1px solid',
-                  borderColor: 'gray.300',
-                  borderRadius: 'md',
-                  fontSize: 'base',
-                  transition: 'border-color',
-                  _focus: {
-                    outline: 'none',
-                    borderColor: 'green.600',
-                    boxShadow: '0 0 0 3px rgba(16, 185, 129, 0.1)',
-                  },
-                })}
-              />
-            </div>
+            <Field.Root>
+              <Field.Label>Company</Field.Label>
+              <Input id="company" name="company" type="text" />
+            </Field.Root>
 
-            {/* Service Interest */}
-            <div>
-              <label
-                htmlFor="service"
-                className={css({
-                  display: 'block',
-                  mb: '0.5rem',
-                  fontWeight: '600',
-                  color: 'gray.900',
-                })}
-              >
-                What service interests you?
-              </label>
-              <select
+            <Field.Root>
+              <Field.Label>What service interests you?</Field.Label>
+              <Input
                 id="service"
                 name="service"
-                className={css({
-                  width: '100%',
-                  px: '1rem',
-                  py: '0.75rem',
-                  border: '1px solid',
-                  borderColor: 'gray.300',
-                  borderRadius: 'md',
-                  fontSize: 'base',
-                  bg: 'white',
-                  cursor: 'pointer',
-                  transition: 'border-color',
-                  _focus: {
-                    outline: 'none',
-                    borderColor: 'green.600',
-                    boxShadow: '0 0 0 3px rgba(16, 185, 129, 0.1)',
-                  },
-                })}
-              >
-                <option value="">Select a service</option>
-                <option value="audit">Digital Footprint Audit</option>
-                <option value="architecture">Architecture Consulting</option>
-                <option value="devops">Green DevOps & CI/CD</option>
-                <option value="other">Other</option>
-              </select>
-            </div>
-
-            {/* Message Field */}
-            <div>
-              <label
-                htmlFor="message"
-                className={css({
-                  display: 'block',
-                  mb: '0.5rem',
-                  fontWeight: '600',
-                  color: 'gray.900',
-                })}
-              >
-                Tell us about your project
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                rows={6}
-                required
-                className={css({
-                  width: '100%',
-                  px: '1rem',
-                  py: '0.75rem',
-                  border: '1px solid',
-                  borderColor: 'gray.300',
-                  borderRadius: 'md',
-                  fontSize: 'base',
-                  fontFamily: 'inherit',
-                  transition: 'border-color',
-                  resize: 'vertical',
-                  _focus: {
-                    outline: 'none',
-                    borderColor: 'green.600',
-                    boxShadow: '0 0 0 3px rgba(16, 185, 129, 0.1)',
-                  },
-                })}
+                type="text"
+                placeholder="Digital Footprint Audit, Architecture, DevOps..."
               />
-            </div>
+            </Field.Root>
 
-            {/* Submit Button */}
-            <button
-              type="submit"
-              className={css({
-                px: '2rem',
-                py: '0.75rem',
-                bg: 'green.600',
-                color: 'white',
-                fontWeight: '600',
-                borderRadius: 'lg',
-                border: 'none',
-                cursor: 'pointer',
-                fontSize: 'base',
-                transition: 'background-color',
-                _hover: { bg: 'green.700' },
-                _focus: {
-                  outline: 'none',
-                  ring: '2px',
-                  ringColor: 'green.500',
-                  ringOffset: '2px',
-                },
-              })}
-            >
+            <Field.Root required>
+              <Field.Label>
+                Tell us about your project
+                <Field.RequiredIndicator />
+              </Field.Label>
+              <Textarea id="message" name="message" rows={6} required />
+            </Field.Root>
+
+            <Button type="submit" variant="solid" size="md">
               Send Message
-            </button>
+            </Button>
 
             <p className={css({ fontSize: 'sm', color: 'gray.500' })}>
               We'll get back to you within 24 hours.

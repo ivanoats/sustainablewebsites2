@@ -59,4 +59,4 @@ This opens an interactive HTML report showing test results and any failures.
 To add more pages to screenshot:
 
 1. Add a new test in [e2e/screenshots.spec.ts](./e2e/screenshots.spec.ts)
-2. Run `npm run screenshots` to capture the new page
+2. Run `npm run screenshots:before` (to update the baseline) and `npm run screenshots:after` (to capture the updated state) for the new page

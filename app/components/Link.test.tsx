@@ -27,6 +27,9 @@ describe('Link', () => {
       </Link>
     );
 
+    const link = screen.getByRole('link', { name: 'Services' });
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveAttribute('href', '/services');
     expect(container.firstChild).toMatchSnapshot();
   });
 
@@ -37,6 +40,9 @@ describe('Link', () => {
       </Link>
     );
 
+    const link = screen.getByRole('link', { name: 'Brand' });
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveAttribute('href', '/');
     expect(container.firstChild).toMatchSnapshot();
   });
 
@@ -47,6 +53,9 @@ describe('Link', () => {
       </Link>
     );
 
+    const link = screen.getByRole('link', { name: 'Help' });
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveAttribute('href', '/help');
     expect(container.firstChild).toMatchSnapshot();
   });
 

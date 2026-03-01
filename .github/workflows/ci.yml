@@ -6,9 +6,6 @@ on:
   push:
     branches: [main]
 
-# Note: This project intentionally does not commit package-lock.json (see .gitignore)
-# Therefore we use 'npm install' instead of 'npm ci' and cannot use npm caching
-
 permissions:
   contents: read
 
@@ -24,9 +21,10 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version-file: '.nvmrc'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Run ESLint
         run: npm run lint
@@ -45,9 +43,10 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version-file: '.nvmrc'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Run TypeScript type checking
         run: npm run type-check
@@ -63,9 +62,10 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version-file: '.nvmrc'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Run tests
         run: npm test
@@ -81,9 +81,10 @@ jobs:
         uses: actions/setup-node@v6
         with:
           node-version-file: '.nvmrc'
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build application
         run: npm run build

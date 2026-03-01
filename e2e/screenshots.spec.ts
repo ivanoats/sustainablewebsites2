@@ -1,7 +1,8 @@
 import { test } from '@playwright/test';
 import { join } from 'path';
+import { DEFAULT_SCREENSHOT_DIR } from './constants';
 
-const screenshotDir = process.env.SCREENSHOT_DIR || 'screenshots/before';
+const screenshotDir = process.env.SCREENSHOT_DIR || DEFAULT_SCREENSHOT_DIR;
 
 test.describe('Screenshots', () => {
   const pagesToTest = [

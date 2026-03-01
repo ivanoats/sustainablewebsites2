@@ -13,16 +13,20 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
-      exclude: [
-        'node_modules/',
-        'styled-system/',
-        '.storybook/',
-        'dist/',
-      ],
+      exclude: ['node_modules/', 'styled-system/', '.storybook/', 'dist/'],
     },
   },
   resolve: {
     alias: {
+      '@/components/ui': path.resolve(
+        __dirname,
+        './app/components/__mocks__/ui.ts'
+      ),
+      '@/components': path.resolve(__dirname, './app/components'),
+      '@/lib': path.resolve(__dirname, './app/lib'),
+      '@/types': path.resolve(__dirname, './app/types'),
+      '@/styled-system': path.resolve(__dirname, './styled-system'),
+      'styled-system': path.resolve(__dirname, './styled-system'),
       '@': path.resolve(__dirname, './'),
     },
   },

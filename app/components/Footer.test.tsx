@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 import { Footer } from './Footer';
 
 describe('Footer', () => {
@@ -21,41 +21,24 @@ describe('Footer', () => {
   });
 
   it('updates year when new Date is called', () => {
-    const realDate = Date;
+    vi.useFakeTimers();
 
-    // Test with year 2025
-    const MockDate2025 = class {
-      constructor() {
-        return new realDate('2025-03-15');
-      }
-      static now(): number {
-        return new realDate('2025-03-15').getTime();
-      }
-    };
+    try {
+      // Test with year 2025
+      vi.setSystemTime(new Date('2025-03-15'));
 
-    global.Date = MockDate2025 as typeof Date;
+      const { unmount } = render(<Footer />);
+      expect(screen.getByText(/© 2025/)).toBeInTheDocument();
+      unmount();
 
-    const { unmount } = render(<Footer />);
-    expect(screen.getByText(/© 2025/)).toBeInTheDocument();
-    unmount();
+      // Test with year 2027
+      vi.setSystemTime(new Date('2027-06-20'));
 
-    // Test with year 2027
-    const MockDate2027 = class {
-      constructor() {
-        return new realDate('2027-06-20');
-      }
-      static now(): number {
-        return new realDate('2027-06-20').getTime();
-      }
-    };
-
-    global.Date = MockDate2027 as typeof Date;
-
-    render(<Footer />);
-    expect(screen.getByText(/© 2027/)).toBeInTheDocument();
-
-    // Restore original Date
-    global.Date = realDate;
+      render(<Footer />);
+      expect(screen.getByText(/© 2027/)).toBeInTheDocument();
+    } finally {
+      vi.useRealTimers();
+    }
   });
 
   it('includes sustainability messaging', () => {

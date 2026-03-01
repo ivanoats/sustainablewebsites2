@@ -15,6 +15,7 @@
     "predev": "npm run panda:gen",
     "pretype-check": "npm run panda:gen",
     "prebuild": "npm run panda:gen",
+    "pretest": "npm run panda:gen",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

@@ -71,4 +71,11 @@ This opens an interactive HTML report showing test results and any failures.
 To add more pages to screenshot:
 
 1. Add a new test in [e2e/screenshots.spec.ts](./e2e/screenshots.spec.ts)
-2. Run `npm run screenshots:before` (to update the baseline) and `npm run screenshots:after` (to capture the updated state) for the new page
+2. Run `npm run screenshots:before` to regenerate all baseline screenshots (this updates all pages, not just the new one) and `npm run screenshots:after` to capture the updated state
+
+> **Tip:** To capture screenshots for only your new page without re-running all tests, use Playwright's `--grep` flag with the test name you defined:
+> ```bash
+> SCREENSHOT_DIR=screenshots/before npx playwright test --grep "new page name"
+> SCREENSHOT_DIR=screenshots/after npx playwright test --grep "new page name"
+> ```
+> Alternatively, you can temporarily use `test.only` in `e2e/screenshots.spec.ts` to isolate your new test during development (remember to remove it before committing).

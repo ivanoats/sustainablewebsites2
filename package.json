@@ -13,6 +13,9 @@
     "format": "prettier --write .",
     "test": "vitest --passWithNoTests",
     "test:ui": "vitest --ui",
+    "screenshots:before": "cross-env SCREENSHOT_DIR=screenshots/before playwright test e2e/screenshots.spec.ts",
+    "screenshots:after": "cross-env SCREENSHOT_DIR=screenshots/after playwright test e2e/screenshots.spec.ts",
+    "screenshots": "cross-env SCREENSHOT_DIR=screenshots/manual playwright test e2e/screenshots.spec.ts",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
@@ -25,6 +28,7 @@
     "react-dom": "^19.2.4"
   },
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "@storybook/addon-essentials": "^8.6.17",
     "@storybook/react": "^8.6.17",
     "@testing-library/jest-dom": "^6.9.1",
@@ -35,6 +39,7 @@
     "@typescript-eslint/eslint-plugin": "^8.56.1",
     "@typescript-eslint/parser": "^8.56.1",
     "@vitejs/plugin-react": "^5.1.4",
+    "cross-env": "^10.1.0",
     "eslint": "^9.39.1",
     "eslint-config-next": "^16.1.6",
     "jsdom": "^28.1.0",

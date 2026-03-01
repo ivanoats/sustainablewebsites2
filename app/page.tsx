@@ -1,5 +1,5 @@
 import { css } from '@/styled-system/css';
-import { stack } from '@/styled-system/patterns';
+import { grid, stack } from '@/styled-system/patterns';
 import { CTAButton } from '@/components/CTAButton';
 import { Card } from '@/components/Card';
 import type { Metadata } from 'next';
@@ -12,25 +12,32 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <div className={css({ bg: 'white' })}>
-      {/* Hero Section */}
+    <div>
       <section
         className={css({
-          py: '6rem',
+          py: { base: '4rem', md: '6rem' },
           px: '1rem',
-          bg: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-          color: 'white',
-          textAlign: 'center',
+          bg: 'gray.50',
+          borderBottom: '1px solid',
+          borderColor: 'gray.200',
         })}
         aria-label="Hero section"
       >
         <div
           className={css({
-            maxW: '4xl',
+            maxW: '5xl',
             mx: 'auto',
+            textAlign: 'center',
           })}
         >
-          <h1 className={css({ fontSize: '3xl', fontWeight: 'bold', mb: '1rem' })}>
+          <h1
+            className={css({
+              fontSize: { base: '3xl', md: '5xl' },
+              fontWeight: 'bold',
+              mb: '1rem',
+              color: 'gray.900',
+            })}
+          >
             Build Sustainable Web Products
           </h1>
           <p
@@ -38,24 +45,31 @@ export default function HomePage() {
               fontSize: 'lg',
               mb: '2rem',
               lineHeight: '1.8',
+              color: 'gray.700',
+              maxW: '3xl',
+              mx: 'auto',
             })}
           >
-            Reduce your digital emissions, improve performance, and lower hosting costs with web
-            architecture designed for efficiency.
+            Reduce your digital emissions, improve performance, and lower
+            hosting costs with web architecture designed for efficiency.
           </p>
-          <div className={stack({ gap: '1rem', justify: 'center' })}>
+          <div className={stack({ gap: '1rem', align: 'center' })}>
             <CTAButton
               text="Get a Free Sustainability Audit"
               href="/contact"
               variant="primary"
               size="lg"
             />
-            <CTAButton text="Learn About Our Services" href="/services" variant="secondary" size="lg" />
+            <CTAButton
+              text="Learn About Our Services"
+              href="/services"
+              variant="secondary"
+              size="lg"
+            />
           </div>
         </div>
       </section>
 
-      {/* Value Proposition Section */}
       <section
         className={css({
           py: '4rem',
@@ -69,20 +83,14 @@ export default function HomePage() {
           className={css({
             fontSize: '2xl',
             fontWeight: 'bold',
-            mb: '3rem',
+            mb: '2rem',
             textAlign: 'center',
             color: 'gray.900',
           })}
         >
           Why Sustainable Web Matters
         </h2>
-        <div
-          className={css({
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '2rem',
-          })}
-        >
+        <div className={grid({ columns: { base: 1, md: 3 }, gap: '1.5rem' })}>
           <Card
             title="Lower Emissions"
             description="Every kilobyte counts. Reduce data transfer, optimize code, and cut energy consumption by 30-70%."
@@ -101,7 +109,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Services Overview Section */}
       <section
         className={css({
           py: '4rem',
@@ -120,20 +127,14 @@ export default function HomePage() {
             className={css({
               fontSize: '2xl',
               fontWeight: 'bold',
-              mb: '3rem',
+              mb: '2rem',
               textAlign: 'center',
               color: 'gray.900',
             })}
           >
             Our Services
           </h2>
-          <div
-            className={css({
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-              gap: '2rem',
-            })}
-          >
+          <div className={grid({ columns: { base: 1, md: 3 }, gap: '1.5rem' })}>
             <Card
               title="Digital Footprint Audit"
               description="Quantify your emissions and get a prioritized action plan with measurable ROI projections."
@@ -156,21 +157,25 @@ export default function HomePage() {
           <div
             className={css({
               textAlign: 'center',
-              mt: '3rem',
+              mt: '2rem',
             })}
           >
-            <CTAButton text="View All Services" href="/services" variant="primary" size="lg" />
+            <CTAButton
+              text="View All Services"
+              href="/services"
+              variant="primary"
+              size="lg"
+            />
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
       <section
         className={css({
           py: '4rem',
           px: '1rem',
-          bg: 'green.600',
-          color: 'white',
+          bg: 'gray.900',
+          color: 'gray.100',
           textAlign: 'center',
         })}
         aria-label="Call to action"
@@ -195,12 +200,18 @@ export default function HomePage() {
               fontSize: 'lg',
               mb: '2rem',
               lineHeight: '1.8',
+              color: 'gray.200',
             })}
           >
-            Get a free consultation to discuss how we can help optimize your digital products for
-            performance and environmental responsibility.
+            Get a free consultation to discuss how we can help optimize your
+            digital products for performance and environmental responsibility.
           </p>
-          <CTAButton text="Schedule a Free Consultation" href="/contact" variant="primary" size="lg" />
+          <CTAButton
+            text="Schedule a Free Consultation"
+            href="/contact"
+            variant="primary"
+            size="lg"
+          />
         </div>
       </section>
     </div>

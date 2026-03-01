@@ -1,8 +1,8 @@
 import { test } from '@playwright/test';
-import { join } from 'path';
+import path from 'path';
 import { DEFAULT_SCREENSHOT_DIR } from './constants';
 
-const screenshotDir = process.env.SCREENSHOT_DIR || DEFAULT_SCREENSHOT_DIR;
+const screenshotDir = process.env.SCREENSHOT_DIR || path.join(process.cwd(), DEFAULT_SCREENSHOT_DIR);
 
 test.describe('Screenshots', () => {
   const pagesToTest = [
@@ -13,10 +13,10 @@ test.describe('Screenshots', () => {
     { name: 'wsg-check page', path: '/wsg-check', screenshotName: '05-wsg-check.png' },
   ];
 
-  for (const { name, path, screenshotName } of pagesToTest) {
+  for (const { name, path: pagePath, screenshotName } of pagesToTest) {
     test(name, async ({ page }) => {
-      await page.goto(path);
-      await page.screenshot({ path: join(screenshotDir, screenshotName), fullPage: true });
+      await page.goto(pagePath);
+      await page.screenshot({ path: path.join(screenshotDir, screenshotName), fullPage: true });
     });
   }
 });

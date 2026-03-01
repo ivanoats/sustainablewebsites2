@@ -1,12 +1,15 @@
 # Playwright Screenshot Guide
 
-This project uses Playwright to capture "before" and "after" screenshots for visual comparison of design iterations.
+This project uses Playwright to capture "before" and "after" screenshots for
+visual comparison of design iterations.
 
-For quick test-command reference, see the Testing Notes in [README.md](./README.md).
+For quick test-command reference, see the Testing Notes in
+[README.md](./README.md).
 
 ## Setup
 
-Playwright is configured in [`playwright.config.ts`](./playwright.config.ts) and screenshot tests are in [`e2e/screenshots.spec.ts`](./e2e/screenshots.spec.ts).
+Playwright is configured in [`playwright.config.ts`](./playwright.config.ts) and
+screenshot tests are in [`e2e/screenshots.spec.ts`](./e2e/screenshots.spec.ts).
 
 Before running any screenshot scripts, install the required browser binaries:
 
@@ -50,16 +53,19 @@ After changes, capture the new state with a single command:
 npm run screenshots:after
 ```
 
-This automatically saves screenshots to `screenshots/after/` — no manual directory moves needed.
+This automatically saves screenshots to `screenshots/after/` — no manual
+directory moves needed.
 
 ### 4. Compare
 
-Compare the before and after screenshots side-by-side to validate visual changes.
+Compare the before and after screenshots side-by-side to validate visual
+changes.
 
 ## Tips
 
 - Run `npm run dev` first if you want to test against a modified dev server
-- Playwright automatically launches the dev server (on port 3000) when running tests
+- Playwright automatically launches the dev server (on port 3000) when running
+  tests
 - Full-page screenshots capture the entire height of each page
 - Screenshots are high-resolution and suitable for detailed review
 
@@ -78,13 +84,18 @@ This opens an interactive HTML report showing test results and any failures.
 To add more pages to screenshot:
 
 1. Add a new test in [e2e/screenshots.spec.ts](./e2e/screenshots.spec.ts)
-2. Run `npm run screenshots:before` to regenerate all baseline screenshots (this updates all pages, not just the new one) and `npm run screenshots:after` to capture the updated state
+2. Run `npm run screenshots:before` to regenerate all baseline screenshots (this
+   updates all pages, not just the new one) and `npm run screenshots:after` to
+   capture the updated state
 
-> **Tip:** To capture screenshots for only your new page without re-running all tests, use Playwright's `--grep` flag with the test name you defined:
+> **Tip:** To capture screenshots for only your new page without re-running all
+> tests, use Playwright's `--grep` flag with the test name you defined:
 >
 > ```bash
 > SCREENSHOT_DIR=screenshots/before npx playwright test --grep "new page name"
 > SCREENSHOT_DIR=screenshots/after npx playwright test --grep "new page name"
 > ```
 >
-> Alternatively, you can temporarily use `test.only` in `e2e/screenshots.spec.ts` to isolate your new test during development (remember to remove it before committing).
+> Alternatively, you can temporarily use `test.only` in
+> `e2e/screenshots.spec.ts` to isolate your new test during development
+> (remember to remove it before committing).

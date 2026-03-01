@@ -12,15 +12,12 @@ describe('Link', () => {
   });
 
   it('uses primary variant by default', () => {
-    const { container } = render(
-      <Link href="/test" variant="primary">
-        Primary Link
-      </Link>
-    );
+    const { container } = render(<Link href="/test">Primary Link</Link>);
 
-    const link = container.querySelector('a');
+    const link = screen.getByRole('link', { name: 'Primary Link' });
     expect(link).toBeInTheDocument();
     expect(link).toHaveAttribute('href', '/test');
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('applies nav variant styles', () => {
@@ -30,9 +27,10 @@ describe('Link', () => {
       </Link>
     );
 
-    const link = container.querySelector('a');
+    const link = screen.getByRole('link', { name: 'Services' });
     expect(link).toBeInTheDocument();
-    expect(screen.getByText('Services')).toBeInTheDocument();
+    expect(link).toHaveAttribute('href', '/services');
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('applies brand variant styles', () => {
@@ -42,9 +40,10 @@ describe('Link', () => {
       </Link>
     );
 
-    const link = container.querySelector('a');
+    const link = screen.getByRole('link', { name: 'Brand' });
     expect(link).toBeInTheDocument();
-    expect(screen.getByText('Brand')).toBeInTheDocument();
+    expect(link).toHaveAttribute('href', '/');
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('applies subtle variant styles', () => {
@@ -54,9 +53,10 @@ describe('Link', () => {
       </Link>
     );
 
-    const link = container.querySelector('a');
+    const link = screen.getByRole('link', { name: 'Help' });
     expect(link).toBeInTheDocument();
-    expect(screen.getByText('Help')).toBeInTheDocument();
+    expect(link).toHaveAttribute('href', '/help');
+    expect(container.firstChild).toMatchSnapshot();
   });
 
   it('handles external links with target and rel', () => {

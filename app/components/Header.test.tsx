@@ -56,42 +56,35 @@ describe('Header', () => {
     expect(nav).toBeInTheDocument();
   });
 
-  it('renders all navbar links', () => {
+  it('renders all navbar links with correct hrefs', () => {
     render(<Header />);
 
-    expect(screen.getByRole('link', { name: /Home/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /Services/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /About/i })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /Contact/i })).toBeInTheDocument();
+    const navLinks = [
+      { name: /Home/i, href: '/' },
+      { name: /Services/i, href: '/services' },
+      { name: /About/i, href: '/about' },
+      { name: /WSG Check/i, href: '/wsg-check' },
+      { name: /Contact/i, href: '/contact' },
+    ];
+
+    for (const { name, href } of navLinks) {
+      const link = screen.getByRole('link', { name });
+      expect(link).toBeInTheDocument();
+      expect(link).toHaveAttribute('href', href);
+    }
   });
 
   it('brand link navigates to home', () => {
-    const { container } = render(<Header />);
+    render(<Header />);
 
-    const homeLink = Array.from(container.querySelectorAll('a')).find((link) =>
-      link.textContent?.includes('Sustainable Websites')
-    );
+    const homeLink = screen.getByRole('link', {
+      name: /Sustainable Websites logo/i,
+    });
     expect(homeLink).toHaveAttribute('href', '/');
-  });
-
-  it('navbar link hrefs are correct', () => {
-    render(<Header />);
-
-    const servicesLink = screen.getByRole('link', { name: /Services/i });
-    const aboutLink = screen.getByRole('link', { name: /About/i });
-    const contactLink = screen.getByRole('link', { name: /Contact/i });
-
-    expect(servicesLink).toHaveAttribute('href', '/services');
-    expect(aboutLink).toHaveAttribute('href', '/about');
-    expect(contactLink).toHaveAttribute('href', '/contact');
-  });
-
-  it('renders with WSG Check link', () => {
-    render(<Header />);
-
-    const wsgLink = screen.getByRole('link', { name: /WSG Check/i });
-    expect(wsgLink).toBeInTheDocument();
-    expect(wsgLink).toHaveAttribute('href', '/wsg-check');
+    expect(homeLink).toHaveTextContent('Sustainable Websites');
+    expect(
+      screen.getByAltText('Sustainable Websites logo')
+    ).toBeInTheDocument();
   });
 
   it('brand logo has correct dimensions', () => {
@@ -100,17 +93,6 @@ describe('Header', () => {
     const logo = screen.getByAltText('Sustainable Websites logo');
     expect(logo).toHaveAttribute('width', '40');
     expect(logo).toHaveAttribute('height', '40');
-  });
-
-  it('navigation is accessible', () => {
-    const { container } = render(<Header />);
-
-    const nav = container.querySelector('nav[aria-label="Primary navigation"]');
-    expect(nav).toBeInTheDocument();
-
-    // Verify nav contains links
-    const linksInNav = nav?.querySelectorAll('a');
-    expect(linksInNav?.length).toBeGreaterThan(0);
   });
 
   it('all navbar links are keyboard accessible', () => {

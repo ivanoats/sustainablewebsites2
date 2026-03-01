@@ -25,6 +25,7 @@
     "format": "prettier --write .",
     "prepare": "husky",
     "test": "vitest --passWithNoTests",
+    "test:coverage": "vitest run --coverage",
     "test:ui": "vitest --ui",
     "screenshots:before": "cross-env SCREENSHOT_DIR=screenshots/before playwright test e2e/screenshots.spec.ts",
     "screenshots:after": "cross-env SCREENSHOT_DIR=screenshots/after playwright test e2e/screenshots.spec.ts",

@@ -1,0 +1,37 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Link > applies brand variant styles 1`] = `
+<a
+  class="fs_xl fw_bold c_green.600 td_none focus:ring_none focusVisible:ring_2px focusVisible:ring-c_green.500 focusVisible:bdr_md"
+  href="/"
+>
+  Brand
+</a>
+`;
+
+exports[`Link > applies nav variant styles 1`] = `
+<a
+  class="c_gray.700 td_none fw_500 trs_colors hover:c_green.600 focus:ring_none focusVisible:ring_2px focusVisible:ring-c_green.500 focusVisible:bdr_md"
+  href="/services"
+>
+  Services
+</a>
+`;
+
+exports[`Link > applies subtle variant styles 1`] = `
+<a
+  class="c_gray.600 td_none hover:c_gray.700 focusVisible:ring_2px_solid focusVisible:ring-c_gray.500 focusVisible:bdr_sm"
+  href="/help"
+>
+  Help
+</a>
+`;
+
+exports[`Link > uses primary variant by default 1`] = `
+<a
+  class="c_green.600 td_underline fw_600 hover:c_green.700 focusVisible:ring_2px_solid focusVisible:ring-c_green.500 focusVisible:bdr_sm"
+  href="/test"
+>
+  Primary Link
+</a>
+`;

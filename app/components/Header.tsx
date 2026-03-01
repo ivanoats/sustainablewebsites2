@@ -3,6 +3,8 @@ import { flex } from '@/styled-system/patterns';
 import { Link } from '@/components/Link';
 import { siteConfig } from '@/lib/config';
 import type { NavLink } from '@/types/index';
+import Image from 'next/image';
+import logo from '@/SW_logo_431x431.gif';
 
 export function Header() {
   return (
@@ -22,8 +24,19 @@ export function Header() {
         })}
       >
         <div className={flex({ justify: 'space-between', align: 'center' })}>
-          <Link href="/" variant="brand">
-            {siteConfig.name}
+          <Link
+            href="/"
+            variant="brand"
+            className={flex({ align: 'center', gap: '0.75rem' })}
+          >
+            <Image
+              src={logo}
+              alt="Sustainable Websites logo"
+              width={40}
+              height={40}
+              priority
+            />
+            <span>{siteConfig.name}</span>
           </Link>
           <nav
             className={flex({

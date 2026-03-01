@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from 'next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { siteConfig } from '@/lib/config';
+import { css } from '@/styled-system/css';
+import '@/styled-system/styles.css';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -27,11 +29,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body
+        className={css({
+          display: 'flex',
+          flexDirection: 'column',
+          minH: '100vh',
+          bg: 'white',
+        })}
+      >
         <Header />
-        <main className="flex-1">
-          {children}
-        </main>
+        <main className={css({ flex: '1' })}>{children}</main>
         <Footer />
       </body>
     </html>

@@ -9,8 +9,12 @@
     "node": ">=22.22.0"
   },
   "scripts": {
-    "pretype-check": "panda codegen",
-    "prebuild": "panda codegen",
+    "panda:codegen": "panda codegen",
+    "panda:css": "panda cssgen",
+    "panda:gen": "npm run panda:codegen && npm run panda:css",
+    "predev": "npm run panda:gen",
+    "pretype-check": "npm run panda:gen",
+    "prebuild": "npm run panda:gen",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

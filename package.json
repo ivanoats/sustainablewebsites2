@@ -5,6 +5,9 @@
   "license": "none",
   "author": "Ivan Storck",
   "type": "module",
+  "engines": {
+    "node": ">=22.22.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -14,6 +17,7 @@
     "lint-staged": "lint-staged",
     "type-check": "tsc --noEmit",
     "format": "prettier --write .",
+    "prepare": "husky",
     "test": "vitest --passWithNoTests",
     "test:ui": "vitest --ui",
     "storybook": "storybook dev -p 6006",

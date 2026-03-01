@@ -16,6 +16,10 @@ Sustainable Websites 2.0
 - Pa11y
 - MarkdownLint
 
+## Runtime Requirements
+
+- Node.js 22.22.0 or newer (matches `.nvmrc`)
+
 
 ## Features
 

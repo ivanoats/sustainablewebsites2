@@ -24,7 +24,7 @@ const config = {
   stories: ['../app/**/*.stories.{js,jsx,ts,tsx}'],
   addons: ['@storybook/addon-essentials', '@chromatic-com/storybook'],
   framework: '@storybook/react-vite',
-  viteFinal: async (config: StorybookViteConfig) => {
+  viteFinal: (config: StorybookViteConfig) => {
     config.resolve ??= {};
     config.resolve.alias = {
       ...(config.resolve.alias ?? {}),
@@ -57,7 +57,6 @@ const config = {
 
     return config;
   },
-  docs: {},
 };
 
 export default config;

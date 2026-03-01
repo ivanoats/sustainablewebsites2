@@ -60,7 +60,7 @@ const services = [
       },
       {
         label: 'Reduced emissions',
-        text: 'Cut energy consumption by 30-70% on refactored paths',
+        text: 'Significantly reduce energy consumption on refactored paths',
       },
       {
         label: 'Future-proof stack',

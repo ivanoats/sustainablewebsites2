@@ -70,8 +70,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Generate code and CSS with Panda
+        run: npm run panda:gen
+
       - name: Run tests
-        run: npm test
+        run: npm run test:run
 
   build:
     name: Build

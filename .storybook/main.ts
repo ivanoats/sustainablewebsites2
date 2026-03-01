@@ -1,19 +1,22 @@
-import type { StorybookConfig } from '@storybook/react/types';
+const fromRoot = (subPath: string) =>
+  new URL(`../${subPath}`, import.meta.url).pathname;
 
-const config: StorybookConfig = {
+const config = {
   stories: ['../app/**/*.stories.{js,jsx,ts,tsx}'],
-  addons: [
-    '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
-    '@chromatic-com/storybook',
-  ],
-  framework: {
-    name: '@storybook/react',
-    options: {
-      builder: {
-        name: '@storybook/builder-vite',
-      },
-    },
+  addons: ['@storybook/addon-essentials', '@chromatic-com/storybook'],
+  framework: '@storybook/react-vite',
+  viteFinal: async (config) => {
+    config.resolve ??= {};
+    config.resolve.alias = {
+      ...(config.resolve.alias ?? {}),
+      '@/components': fromRoot('app/components'),
+      '@/types': fromRoot('app/types'),
+      '@/lib': fromRoot('app/lib'),
+      '@/styled-system': fromRoot('styled-system'),
+      '@': fromRoot(''),
+    };
+
+    return config;
   },
   docs: {},
 };

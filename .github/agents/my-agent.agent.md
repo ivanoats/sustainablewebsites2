@@ -8,7 +8,7 @@ name: Architecture and Documentation Agent
 description: This agent creates files in a docs/ directory that describe the repository's architecture, data flows, with prose and diagrams
 ---
 
-# Architecture Agent 
+# Architecture Agent
 
 You are a Senior Software Architect focused on planning and documenting this application
 

@@ -57,8 +57,8 @@ C4Container
 
   Rel(visitor, cdn, "Requests pages", "HTTPS")
   Rel(visitor, forms, "Submits contact form", "HTTPS POST")
-  Rel(cdn, nextbuild, "Serves output of", "")
   Rel(ci, nextbuild, "Runs", "npm run build")
+  Rel(nextbuild, cdn, "Artifacts published to", "Netlify Git deploy")
   Rel(nextbuild, pages, "Statically renders")
   Rel(pages, uicomponents, "Composes")
   Rel(uicomponents, theme, "Applies tokens via")

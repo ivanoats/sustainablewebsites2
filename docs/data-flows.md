@@ -13,17 +13,20 @@ occurs.
 sequenceDiagram
   participant Dev as Developer
   participant CI as GitHub Actions CI
+  participant Netlify as Netlify Build & Deploy
   participant NB as Next.js Build
   participant Panda as PandaCSS (code generation)
   participant CDN as Netlify CDN
   participant Browser as Visitor Browser
 
-  Dev->>CI: Push / open pull request
-  CI->>Panda: npm run panda:gen (code gen + CSS gen)
-  Panda-->>CI: styled-system/ + styles.css
-  CI->>NB: npm run build (next build)
-  NB-->>CI: .next/ static output (HTML, JS, CSS)
-  CI->>CDN: Deploy static assets
+  Dev->>CI: Push / open pull request (tests only — no deploy)
+  CI->>CI: npm run test / npm run build (artifact uploaded, not deployed)
+  Dev->>Netlify: Push to main branch (Git-based deploy trigger)
+  Netlify->>NB: npm run build (prebuild → panda:gen → next build)
+  NB->>Panda: prebuild: npm run panda:gen (code gen + CSS gen)
+  Panda-->>NB: styled-system/ + styles.css
+  NB-->>Netlify: .next/ static output (HTML, JS, CSS)
+  Netlify->>CDN: Publish static assets
   Browser->>CDN: GET /services (HTTPS)
   CDN-->>Browser: Pre-built HTML + CSS (no SSR round-trip)
 ```
@@ -54,9 +57,9 @@ sequenceDiagram
   participant Owner as Site Owner (email)
 
   Browser->>Browser: User fills in Name, Email, Message (optionally Company, Service)
-  Browser->>Netlify: POST /contact (multipart/form-data, includes form-name=contact)
+  Browser->>Netlify: POST /contact (application/x-www-form-urlencoded, includes form-name=contact)
   Netlify->>Netlify: Validate submission (honeypot bot-field check)
-  Netlify-->>Browser: Redirect to success URL (Netlify default)
+  Netlify-->>Browser: Default Netlify success response (no action= set on form)
   Netlify->>Owner: Email notification (configured in Netlify dashboard)
 ```
 

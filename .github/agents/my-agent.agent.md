@@ -16,7 +16,6 @@ Make sure to conform with the project's guidelines
 
 - Use Markdownlint to improve Markdown file formatting
 
-
 ## 1. Clean Architecture in a Next.js Context
 
 When applying Clean Architecture, map the layers to the project's structure:

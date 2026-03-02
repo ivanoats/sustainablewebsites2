@@ -153,7 +153,7 @@ PandaCSS tokens and recipes are defined in `theme/` and referenced by
 | Directory / File | Contents |
 | --- | --- |
 | `theme/colors/` | Radix-style color scales: `sage`, `green`, `grass`, `blue`, `red` |
-| `theme/tokens/` | Semantic tokens for `colors`, `durations`, `shadows`, `z-index` |
+| `theme/tokens/` | Base tokens for `colors`, `durations`, `shadows`, `z-index` (semantic tokens such as `fg.*`, `border`, `error` are defined in `panda.config.ts`) |
 | `theme/recipes/` | Component style recipes for every Park UI primitive |
 | `theme/text-styles.ts` | Global typography scale |
 | `theme/layer-styles.ts` | Reusable layer styles |

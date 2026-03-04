@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { Zap, Globe, Target } from 'lucide-react';
 import { Card } from './Card';
 
 const meta = {
@@ -36,7 +37,7 @@ export const Default: Story = {
     title: 'Performance Optimization',
     description:
       'Reduce load times and energy consumption with efficient code and smart caching.',
-    icon: '⚡',
+    icon: <Zap size={32} />,
   },
 };
 
@@ -44,8 +45,8 @@ export const WithLink: Story = {
   args: {
     title: 'Web Sustainability Audit',
     description:
-      'Get a detailed analysis of your site\'s environmental and performance impact.',
-    icon: '🌍',
+      "Get a detailed analysis of your site's environmental and performance impact.",
+    icon: <Globe size={32} />,
     href: '/services#audit',
   },
 };
@@ -55,6 +56,6 @@ export const LongDescription: Story = {
     title: 'Expert Consulting',
     description:
       'Work with our team to develop a comprehensive sustainability roadmap for your web presence. We focus on reducing carbon footprint while improving user experience and conversion rates.',
-    icon: '🎯',
+    icon: <Target size={32} />,
   },
 };

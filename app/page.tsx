@@ -3,6 +3,14 @@ import { grid, stack } from '@/styled-system/patterns';
 import { CTAButton } from '@/components/CTAButton';
 import { Card } from '@/components/Card';
 import type { Metadata } from 'next';
+import {
+  Globe,
+  Zap,
+  DollarSign,
+  BarChart2,
+  Building2,
+  Recycle,
+} from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Home',
@@ -94,17 +102,17 @@ export default function HomePage() {
           <Card
             title="Lower Emissions"
             description="Every kilobyte counts. Reduce data transfer, optimize code, and cut energy consumption by 30-70%."
-            icon="🌍"
+            icon={<Globe size={32} />}
           />
           <Card
             title="Better Performance"
             description="Lean architecture = faster load times. Better UX means higher conversion rates and user satisfaction."
-            icon="⚡"
+            icon={<Zap size={32} />}
           />
           <Card
             title="Lower Costs"
             description="Less data egress, fewer server resources, and reduced infrastructure overhead directly impact your bottom line."
-            icon="💰"
+            icon={<DollarSign size={32} />}
           />
         </div>
       </section>
@@ -138,19 +146,19 @@ export default function HomePage() {
             <Card
               title="Digital Footprint Audit"
               description="Quantify your emissions and get a prioritized action plan with measurable ROI projections."
-              icon="📊"
+              icon={<BarChart2 size={32} />}
               href="/services#audit"
             />
             <Card
               title="Architecture Consulting"
               description="Transform bloated systems into lean, high-performance platforms that cost less to run."
-              icon="🏗️"
+              icon={<Building2 size={32} />}
               href="/services#architecture"
             />
             <Card
               title="Green DevOps"
               description="Optimize your CI/CD pipeline for speed, efficiency, and measurable environmental impact."
-              icon="♻️"
+              icon={<Recycle size={32} />}
               href="/services#devops"
             />
           </div>

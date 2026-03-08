@@ -25,9 +25,9 @@ export default function HomePage() {
         className={css({
           py: { base: '4rem', md: '6rem' },
           px: '1rem',
-          bg: 'gray.50',
+          bg: 'green.3',
           borderBottom: '1px solid',
-          borderColor: 'gray.200',
+          borderColor: 'green.6',
         })}
         aria-label="Hero section"
       >
@@ -82,38 +82,38 @@ export default function HomePage() {
         className={css({
           py: '4rem',
           px: '1rem',
-          maxW: '7xl',
-          mx: 'auto',
         })}
         aria-label="Why sustainable web matters"
       >
-        <h2
-          className={css({
-            fontSize: '2xl',
-            fontWeight: 'bold',
-            mb: '2rem',
-            textAlign: 'center',
-            color: 'gray.900',
-          })}
-        >
-          Why Sustainable Web Matters
-        </h2>
-        <div className={grid({ columns: { base: 1, md: 3 }, gap: '1.5rem' })}>
-          <Card
-            title="Lower Emissions"
-            description="Every kilobyte counts. Reduce data transfer, optimize code, and cut energy consumption by 30-70%."
-            icon={<Globe size={32} />}
-          />
-          <Card
-            title="Better Performance"
-            description="Lean architecture = faster load times. Better UX means higher conversion rates and user satisfaction."
-            icon={<Zap size={32} />}
-          />
-          <Card
-            title="Lower Costs"
-            description="Less data egress, fewer server resources, and reduced infrastructure overhead directly impact your bottom line."
-            icon={<DollarSign size={32} />}
-          />
+        <div className={css({ maxW: '7xl', mx: 'auto' })}>
+          <h2
+            className={css({
+              fontSize: '2xl',
+              fontWeight: 'bold',
+              mb: '2rem',
+              textAlign: 'center',
+              color: 'gray.900',
+            })}
+          >
+            Why Sustainable Web Matters
+          </h2>
+          <div className={grid({ columns: { base: 1, md: 3 }, gap: '1.5rem' })}>
+            <Card
+              title="Lower Emissions"
+              description="Every kilobyte counts. Reduce data transfer, optimize code, and cut energy consumption by 30-70%."
+              icon={<Globe size={32} />}
+            />
+            <Card
+              title="Better Performance"
+              description="Lean architecture = faster load times. Better UX means higher conversion rates and user satisfaction."
+              icon={<Zap size={32} />}
+            />
+            <Card
+              title="Lower Costs"
+              description="Less data egress, fewer server resources, and reduced infrastructure overhead directly impact your bottom line."
+              icon={<DollarSign size={32} />}
+            />
+          </div>
         </div>
       </section>
 

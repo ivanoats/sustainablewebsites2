@@ -25,9 +25,9 @@ export default function HomePage() {
         className={css({
           py: { base: '4rem', md: '6rem' },
           px: '1rem',
-          bg: 'gray.50',
+          bg: 'green.3',
           borderBottom: '1px solid',
-          borderColor: 'gray.200',
+          borderColor: 'green.6',
         })}
         aria-label="Hero section"
       >
@@ -82,8 +82,6 @@ export default function HomePage() {
         className={css({
           py: '4rem',
           px: '1rem',
-          maxW: '7xl',
-          mx: 'auto',
         })}
         aria-label="Why sustainable web matters"
       >

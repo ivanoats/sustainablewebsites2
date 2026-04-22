@@ -25,9 +25,9 @@ export default function HomePage() {
         className={css({
           py: { base: '4rem', md: '6rem' },
           px: '1rem',
-          bg: 'green.3',
+          bg: 'green.50',
           borderBottom: '1px solid',
-          borderColor: 'green.6',
+          borderColor: 'green.200',
         })}
         aria-label="Hero section"
       >

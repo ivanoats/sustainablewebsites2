@@ -22,7 +22,7 @@ type StorybookViteConfig = {
 
 const config = {
   stories: ['../app/**/*.stories.{js,jsx,ts,tsx}'],
-  addons: ['@storybook/addon-essentials', '@chromatic-com/storybook'],
+  addons: ['@chromatic-com/storybook'],
   framework: '@storybook/react-vite',
   viteFinal: (config: StorybookViteConfig) => {
     config.resolve ??= {};

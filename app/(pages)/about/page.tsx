@@ -17,9 +17,10 @@ export default function AboutPage() {
         className={css({
           py: { base: '3rem', md: '4rem' },
           px: '1rem',
-          bg: 'gray.50',
-          borderBottom: '1px solid',
-          borderColor: 'gray.200',
+          bg: 'surface.100',
+          borderBottomWidth: '1px',
+          borderBottomStyle: 'solid',
+          borderColor: 'border',
         })}
         aria-label="About us"
       >
@@ -33,7 +34,7 @@ export default function AboutPage() {
             className={css({
               fontSize: { base: '3xl', md: '4xl' },
               fontWeight: 'bold',
-              color: 'gray.900',
+              color: 'ink',
             })}
           >
             About Sustainable Websites
@@ -55,16 +56,16 @@ export default function AboutPage() {
               <section>
                 <h2
                   className={css({
-                    fontSize: '2xl',
+                    fontSize: 'displayMd',
                     fontWeight: 'bold',
                     mb: '1rem',
-                    color: 'gray.900',
+                    color: 'ink',
                   })}
                 >
                   A Twenty-Year Mission
                 </h2>
                 <div className={stack({ gap: '1rem' })}>
-                  <p className={css({ color: 'gray.700', lineHeight: '1.8' })}>
+                  <p className={css({ color: 'ink.muted', lineHeight: '1.8' })}>
                     In 2004, the conversation around "green tech" was just
                     beginning. I founded Sustainable Websites with a simple but
                     ambitious goal: to provide a livelihood that was as
@@ -73,7 +74,7 @@ export default function AboutPage() {
                     thus bridging the gap between the digital world and the
                     physical planet.
                   </p>
-                  <p className={css({ color: 'gray.700', lineHeight: '1.8' })}>
+                  <p className={css({ color: 'ink.muted', lineHeight: '1.8' })}>
                     In 2013, after a decade of managing servers, I made a
                     conscious choice to pivot. I sold the hosting business to{' '}
                     <Link
@@ -91,16 +92,16 @@ export default function AboutPage() {
               <section>
                 <h2
                   className={css({
-                    fontSize: '2xl',
+                    fontSize: 'displayMd',
                     fontWeight: 'bold',
                     mb: '1rem',
-                    color: 'gray.900',
+                    color: 'ink',
                   })}
                 >
                   The Evolution of Scale
                 </h2>
                 <div className={stack({ gap: '1rem' })}>
-                  <p className={css({ color: 'gray.700', lineHeight: '1.8' })}>
+                  <p className={css({ color: 'ink.muted', lineHeight: '1.8' })}>
                     Sustainability is as much about people and processes as it
                     is about power usage. I founded{' '}
                     <Link href="https://www.codefellows.org/" external>
@@ -111,7 +112,7 @@ export default function AboutPage() {
                     professorship to build a lasting ecosystem for knowledge
                     sharing.
                   </p>
-                  <p className={css({ color: 'gray.700', lineHeight: '1.8' })}>
+                  <p className={css({ color: 'ink.muted', lineHeight: '1.8' })}>
                     For the last six years, I have served as a Senior Software
                     Engineer and Architect at{' '}
                     <Link href="https://shop.lululemon.com/" external>
@@ -128,16 +129,16 @@ export default function AboutPage() {
               <section>
                 <h2
                   className={css({
-                    fontSize: '2xl',
+                    fontSize: 'displayMd',
                     fontWeight: 'bold',
                     mb: '1rem',
-                    color: 'gray.900',
+                    color: 'ink',
                   })}
                 >
                   The New Standard: Beyond Offsets
                 </h2>
                 <div className={stack({ gap: '1rem' })}>
-                  <p className={css({ color: 'gray.700', lineHeight: '1.8' })}>
+                  <p className={css({ color: 'ink.muted', lineHeight: '1.8' })}>
                     With the recent release of the{' '}
                     <Link
                       href="https://www.w3.org/TR/web-sustainability-guidelines/"
@@ -152,13 +153,13 @@ export default function AboutPage() {
                   <ParkCard.Root
                     className={css({
                       borderInlineStartWidth: '4px',
-                      borderInlineStartColor: 'green.600',
+                      borderInlineStartColor: 'accent',
                     })}
                   >
                     <ParkCard.Body>
                       <p
                         className={css({
-                          color: 'gray.700',
+                          color: 'ink.muted',
                           lineHeight: '1.8',
                         })}
                       >
@@ -173,7 +174,7 @@ export default function AboutPage() {
                       </p>
                     </ParkCard.Body>
                   </ParkCard.Root>
-                  <p className={css({ color: 'gray.700', lineHeight: '1.8' })}>
+                  <p className={css({ color: 'ink.muted', lineHeight: '1.8' })}>
                     These aren't distant problems—they're immediate challenges
                     that every organization building digital products must face
                     today.
@@ -184,15 +185,15 @@ export default function AboutPage() {
               <section>
                 <h2
                   className={css({
-                    fontSize: '2xl',
+                    fontSize: 'displayMd',
                     fontWeight: 'bold',
                     mb: '1rem',
-                    color: 'gray.900',
+                    color: 'ink',
                   })}
                 >
                   True Sustainability Is Efficiency
                 </h2>
-                <p className={css({ color: 'gray.700', lineHeight: '1.8' })}>
+                <p className={css({ color: 'ink.muted', lineHeight: '1.8' })}>
                   True sustainability is found in efficiency. It's in the
                   architecture of our code, the weight of our pages, and the
                   logic of our development processes.
@@ -202,16 +203,16 @@ export default function AboutPage() {
               <section>
                 <h2
                   className={css({
-                    fontSize: '2xl',
+                    fontSize: 'displayMd',
                     fontWeight: 'bold',
                     mb: '1rem',
-                    color: 'gray.900',
+                    color: 'ink',
                   })}
                 >
                   Consulting for the Future
                 </h2>
                 <div className={stack({ gap: '1rem' })}>
-                  <p className={css({ color: 'gray.700', lineHeight: '1.8' })}>
+                  <p className={css({ color: 'ink.muted', lineHeight: '1.8' })}>
                     Sustainable Websites has returned to help companies navigate
                     this new frontier. I combine over twenty years of
                     environmental advocacy with deep architectural expertise to
@@ -220,15 +221,15 @@ export default function AboutPage() {
                   </p>
                   <p
                     className={css({
-                      fontSize: 'lg',
+                      fontSize: 'displaySm',
                       fontWeight: '600',
-                      color: 'green.700',
+                      color: 'accent.strong',
                     })}
                   >
                     We don't just offset your footprint; we help you build a
                     smaller one from the code up.
                   </p>
-                  <p className={css({ color: 'gray.700', lineHeight: '1.8' })}>
+                  <p className={css({ color: 'ink.muted', lineHeight: '1.8' })}>
                     Ready to make your digital products part of the solution?{' '}
                     <Link href="/contact">Get in touch</Link> to discuss how we
                     can help your organization lead on sustainability.
@@ -240,7 +241,11 @@ export default function AboutPage() {
         </ParkCard.Root>
 
         <footer
-          className={css({ mt: '2rem', color: 'gray.500', fontSize: 'sm' })}
+          className={css({
+            mt: '2rem',
+            color: 'ink.muted',
+            fontSize: 'bodySm',
+          })}
         >
           <p>
             Sources:{' '}

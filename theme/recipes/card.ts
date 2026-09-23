@@ -1,68 +1,34 @@
-import { defineSlotRecipe } from '@pandacss/dev'
+import { defineSlotRecipe } from '@pandacss/dev';
+import { verdantPreset } from '../verdant/preset.mjs';
 
 export const card = defineSlotRecipe({
-  className: 'card',
+  className: 'verdant-card',
   slots: ['root', 'header', 'body', 'footer', 'title', 'description'],
   base: {
     root: {
-      borderRadius: 'l3',
+      ...verdantPreset.theme!.extend!.recipes!.card.base,
       display: 'flex',
       flexDirection: 'column',
-      overflow: 'hidden',
-      position: 'relative',
+      height: '100%',
+      padding: '6',
     },
-    header: {
-      display: 'flex',
-      flexDirection: 'column',
-      gap: '1',
-      p: '6',
-    },
-    body: {
-      display: 'flex',
-      flex: '1',
-      flexDirection: 'column',
-      pb: '6',
-      px: '6',
-    },
-    footer: {
-      display: 'flex',
-      justifyContent: 'flex-end',
-      gap: '3',
-      pb: '6',
-      pt: '2',
-      px: '6',
-    },
+    header: { display: 'flex', flexDirection: 'column', gap: '2', mb: '4' },
+    body: { display: 'flex', flex: '1', flexDirection: 'column', gap: '3' },
+    footer: { display: 'flex', gap: '3', mt: '4' },
     title: {
-      textStyle: 'lg',
-      fontWeight: 'semibold',
+      fontSize: 'displaySm',
+      lineHeight: 'displaySm',
+      fontWeight: '600',
+      color: 'ink',
     },
-    description: {
-      color: 'fg.muted',
-      textStyle: 'sm',
-    },
-  },
-  defaultVariants: {
-    variant: 'outline',
+    description: { color: 'ink.muted', fontSize: 'body', lineHeight: 'body' },
   },
   variants: {
     variant: {
-      elevated: {
-        root: {
-          bg: 'gray.surface.bg',
-          boxShadow: 'lg',
-        },
-      },
-      outline: {
-        root: {
-          bg: 'gray.surface.bg',
-          borderWidth: '1px',
-        },
-      },
-      subtle: {
-        root: {
-          bg: 'gray.subtle.bg',
-        },
-      },
+      outline: { root: {} },
+      elevated: { root: { boxShadow: 'sm' } },
+      subtle: { root: { background: 'surface.100' } },
     },
   },
-})
+  defaultVariants: { variant: 'outline' },
+});

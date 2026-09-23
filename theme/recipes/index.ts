@@ -18,7 +18,7 @@ export const recipes = {
 };
 
 export const slotRecipes = {
-  card,
+  arkCard: card,
   field,
   select,
 };

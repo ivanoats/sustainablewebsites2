@@ -7,24 +7,26 @@ export function Footer() {
   return (
     <footer
       className={css({
-        bg: 'gray.900',
-        color: 'gray.100',
+        bg: 'surface.200',
+        color: 'ink',
         py: '2rem',
-        mt: '4rem',
+        borderTopWidth: '1px',
+        borderTopStyle: 'solid',
+        borderColor: 'border',
       })}
     >
       <div
         className={css({
-          maxW: '7xl',
+          maxW: '1080px',
           mx: 'auto',
           px: '1rem',
         })}
       >
         <div className={stack({ gap: '1rem', align: 'center' })}>
-          <p className={css({ fontSize: 'sm' })}>
+          <p className={css({ fontSize: 'bodySm' })}>
             © {currentYear} Sustainable Websites. All rights reserved.
           </p>
-          <p className={css({ fontSize: 'sm', color: 'gray.400' })}>
+          <p className={css({ fontSize: 'bodySm', color: 'ink.muted' })}>
             Built with performance, accessibility, and sustainability in mind.
           </p>
         </div>

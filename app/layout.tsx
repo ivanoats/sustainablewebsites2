@@ -34,11 +34,16 @@ export default function RootLayout({
           display: 'flex',
           flexDirection: 'column',
           minH: '100vh',
-          bg: 'white',
+          bg: 'surface.100',
         })}
       >
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
         <Header />
-        <main className={css({ flex: '1' })}>{children}</main>
+        <main id="main-content" tabIndex={-1} className={css({ flex: '1' })}>
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

@@ -2,7 +2,7 @@ import { css } from '@/styled-system/css';
 
 /**
  * Reusable Link component with consistent styling variants
- * Follows Park UI pattern of wrapping native elements with styled system
+ * Uses Verdant semantic colors for every theme
  */
 
 interface LinkProps {
@@ -15,34 +15,50 @@ interface LinkProps {
 
 const linkVariants = {
   primary: css({
-    color: 'green.600',
+    color: 'accent',
     textDecoration: 'underline',
     fontWeight: '600',
-    _hover: { color: 'green.700' },
-    _focusVisible: { outline: '2px solid', outlineColor: 'green.500', borderRadius: 'sm' },
+    _hover: { color: 'accent.strong' },
+    _focusVisible: {
+      outline: '2px solid',
+      outlineColor: 'focusRing',
+      borderRadius: 'sm',
+    },
   }),
   nav: css({
-    color: 'gray.700',
+    color: 'ink.muted',
     textDecoration: 'none',
     fontWeight: '500',
-    transition: 'colors',
-    _hover: { color: 'green.600' },
-    _focus: { outline: 'none' },
-    _focusVisible: { ring: '2px', ringColor: 'green.500', borderRadius: 'md' },
+    minHeight: '44px',
+    display: 'inline-flex',
+    alignItems: 'center',
+    _hover: { color: 'accent' },
+    _focusVisible: {
+      outline: '2px solid',
+      outlineColor: 'focusRing',
+      borderRadius: 'md',
+    },
   }),
   brand: css({
-    fontSize: 'xl',
+    fontSize: 'displaySm',
     fontWeight: 'bold',
-    color: 'green.600',
+    color: 'accent',
     textDecoration: 'none',
-    _focus: { outline: 'none' },
-    _focusVisible: { ring: '2px', ringColor: 'green.500', borderRadius: 'md' },
+    _focusVisible: {
+      outline: '2px solid',
+      outlineColor: 'focusRing',
+      borderRadius: 'md',
+    },
   }),
   subtle: css({
-    color: 'gray.600',
+    color: 'ink.muted',
     textDecoration: 'none',
-    _hover: { color: 'gray.700' },
-    _focusVisible: { outline: '2px solid', outlineColor: 'gray.500', borderRadius: 'sm' },
+    _hover: { color: 'ink.muted' },
+    _focusVisible: {
+      outline: '2px solid',
+      outlineColor: 'ink.muted',
+      borderRadius: 'sm',
+    },
   }),
 };
 
@@ -54,7 +70,9 @@ export function Link({
   className,
 }: LinkProps) {
   const variantClass = linkVariants[variant];
-  const combinedClass = className ? `${variantClass} ${className}` : variantClass;
+  const combinedClass = className
+    ? `${variantClass} ${className}`
+    : variantClass;
 
   return (
     <a

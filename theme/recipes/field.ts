@@ -1,5 +1,5 @@
-import { fieldAnatomy } from '@ark-ui/react/anatomy'
-import { defineSlotRecipe } from '@pandacss/dev'
+import { fieldAnatomy } from '@ark-ui/react/anatomy';
+import { defineSlotRecipe } from '@pandacss/dev';
 
 export const field = defineSlotRecipe({
   className: 'field',
@@ -12,7 +12,7 @@ export const field = defineSlotRecipe({
     },
     label: {
       alignItems: 'center',
-      color: 'fg.default',
+      color: 'ink',
       display: 'flex',
       gap: '0.5',
       textAlign: 'start',
@@ -23,18 +23,18 @@ export const field = defineSlotRecipe({
       },
     },
     requiredIndicator: {
-      color: 'colorPalette.solid',
+      color: 'critical',
     },
     helperText: {
-      color: 'fg.muted',
+      color: 'ink.muted',
       textStyle: 'sm',
       _disabled: {
         layerStyle: 'disabled',
       },
     },
     errorText: {
-      color: 'error',
+      color: 'critical',
       textStyle: 'sm',
     },
   },
-})
+});

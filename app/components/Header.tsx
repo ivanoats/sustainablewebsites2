@@ -10,20 +10,28 @@ export function Header() {
   return (
     <header
       className={css({
-        bg: 'white',
-        borderBottom: '1px solid',
-        borderColor: 'gray.200',
+        bg: 'surface.200',
+        borderBottomWidth: '1px',
+        borderBottomStyle: 'solid',
+        borderColor: 'border',
         py: '1rem',
       })}
     >
       <div
         className={css({
-          maxW: '7xl',
+          maxW: '1080px',
           mx: 'auto',
           px: '1rem',
         })}
       >
-        <div className={flex({ justify: 'space-between', align: 'center' })}>
+        <div
+          className={flex({
+            justify: 'space-between',
+            align: 'center',
+            wrap: 'wrap',
+            gap: '4',
+          })}
+        >
           <Link
             href="/"
             variant="brand"
@@ -40,7 +48,8 @@ export function Header() {
           </Link>
           <nav
             className={flex({
-              gap: '2rem',
+              gap: { base: '3', md: '6' },
+              wrap: 'wrap',
               align: 'center',
             })}
             aria-label="Primary navigation"

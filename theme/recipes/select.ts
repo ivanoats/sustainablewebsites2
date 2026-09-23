@@ -1,5 +1,5 @@
-import { selectAnatomy } from '@ark-ui/react/anatomy'
-import { defineSlotRecipe } from '@pandacss/dev'
+import { selectAnatomy } from '@ark-ui/react/anatomy';
+import { defineSlotRecipe } from '@pandacss/dev';
 
 export const select = defineSlotRecipe({
   className: 'select',
@@ -12,8 +12,8 @@ export const select = defineSlotRecipe({
       width: 'full',
     },
     content: {
-      background: 'gray.surface.bg',
-      borderRadius: 'l2',
+      background: 'surface.200',
+      borderRadius: 'md',
       boxShadow: 'md',
       display: 'flex',
       flexDirection: 'column',
@@ -22,27 +22,19 @@ export const select = defineSlotRecipe({
       outline: 0,
       overflowY: 'auto',
       zIndex: 'dropdown',
-      _open: {
-        animationStyle: 'slide-fade-in',
-        animationDuration: 'slow',
-      },
-      _closed: {
-        animationStyle: 'slide-fade-out',
-        animationDuration: 'fastest',
-      },
     },
     item: {
       alignItems: 'center',
-      borderRadius: 'l1',
+      borderRadius: 'sm',
       cursor: 'pointer',
       display: 'flex',
       justifyContent: 'space-between',
       userSelect: 'none',
       _hover: {
-        background: 'gray.surface.bg.hover',
+        background: 'surface.100',
       },
       _highlighted: {
-        background: 'gray.surface.bg.hover',
+        background: 'surface.100',
       },
       _selected: {},
       _disabled: {
@@ -59,11 +51,11 @@ export const select = defineSlotRecipe({
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      color: { base: 'fg.subtle' },
+      color: { base: 'ink.muted' },
     },
     itemGroupLabel: {
       alignItems: 'flex-start',
-      color: 'fg.subtle',
+      color: 'ink.muted',
       display: 'flex',
       flexDirection: 'column',
       fontWeight: 'medium',
@@ -73,11 +65,11 @@ export const select = defineSlotRecipe({
         content: '""',
         width: '100%',
         height: '1px',
-        bg: 'gray.4',
+        bg: 'border',
       },
     },
     itemIndicator: {
-      color: 'colorPalette.plain.fg',
+      color: 'accent',
     },
     label: {
       fontWeight: 'medium',
@@ -86,18 +78,20 @@ export const select = defineSlotRecipe({
     },
     trigger: {
       alignItems: 'center',
-      borderRadius: 'l2',
+      borderRadius: 'md',
       cursor: 'pointer',
       display: 'flex',
       justifyContent: 'space-between',
       minWidth: '0',
       outline: '0',
       textAlign: 'start',
-      transition: 'common',
+      minHeight: '44px',
+      background: 'surface.200',
+      color: 'ink',
       userSelect: 'none',
       width: 'full',
       _placeholderShown: {
-        color: 'fg.subtle',
+        color: 'ink.muted',
       },
       _disabled: {
         layerStyle: 'disabled',
@@ -118,16 +112,16 @@ export const select = defineSlotRecipe({
       outline: {
         trigger: {
           borderWidth: '1px',
-          borderColor: 'gray.outline.border',
+          borderColor: 'border.control',
 
           focusVisibleRing: 'inside',
         },
       },
       surface: {
         trigger: {
-          bg: 'gray.surface.bg',
+          bg: 'surface.200',
           borderWidth: '1px',
-          borderColor: 'gray.surface.border',
+          borderColor: 'border.control',
 
           focusVisibleRing: 'inside',
         },
@@ -139,36 +133,66 @@ export const select = defineSlotRecipe({
         item: { px: '1', minH: '8', gap: '2', _icon: { boxSize: '3.5' } },
         itemGroup: { gap: '0.5' },
         itemGroupLabel: { px: '1', height: '8' },
-        trigger: { px: '2', h: '8', textStyle: 'sm', gap: '2', _icon: { boxSize: '3.5' } },
+        trigger: {
+          px: '2',
+          h: '8',
+          textStyle: 'sm',
+          gap: '2',
+          _icon: { boxSize: '3.5' },
+        },
       },
       sm: {
         content: { p: '1', gap: '0.5', textStyle: 'sm' },
         item: { px: '1.5', minH: '9', gap: '2', _icon: { boxSize: '4' } },
         itemGroup: { gap: '0.5' },
         itemGroupLabel: { px: '1.5', height: '9' },
-        trigger: { px: '2.5', h: '9', textStyle: 'sm', gap: '2', _icon: { boxSize: '4' } },
+        trigger: {
+          px: '2.5',
+          h: '9',
+          textStyle: 'sm',
+          gap: '2',
+          _icon: { boxSize: '4' },
+        },
       },
       md: {
         content: { p: '1', gap: '0.5', textStyle: 'md' },
         item: { px: '2', minH: '10', gap: '2', _icon: { boxSize: '4' } },
         itemGroup: { gap: '0.5' },
         itemGroupLabel: { px: '2', height: '10' },
-        trigger: { px: '3', h: '10', textStyle: 'md', gap: '2', _icon: { boxSize: '4' } },
+        trigger: {
+          px: '3',
+          h: '10',
+          textStyle: 'md',
+          gap: '2',
+          _icon: { boxSize: '4' },
+        },
       },
       lg: {
         content: { p: '1', gap: '0.5', textStyle: 'md' },
         item: { px: '2.5', minH: '11', gap: '2', _icon: { boxSize: '4.5' } },
         itemGroup: { gap: '0.5' },
         itemGroupLabel: { px: '2.5', height: '11' },
-        trigger: { px: '3.5', h: '11', textStyle: 'md', gap: '2', _icon: { boxSize: '4.5' } },
+        trigger: {
+          px: '3.5',
+          h: '11',
+          textStyle: 'md',
+          gap: '2',
+          _icon: { boxSize: '4.5' },
+        },
       },
       xl: {
         content: { p: '1', gap: '1', textStyle: 'lg' },
         item: { px: '3', minH: '12', gap: '3', _icon: { boxSize: '5' } },
         itemGroup: { gap: '1' },
         itemGroupLabel: { px: '3', height: '12' },
-        trigger: { px: '4', h: '12', textStyle: 'lg', gap: '3', _icon: { boxSize: '5' } },
+        trigger: {
+          px: '4',
+          h: '12',
+          textStyle: 'lg',
+          gap: '3',
+          _icon: { boxSize: '5' },
+        },
       },
     },
   },
-})
+});

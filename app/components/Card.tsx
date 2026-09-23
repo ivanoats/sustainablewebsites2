@@ -7,10 +7,7 @@ export function Card({ title, description, icon, href, children }: CardProps) {
     <ParkCard.Root>
       <ParkCard.Body>
         {icon && (
-          <div
-            className={css({ mb: '2', color: 'green.11' })}
-            aria-hidden="true"
-          >
+          <div className={css({ mb: '2', color: 'accent' })} aria-hidden="true">
             {icon}
           </div>
         )}
@@ -23,7 +20,16 @@ export function Card({ title, description, icon, href, children }: CardProps) {
 
   if (href) {
     return (
-      <a href={href} className={css({ display: 'block' })}>
+      <a
+        href={href}
+        className={css({
+          display: 'block',
+          height: '100%',
+          textDecoration: 'none',
+          borderRadius: 'md',
+          _hover: { outline: '1px solid', outlineColor: 'accent' },
+        })}
+      >
         {content}
       </a>
     );

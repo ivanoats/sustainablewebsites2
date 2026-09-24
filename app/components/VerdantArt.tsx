@@ -157,17 +157,16 @@ const bezier = (
   p3: Point,
   progress: number
 ): Point => {
-  const t = progress;
   const rest = 1 - progress;
   return [
     rest * rest * rest * p0[0] +
-      3 * rest * rest * t * p1[0] +
-      3 * rest * t * t * p2[0] +
-      t * t * t * p3[0],
+      3 * rest * rest * progress * p1[0] +
+      3 * rest * progress * progress * p2[0] +
+      progress * progress * progress * p3[0],
     rest * rest * rest * p0[1] +
-      3 * rest * rest * t * p1[1] +
-      3 * rest * t * t * p2[1] +
-      t * t * t * p3[1],
+      3 * rest * rest * progress * p1[1] +
+      3 * rest * progress * progress * p2[1] +
+      progress * progress * progress * p3[1],
   ];
 };
 const crestY = (segments: Segment[], x: number) => {

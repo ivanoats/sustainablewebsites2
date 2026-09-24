@@ -80,8 +80,8 @@ export default function ContactPage() {
                   <input id="bot-field" name="bot-field" />
                 </div>
 
-                <Field.Root required id="name">
-                  <Field.Label>
+                <Field.Root required>
+                  <Field.Label htmlFor="name">
                     Name
                     <Field.RequiredIndicator />
                   </Field.Label>
@@ -94,8 +94,8 @@ export default function ContactPage() {
                   />
                 </Field.Root>
 
-                <Field.Root required id="email">
-                  <Field.Label>
+                <Field.Root required>
+                  <Field.Label htmlFor="email">
                     Email
                     <Field.RequiredIndicator />
                   </Field.Label>
@@ -108,8 +108,8 @@ export default function ContactPage() {
                   />
                 </Field.Root>
 
-                <Field.Root id="company">
-                  <Field.Label>Company</Field.Label>
+                <Field.Root>
+                  <Field.Label htmlFor="company">Company</Field.Label>
                   <Input
                     id="company"
                     name="company"
@@ -118,8 +118,10 @@ export default function ContactPage() {
                   />
                 </Field.Root>
 
-                <Field.Root id="service">
-                  <Field.Label>What service interests you?</Field.Label>
+                <Field.Root>
+                  <Field.Label htmlFor="service">
+                    What service interests you?
+                  </Field.Label>
                   <Input
                     id="service"
                     name="service"
@@ -128,8 +130,8 @@ export default function ContactPage() {
                   />
                 </Field.Root>
 
-                <Field.Root required id="message">
-                  <Field.Label>
+                <Field.Root required>
+                  <Field.Label htmlFor="message">
                     Tell us about your project
                     <Field.RequiredIndicator />
                   </Field.Label>

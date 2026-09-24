@@ -2,7 +2,7 @@ import { defineRecipe } from '@pandacss/dev';
 import { verdantPreset } from '../verdant/preset.mjs';
 
 export const textarea = defineRecipe({
-  className: 'fieldInput',
+  className: 'fieldTextarea',
   jsx: ['Textarea'],
   base: {
     ...verdantPreset.theme!.extend!.recipes!.fieldInput.base,

@@ -29,6 +29,10 @@ export function Footer() {
           <p className={css({ fontSize: 'bodySm', color: 'ink.muted' })}>
             Built with performance, accessibility, and sustainability in mind.
           </p>
+          <p className={css({ fontSize: 'bodySm', color: 'ink.muted' })}>
+            Styled with <a href="https://verdant-design.org">Verdant Design</a>,
+            our design system for the Web Sustainability Guidelines.
+          </p>
         </div>
       </div>
     </footer>

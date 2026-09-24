@@ -51,6 +51,14 @@ describe('Footer', () => {
     ).toBeInTheDocument();
   });
 
+  it('credits the Verdant design system', () => {
+    render(<Footer />);
+
+    expect(
+      screen.getByRole('link', { name: 'Verdant Design' })
+    ).toHaveAttribute('href', 'https://verdant-design.org');
+  });
+
   it('renders as semantic footer element', () => {
     render(<Footer />);
 

@@ -70,9 +70,27 @@ describe('siteConfig', () => {
     expect(uniqueHrefs.size).toBe(hrefs.length);
   });
 
-  it('navbar links start with /', () => {
-    siteConfig.navbar.forEach((link) => {
-      expect(link.href).toMatch(/^\//);
-    });
+  it('includes Verdant Design as an external link', () => {
+    const verdantLink = siteConfig.navbar.find(
+      (link) => link.label === 'Verdant Design'
+    );
+    expect(verdantLink?.href).toBe('https://verdant-design.org');
+    expect(verdantLink?.external).toBe(true);
+  });
+
+  it('internal navbar links start with /', () => {
+    siteConfig.navbar
+      .filter((link) => !link.external)
+      .forEach((link) => {
+        expect(link.href).toMatch(/^\//);
+      });
+  });
+
+  it('external navbar links use https', () => {
+    siteConfig.navbar
+      .filter((link) => link.external)
+      .forEach((link) => {
+        expect(link.href).toMatch(/^https:\/\//);
+      });
   });
 });

@@ -5,6 +5,7 @@ import { siteConfig } from '@/lib/config';
 import type { NavLink } from '@/types/index';
 import Image from 'next/image';
 import logo from '@/SW_logo_431x431.gif';
+import { ArrowUpRight } from 'lucide-react';
 
 export function Header() {
   return (
@@ -53,6 +54,13 @@ export function Header() {
           {siteConfig.navbar.map((link: NavLink) => (
             <Link key={link.href} href={link.href} variant="nav">
               {link.label}
+              {link.external && (
+                <ArrowUpRight
+                  size={16}
+                  aria-hidden="true"
+                  className={css({ ml: '0.125rem' })}
+                />
+              )}
             </Link>
           ))}
         </nav>

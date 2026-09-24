@@ -2,6 +2,7 @@ import { css } from '@/styled-system/css';
 import { grid, stack } from '@/styled-system/patterns';
 import { CTAButton } from '@/components/CTAButton';
 import { Card } from '@/components/Card';
+import { VerdantMeadow, VerdantValley } from '@/components/VerdantArt';
 import type { Metadata } from 'next';
 import {
   Globe,
@@ -33,56 +34,62 @@ export default function HomePage() {
         aria-label="Hero section"
       >
         <div
-          className={css({
-            maxW: '5xl',
+          className={grid({
+            columns: { base: 1, md: 2 },
+            gap: { base: '8', md: '10' },
+            alignItems: 'center',
+            maxW: '1080px',
             mx: 'auto',
-            textAlign: 'center',
           })}
         >
-          <h1
-            className={css({
-              fontSize: { base: '2.5rem', md: '3.5rem' },
-              fontWeight: 'bold',
-              mb: '1rem',
-              color: 'ink',
-            })}
-          >
-            Build Sustainable Web Products
-          </h1>
-          <p
-            className={css({
-              fontSize: 'displaySm',
-              mb: '2rem',
-              lineHeight: '1.8',
-              color: 'ink.muted',
-              maxW: '3xl',
-              mx: 'auto',
-            })}
-          >
-            Reduce your digital emissions, improve performance, and lower
-            hosting costs with web architecture designed for efficiency.
-          </p>
-          <div
-            className={stack({
-              direction: { base: 'column', md: 'row' },
-              gap: '4',
-              align: 'center',
-              justify: 'center',
-            })}
-          >
-            <CTAButton
-              text="Get a Free Sustainability Audit"
-              href="/contact"
-              variant="primary"
-              size="lg"
-            />
-            <CTAButton
-              text="Learn About Our Services"
-              href="/services"
-              variant="secondary"
-              size="lg"
-            />
+          <div className={css({ textAlign: { base: 'center', md: 'left' } })}>
+            <h1
+              className={css({
+                fontSize: { base: '2.5rem', md: '3.5rem' },
+                fontWeight: 'bold',
+                mb: '1rem',
+                color: 'ink',
+              })}
+            >
+              Build Sustainable Web Products
+            </h1>
+            <p
+              className={css({
+                fontSize: 'displaySm',
+                mb: '2rem',
+                lineHeight: '1.8',
+                color: 'ink.muted',
+                maxW: '3xl',
+                mx: { base: 'auto', md: '0' },
+              })}
+            >
+              Reduce your digital emissions, improve performance, and lower
+              hosting costs with web architecture designed for efficiency.
+            </p>
+            <div
+              className={stack({
+                direction: { base: 'column', md: 'row' },
+                gap: '4',
+                align: 'center',
+                justify: { base: 'center', md: 'flex-start' },
+                flexWrap: 'wrap',
+              })}
+            >
+              <CTAButton
+                text="Get a Free Sustainability Audit"
+                href="/contact"
+                variant="primary"
+                size="lg"
+              />
+              <CTAButton
+                text="Learn About Our Services"
+                href="/services"
+                variant="secondary"
+                size="lg"
+              />
+            </div>
           </div>
+          <VerdantValley />
         </div>
       </section>
 
@@ -205,13 +212,18 @@ export default function HomePage() {
           bg: 'surface.200',
           color: 'ink',
           textAlign: 'center',
+          position: 'relative',
+          overflow: 'hidden',
+          pb: { base: '6rem', md: '4rem' },
         })}
         aria-label="Call to action"
       >
+        <VerdantMeadow />
         <div
           className={css({
             maxW: '3xl',
             mx: 'auto',
+            position: 'relative',
           })}
         >
           <h2

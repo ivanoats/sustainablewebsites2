@@ -27,112 +27,23 @@ const veinCss = css({
 });
 
 // ---- one-time grow-in, only when motion is allowed (no loops, WSG 2.10).
-// Every delay is its own literal call so Panda can extract it statically.
-const rise = [
-  css({
-    _motionSafe: {
-      animation: 'hillRise 700ms cubic-bezier(.2,.8,.2,1) 0ms both',
-    },
-  }),
-  css({
-    _motionSafe: {
-      animation: 'hillRise 700ms cubic-bezier(.2,.8,.2,1) 120ms both',
-    },
-  }),
-  css({
-    _motionSafe: {
-      animation: 'hillRise 700ms cubic-bezier(.2,.8,.2,1) 240ms both',
-    },
-  }),
-];
-const growUp = [
-  css({
-    transformBox: 'fill-box',
-    transformOrigin: '50% 100%',
-    _motionSafe: {
-      animation: 'sprout 720ms cubic-bezier(.2,.8,.2,1) 300ms both',
-    },
-  }),
-  css({
-    transformBox: 'fill-box',
-    transformOrigin: '50% 100%',
-    _motionSafe: {
-      animation: 'sprout 720ms cubic-bezier(.2,.8,.2,1) 420ms both',
-    },
-  }),
-  css({
-    transformBox: 'fill-box',
-    transformOrigin: '50% 100%',
-    _motionSafe: {
-      animation: 'sprout 720ms cubic-bezier(.2,.8,.2,1) 540ms both',
-    },
-  }),
-  css({
-    transformBox: 'fill-box',
-    transformOrigin: '50% 100%',
-    _motionSafe: {
-      animation: 'sprout 720ms cubic-bezier(.2,.8,.2,1) 660ms both',
-    },
-  }),
-];
-const leafGrow = [
-  css({
-    transformBox: 'fill-box',
-    transformOrigin: '0% 50%',
-    _motionSafe: {
-      animation: 'leafGrow 560ms cubic-bezier(.2,.8,.2,1) 500ms both',
-    },
-  }),
-  css({
-    transformBox: 'fill-box',
-    transformOrigin: '0% 50%',
-    _motionSafe: {
-      animation: 'leafGrow 560ms cubic-bezier(.2,.8,.2,1) 600ms both',
-    },
-  }),
-  css({
-    transformBox: 'fill-box',
-    transformOrigin: '0% 50%',
-    _motionSafe: {
-      animation: 'leafGrow 560ms cubic-bezier(.2,.8,.2,1) 700ms both',
-    },
-  }),
-  css({
-    transformBox: 'fill-box',
-    transformOrigin: '0% 50%',
-    _motionSafe: {
-      animation: 'leafGrow 560ms cubic-bezier(.2,.8,.2,1) 800ms both',
-    },
-  }),
-  css({
-    transformBox: 'fill-box',
-    transformOrigin: '0% 50%',
-    _motionSafe: {
-      animation: 'leafGrow 560ms cubic-bezier(.2,.8,.2,1) 900ms both',
-    },
-  }),
-  css({
-    transformBox: 'fill-box',
-    transformOrigin: '0% 50%',
-    _motionSafe: {
-      animation: 'leafGrow 560ms cubic-bezier(.2,.8,.2,1) 1000ms both',
-    },
-  }),
-  css({
-    transformBox: 'fill-box',
-    transformOrigin: '0% 50%',
-    _motionSafe: {
-      animation: 'leafGrow 560ms cubic-bezier(.2,.8,.2,1) 1100ms both',
-    },
-  }),
-  css({
-    transformBox: 'fill-box',
-    transformOrigin: '0% 50%',
-    _motionSafe: {
-      animation: 'leafGrow 560ms cubic-bezier(.2,.8,.2,1) 1200ms both',
-    },
-  }),
-];
+// One class per motion; `stagger()` offsets them with an inline animation-delay,
+// which overrides the shorthand's 0s delay.
+const hillRise = css({
+  _motionSafe: { animation: 'hillRise 700ms cubic-bezier(.2,.8,.2,1) both' },
+});
+const sprout = css({
+  transformBox: 'fill-box',
+  transformOrigin: '50% 100%',
+  _motionSafe: { animation: 'sprout 720ms cubic-bezier(.2,.8,.2,1) both' },
+});
+const leafGrow = css({
+  transformBox: 'fill-box',
+  transformOrigin: '0% 50%',
+  _motionSafe: { animation: 'leafGrow 560ms cubic-bezier(.2,.8,.2,1) both' },
+});
+const stagger = (cls: string, delayMs: number) =>
+  `class="${cls}" style="animation-delay:${delayMs}ms"`;
 const stemGrow = css({
   transformBox: 'fill-box',
   transformOrigin: '50% 100%',
@@ -169,6 +80,7 @@ interface LeafOptions {
   len: number;
   angle: number;
   fill: string;
+  /** Extra attributes for the grow-in wrapper, from `stagger()`. */
   grow?: string;
   vein?: boolean;
 }
@@ -185,7 +97,7 @@ const uleaf = (
     `<use href="#${id}" class="${fill}"/>` +
     (vein ? `<use href="#${id}v" class="${veinCss}"/>` : '');
   return grow
-    ? `<g transform="${t}"><g class="${grow}">${body}</g></g>`
+    ? `<g transform="${t}"><g ${grow}>${body}</g></g>`
     : `<g transform="${t}">${body}</g>`;
 };
 const leafDefs = (id: string) =>
@@ -273,7 +185,7 @@ const tree = ({
   const c = (dx: number, dy: number, r: number, t: string) =>
     `<circle class="${t}" cx="${r1(x + dx * s)}" cy="${r1(y + dy * s)}" r="${r1(r * s)}"/>`;
   return (
-    `<g class="${grow}">` +
+    `<g ${grow}>` +
     `<rect class="${tone.deep}" x="${r1(x - 7 * s)}" y="${r1(y - 110 * s)}" width="${r1(14 * s)}" height="${r1(112 * s)}" rx="${r1(7 * s)}"/>` +
     c(0, -150, 50, tone.deep) +
     c(-42, -118, 40, tone.deep) +
@@ -373,7 +285,7 @@ const heroSvg = (() => {
       len,
       angle,
       fill: [tone.leaf, tone.bright, tone.deep][i % 3],
-      grow: leafGrow[Math.min(7, Math.floor(i * 0.7))],
+      grow: stagger(leafGrow, 500 + 100 * Math.min(7, Math.floor(i * 0.7))),
       vein: len > 60,
     });
   }
@@ -383,7 +295,7 @@ const heroSvg = (() => {
     len: 50,
     angle: -90,
     fill: tone.bright,
-    grow: leafGrow[7],
+    grow: stagger(leafGrow, 1200),
     vein: true,
   });
   plant += uleaf(L, {
@@ -392,7 +304,7 @@ const heroSvg = (() => {
     len: 40,
     angle: -62,
     fill: tone.leaf,
-    grow: leafGrow[7],
+    grow: stagger(leafGrow, 1200),
   });
   plant += uleaf(L, {
     x: px,
@@ -400,7 +312,7 @@ const heroSvg = (() => {
     len: 40,
     angle: -118,
     fill: tone.leaf,
-    grow: leafGrow[7],
+    grow: stagger(leafGrow, 1200),
   });
 
   return `<svg viewBox="0 0 560 440" width="560" height="440" aria-hidden="true" focusable="false">
@@ -409,27 +321,27 @@ const heroSvg = (() => {
   <rect class="${tone.sky}" width="560" height="440" rx="28"/>
   <g clip-path="url(#vframe)">
   <g class="${sunRise}"><circle class="${tone.halo}" cx="456" cy="84" r="66"/><circle class="${tone.sun}" cx="456" cy="84" r="44"/></g>
-  <g class="${rise[0]}">
+  <g ${stagger(hillRise, 0)}>
     <circle class="${tone.far}" cx="150" cy="560" r="310"/>
     <circle class="${tone.far}" cx="480" cy="600" r="330"/>
     ${tree({ x: 490, y: 274, s: 0.42 })}
     ${tree({ x: 530, y: 282, s: 0.3 })}
   </g>
-  <g class="${rise[1]}">
+  <g ${stagger(hillRise, 120)}>
     <circle class="${tone.mid}" cx="440" cy="700" r="372"/>
     <circle class="${tone.mid}" cx="40" cy="646" r="300"/>
     ${shrubs}
   </g>
-  ${tree({ x: 122, y: 356, s: 1, grow: growUp[0] })}
-  <g class="${growUp[1]}">${burst(L, { x: 250, y: 360, n: 9, len: [30, 58], seed: 3, tones: [tone.deep, tone.leaf, tone.bright] })}</g>
+  ${tree({ x: 122, y: 356, s: 1, grow: stagger(sprout, 300) })}
+  <g ${stagger(sprout, 420)}>${burst(L, { x: 250, y: 360, n: 9, len: [30, 58], seed: 3, tones: [tone.deep, tone.leaf, tone.bright] })}</g>
   ${plant}
-  <g class="${rise[2]}">
+  <g ${stagger(hillRise, 240)}>
     <path class="${tone.leaf}" d="${front}"/>
     ${grass}
     ${flowers}
   </g>
-  <g class="${growUp[2]}">${burst(L, { x: 58, y: 410, n: 11, len: [36, 70], seed: 11, vein: true, tones: [tone.deep, tone.bright, tone.leaf] })}</g>
-  <g class="${growUp[3]}">${burst(L, { x: 506, y: 404, n: 10, len: [32, 62], seed: 5, vein: true, tones: [tone.leaf, tone.deep, tone.bright] })}</g>
+  <g ${stagger(sprout, 540)}>${burst(L, { x: 58, y: 410, n: 11, len: [36, 70], seed: 11, vein: true, tones: [tone.deep, tone.bright, tone.leaf] })}</g>
+  <g ${stagger(sprout, 660)}>${burst(L, { x: 506, y: 404, n: 10, len: [32, 62], seed: 5, vein: true, tones: [tone.leaf, tone.deep, tone.bright] })}</g>
   </g>
 </svg>`;
 })();

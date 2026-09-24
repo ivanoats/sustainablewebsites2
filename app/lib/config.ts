@@ -9,6 +9,11 @@ export const siteConfig: SiteConfig = {
     { label: 'Services', href: '/services' },
     { label: 'About', href: '/about' },
     { label: 'WSG Check', href: '/wsg-check' },
+    {
+      label: 'Verdant Design',
+      href: 'https://verdant-design.org',
+      external: true,
+    },
     { label: 'Contact', href: '/contact' },
   ],
 };

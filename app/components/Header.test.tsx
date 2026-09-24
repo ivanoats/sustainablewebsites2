@@ -65,6 +65,7 @@ describe('Header', () => {
       { name: /Services/i, href: '/services' },
       { name: /About/i, href: '/about' },
       { name: /WSG Check/i, href: '/wsg-check' },
+      { name: /Verdant Design/i, href: 'https://verdant-design.org' },
       { name: /Contact/i, href: '/contact' },
     ];
 

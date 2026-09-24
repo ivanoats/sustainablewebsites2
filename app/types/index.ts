@@ -21,6 +21,8 @@ export interface CardProps {
 export interface NavLink {
   label: string;
   href: string;
+  /** Off-site link; shown with an outbound arrow. */
+  external?: boolean;
 }
 
 export interface SiteConfig {

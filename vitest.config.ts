@@ -19,15 +19,15 @@ export default defineConfig({
   resolve: {
     alias: {
       '@/components/ui': path.resolve(
-        __dirname,
+        import.meta.dirname,
         './app/components/__mocks__/ui.ts'
       ),
-      '@/components': path.resolve(__dirname, './app/components'),
-      '@/lib': path.resolve(__dirname, './app/lib'),
-      '@/types': path.resolve(__dirname, './app/types'),
-      '@/styled-system': path.resolve(__dirname, './styled-system'),
-      'styled-system': path.resolve(__dirname, './styled-system'),
-      '@': path.resolve(__dirname, './'),
+      '@/components': path.resolve(import.meta.dirname, './app/components'),
+      '@/lib': path.resolve(import.meta.dirname, './app/lib'),
+      '@/types': path.resolve(import.meta.dirname, './app/types'),
+      '@/styled-system': path.resolve(import.meta.dirname, './styled-system'),
+      'styled-system': path.resolve(import.meta.dirname, './styled-system'),
+      '@': path.resolve(import.meta.dirname, './'),
     },
   },
 });

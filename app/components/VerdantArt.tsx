@@ -27,6 +27,26 @@ const veinCss = css({
   opacity: '0.55',
 });
 
+// ---- layout wrappers ------------------------------------------------------
+const heroArtCss = css({
+  '& svg': {
+    display: 'block',
+    width: '100%',
+    height: 'auto',
+    maxWidth: '560px',
+    marginInline: 'auto',
+  },
+});
+const meadowCss = css({
+  position: 'absolute',
+  right: '0',
+  bottom: '0',
+  width: '600px',
+  maxWidth: '100%',
+  pointerEvents: 'none',
+  '& svg': { display: 'block', width: '100%', height: 'auto' },
+});
+
 // ---- one-time grow-in, only when motion is allowed (no loops, WSG 2.10).
 // One class per motion; `stagger()` offsets them with an inline animation-delay,
 // which overrides the shorthand's 0s delay.
@@ -135,17 +155,18 @@ const bezier = (
   p1: Point,
   p2: Point,
   p3: Point,
-  t: number
+  progress: number
 ): Point => {
-  const u = 1 - t;
+  const t = progress;
+  const rest = 1 - progress;
   return [
-    u * u * u * p0[0] +
-      3 * u * u * t * p1[0] +
-      3 * u * t * t * p2[0] +
+    rest * rest * rest * p0[0] +
+      3 * rest * rest * t * p1[0] +
+      3 * rest * t * t * p2[0] +
       t * t * t * p3[0],
-    u * u * u * p0[1] +
-      3 * u * u * t * p1[1] +
-      3 * u * t * t * p2[1] +
+    rest * rest * rest * p0[1] +
+      3 * rest * rest * t * p1[1] +
+      3 * rest * t * t * p2[1] +
       t * t * t * p3[1],
   ];
 };
@@ -193,7 +214,7 @@ const Burst = ({
     const centerBias = 1 - Math.abs(angle + 90) / 90; // taller in the middle
     leaves.push(
       <Leaf
-        key={i}
+        key={angle}
         defsId={defsId}
         x={x}
         y={y}
@@ -206,7 +227,7 @@ const Burst = ({
       />
     );
   }
-  return <>{leaves}</>;
+  return leaves;
 };
 
 // A canopy tree: trunk + overlapping circles, deep underneath, bright on top.
@@ -243,9 +264,9 @@ const Tree = ({
       height={round(112 * size)}
       rx={round(7 * size)}
     />
-    {canopy.map(([dx, dy, radius, fill], i) => (
+    {canopy.map(([dx, dy, radius, fill]) => (
       <circle
-        key={i}
+        key={`${dx},${dy}`}
         className={fill}
         cx={round(x + dx * size)}
         cy={round(y + dy * size)}
@@ -364,12 +385,14 @@ const PLANT_TOP = 120;
 const PLANT_LEAVES = 12;
 const plantLeaves = Array.from({ length: PLANT_LEAVES }, (_, i) => {
   const len = 100 - i * 4.6;
+  const y =
+    PLANT_BASE - 26 - i * ((PLANT_BASE - PLANT_TOP - 40) / PLANT_LEAVES);
   return (
     <Leaf
-      key={i}
+      key={y}
       defsId={VALLEY_LEAF}
       x={PLANT_X}
-      y={PLANT_BASE - 26 - i * ((PLANT_BASE - PLANT_TOP - 40) / PLANT_LEAVES)}
+      y={y}
       len={len}
       angle={i % 2 === 0 ? 196 + i * 1.6 : -16 - i * 1.6}
       fill={[tone.leaf, tone.bright, tone.deep][i % 3]}
@@ -526,14 +549,16 @@ const meadowLeaves = (() => {
   ]) {
     const tuftRand = rng(seed);
     for (let i = 0; i < 9; i++) {
+      const len = 40 + tuftRand() * 34;
+      const angle = -165 + i * 18.75 + (tuftRand() - 0.5) * 8;
       leaves.push(
         <Leaf
-          key={`t${bx}-${i}`}
+          key={`t${bx}:${angle}`}
           defsId={MEADOW_LEAF}
           x={bx}
           y={118}
-          len={40 + tuftRand() * 34}
-          angle={-165 + i * 18.75 + (tuftRand() - 0.5) * 8}
+          len={len}
+          angle={angle}
           fill={i % 2 ? meadowA : meadowB}
         />
       );
@@ -541,25 +566,6 @@ const meadowLeaves = (() => {
   }
   return leaves;
 })();
-
-const heroArtCss = css({
-  '& svg': {
-    display: 'block',
-    width: '100%',
-    height: 'auto',
-    maxWidth: '560px',
-    marginInline: 'auto',
-  },
-});
-const meadowCss = css({
-  position: 'absolute',
-  right: '0',
-  bottom: '0',
-  width: '600px',
-  maxWidth: '100%',
-  pointerEvents: 'none',
-  '& svg': { display: 'block', width: '100%', height: 'auto' },
-});
 
 /** Decorative meadow for the bottom edge of a `position: relative` band. */
 export function VerdantMeadow() {

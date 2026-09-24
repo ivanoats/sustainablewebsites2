@@ -1,10 +1,10 @@
-import { defineRecipe } from '@pandacss/dev'
+import { defineRecipe } from '@pandacss/dev';
 
 export const spinner = defineRecipe({
   className: 'spinner',
   base: {
     '--spinner-track-color': 'transparent',
-    animation: 'spin',
+    _motionSafe: { animation: 'spin 900ms linear 4' },
     animationDuration: 'slowest',
     borderBottomColor: 'var(--spinner-track-color)',
     borderColor: 'currentColor',
@@ -30,4 +30,4 @@ export const spinner = defineRecipe({
       '2xl': { '--spinner-size': 'sizes.8' },
     },
   },
-})
+});

@@ -110,9 +110,10 @@ export default function ServicesPage() {
         className={css({
           py: { base: '3rem', md: '4rem' },
           px: '1rem',
-          bg: 'gray.50',
-          borderBottom: '1px solid',
-          borderColor: 'gray.200',
+          bg: 'surface.100',
+          borderBottomWidth: '1px',
+          borderBottomStyle: 'solid',
+          borderColor: 'border',
         })}
         aria-label="Services overview"
       >
@@ -127,21 +128,27 @@ export default function ServicesPage() {
               fontSize: { base: '3xl', md: '4xl' },
               fontWeight: 'bold',
               mb: '1rem',
-              color: 'gray.900',
+              color: 'ink',
             })}
           >
             Services
           </h1>
           <p
             className={css({
-              fontSize: 'lg',
-              color: 'gray.700',
+              fontSize: 'displaySm',
+              color: 'ink.muted',
               lineHeight: '1.8',
             })}
           >
             Build Faster, Leaner, Greener
           </p>
-          <p className={css({ fontSize: 'sm', color: 'gray.600', mt: '1rem' })}>
+          <p
+            className={css({
+              fontSize: 'bodySm',
+              color: 'ink.muted',
+              mt: '1rem',
+            })}
+          >
             You can't reduce what you don't measure. Cut your digital emissions,
             improve performance, and reduce hosting costs with sustainable web
             architecture designed for scale.
@@ -166,38 +173,38 @@ export default function ServicesPage() {
                   <div className={stack({ gap: '1rem' })}>
                     <h2
                       className={css({
-                        fontSize: '2xl',
+                        fontSize: 'displayMd',
                         fontWeight: 'bold',
-                        color: 'gray.900',
+                        color: 'ink',
                       })}
                     >
                       {service.title}
                     </h2>
                     <p
                       className={css({
-                        fontSize: 'lg',
-                        color: 'green.700',
+                        fontSize: 'displaySm',
+                        color: 'accent.strong',
                         fontWeight: '600',
                       })}
                     >
                       {service.tagline}
                     </p>
                     <p
-                      className={css({ color: 'gray.700', lineHeight: '1.8' })}
+                      className={css({ color: 'ink.muted', lineHeight: '1.8' })}
                     >
                       {service.summary}
                     </p>
 
                     <h3
                       className={css({
-                        fontSize: 'lg',
+                        fontSize: 'displaySm',
                         fontWeight: 'bold',
-                        color: 'gray.900',
+                        color: 'ink',
                       })}
                     >
                       {service.listTitle}
                     </h3>
-                    <ul className={css({ pl: '1.25rem', color: 'gray.700' })}>
+                    <ul className={css({ pl: '1.25rem', color: 'ink.muted' })}>
                       {service.bullets.map((item) => (
                         <li key={item.label} className={css({ mb: '0.75rem' })}>
                           <strong>{item.label}:</strong> {item.text}
@@ -207,7 +214,7 @@ export default function ServicesPage() {
 
                     <p
                       className={css({
-                        color: 'gray.600',
+                        color: 'ink.muted',
                         fontStyle: 'italic',
                       })}
                     >
@@ -234,8 +241,8 @@ export default function ServicesPage() {
         className={css({
           py: '4rem',
           px: '1rem',
-          bg: 'gray.900',
-          color: 'gray.100',
+          bg: 'surface.200',
+          color: 'ink',
           textAlign: 'center',
         })}
         aria-label="Call to action"
@@ -248,7 +255,7 @@ export default function ServicesPage() {
         >
           <h2
             className={css({
-              fontSize: '2xl',
+              fontSize: 'displayMd',
               fontWeight: 'bold',
               mb: '1rem',
             })}
@@ -257,10 +264,10 @@ export default function ServicesPage() {
           </h2>
           <p
             className={css({
-              fontSize: 'lg',
+              fontSize: 'displaySm',
               mb: '2rem',
               lineHeight: '1.8',
-              color: 'gray.200',
+              color: 'ink.muted',
             })}
           >
             Schedule a free consultation with our team to discuss which service

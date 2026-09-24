@@ -2,7 +2,7 @@
 
 exports[`Link > applies brand variant styles 1`] = `
 <a
-  class="fs_xl fw_bold c_green.600 td_none focus:ring_none focusVisible:ring_2px focusVisible:ring-c_green.500 focusVisible:bdr_md"
+  class="fs_displaySm fw_bold c_accent td_none focusVisible:ring_2px_solid focusVisible:ring-c_focusRing focusVisible:bdr_md"
   href="/"
 >
   Brand
@@ -11,7 +11,7 @@ exports[`Link > applies brand variant styles 1`] = `
 
 exports[`Link > applies nav variant styles 1`] = `
 <a
-  class="c_gray.700 td_none fw_500 trs_colors hover:c_green.600 focus:ring_none focusVisible:ring_2px focusVisible:ring-c_green.500 focusVisible:bdr_md"
+  class="c_ink.muted td_none fw_500 min-h_44px d_inline-flex ai_center hover:c_accent focusVisible:ring_2px_solid focusVisible:ring-c_focusRing focusVisible:bdr_md"
   href="/services"
 >
   Services
@@ -20,7 +20,7 @@ exports[`Link > applies nav variant styles 1`] = `
 
 exports[`Link > applies subtle variant styles 1`] = `
 <a
-  class="c_gray.600 td_none hover:c_gray.700 focusVisible:ring_2px_solid focusVisible:ring-c_gray.500 focusVisible:bdr_sm"
+  class="c_ink.muted td_none hover:c_ink.muted focusVisible:ring_2px_solid focusVisible:ring-c_ink.muted focusVisible:bdr_sm"
   href="/help"
 >
   Help
@@ -29,7 +29,7 @@ exports[`Link > applies subtle variant styles 1`] = `
 
 exports[`Link > uses primary variant by default 1`] = `
 <a
-  class="c_green.600 td_underline fw_600 hover:c_green.700 focusVisible:ring_2px_solid focusVisible:ring-c_green.500 focusVisible:bdr_sm"
+  class="c_accent td_underline fw_600 hover:c_accent.strong focusVisible:ring_2px_solid focusVisible:ring-c_focusRing focusVisible:bdr_sm"
   href="/test"
 >
   Primary Link

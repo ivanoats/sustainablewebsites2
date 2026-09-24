@@ -1,3 +1,6 @@
+import '../styled-system/styles.css';
+import '../app/globals.css';
+
 const preview = {
   parameters: {
     controls: {

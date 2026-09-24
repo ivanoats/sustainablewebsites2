@@ -10,48 +10,52 @@ export function Header() {
   return (
     <header
       className={css({
-        bg: 'white',
-        borderBottom: '1px solid',
-        borderColor: 'gray.200',
+        bg: 'surface.200',
+        borderBottomWidth: '1px',
+        borderBottomStyle: 'solid',
+        borderColor: 'border',
         py: '1rem',
       })}
     >
       <div
-        className={css({
-          maxW: '7xl',
+        className={flex({
+          maxW: '1080px',
           mx: 'auto',
           px: '1rem',
+          justify: 'space-between',
+          align: 'center',
+          wrap: 'wrap',
+          gap: '4',
         })}
       >
-        <div className={flex({ justify: 'space-between', align: 'center' })}>
-          <Link
-            href="/"
-            variant="brand"
-            className={flex({ align: 'center', gap: '0.75rem' })}
-          >
-            <Image
-              src={logo}
-              alt="Sustainable Websites logo"
-              width={40}
-              height={40}
-              priority
-            />
-            <span>{siteConfig.name}</span>
-          </Link>
-          <nav
-            className={flex({
-              gap: '2rem',
-              align: 'center',
-            })}
-            aria-label="Primary navigation"
-          >
-            {siteConfig.navbar.map((link: NavLink) => (
-              <Link key={link.href} href={link.href} variant="nav">
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
+        <Link
+          href="/"
+          variant="brand"
+          className={flex({ align: 'center', gap: '0.75rem' })}
+        >
+          <Image
+            src={logo}
+            alt="Sustainable Websites logo"
+            width={40}
+            height={40}
+            priority
+          />
+          <span>{siteConfig.name}</span>
+        </Link>
+        <nav
+          className={flex({
+            gap: { base: '3', md: '6' },
+            wrap: 'wrap',
+            align: 'center',
+          })}
+          aria-label="Primary navigation"
+        >
+          {siteConfig.navbar.map((link: NavLink) => (
+            <Link key={link.href} href={link.href} variant="nav">
+              {link.label}
+            </Link>
+          ))}
+        </nav>
       </div>
     </header>
   );

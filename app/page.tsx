@@ -23,11 +23,12 @@ export default function HomePage() {
     <div>
       <section
         className={css({
-          py: { base: '4rem', md: '6rem' },
+          py: { base: '3rem', md: '6rem' },
           px: '1rem',
-          bg: 'green.50',
-          borderBottom: '1px solid',
-          borderColor: 'green.200',
+          bg: 'surface.100',
+          borderBottomWidth: '1px',
+          borderBottomStyle: 'solid',
+          borderColor: 'border',
         })}
         aria-label="Hero section"
       >
@@ -40,20 +41,20 @@ export default function HomePage() {
         >
           <h1
             className={css({
-              fontSize: { base: '3xl', md: '5xl' },
+              fontSize: { base: '2.5rem', md: '3.5rem' },
               fontWeight: 'bold',
               mb: '1rem',
-              color: 'gray.900',
+              color: 'ink',
             })}
           >
             Build Sustainable Web Products
           </h1>
           <p
             className={css({
-              fontSize: 'lg',
+              fontSize: 'displaySm',
               mb: '2rem',
               lineHeight: '1.8',
-              color: 'gray.700',
+              color: 'ink.muted',
               maxW: '3xl',
               mx: 'auto',
             })}
@@ -61,7 +62,14 @@ export default function HomePage() {
             Reduce your digital emissions, improve performance, and lower
             hosting costs with web architecture designed for efficiency.
           </p>
-          <div className={stack({ gap: '1rem', align: 'center' })}>
+          <div
+            className={stack({
+              direction: { base: 'column', md: 'row' },
+              gap: '4',
+              align: 'center',
+              justify: 'center',
+            })}
+          >
             <CTAButton
               text="Get a Free Sustainability Audit"
               href="/contact"
@@ -87,16 +95,23 @@ export default function HomePage() {
       >
         <h2
           className={css({
-            fontSize: '2xl',
+            fontSize: 'displayMd',
             fontWeight: 'bold',
             mb: '2rem',
             textAlign: 'center',
-            color: 'gray.900',
+            color: 'ink',
           })}
         >
           Why Sustainable Web Matters
         </h2>
-        <div className={grid({ columns: { base: 1, md: 3 }, gap: '1.5rem' })}>
+        <div
+          className={grid({
+            columns: { base: 1, md: 3 },
+            gap: '6',
+            maxW: '1080px',
+            mx: 'auto',
+          })}
+        >
           <Card
             title="Lower Emissions"
             description="Every kilobyte counts. Reduce data transfer, optimize code, and cut energy consumption by 30-70%."
@@ -119,28 +134,35 @@ export default function HomePage() {
         className={css({
           py: '4rem',
           px: '1rem',
-          bg: 'gray.50',
+          bg: 'surface.100',
         })}
         aria-label="Our services"
       >
         <div
           className={css({
-            maxW: '7xl',
+            maxW: '1080px',
             mx: 'auto',
           })}
         >
           <h2
             className={css({
-              fontSize: '2xl',
+              fontSize: 'displayMd',
               fontWeight: 'bold',
               mb: '2rem',
               textAlign: 'center',
-              color: 'gray.900',
+              color: 'ink',
             })}
           >
             Our Services
           </h2>
-          <div className={grid({ columns: { base: 1, md: 3 }, gap: '1.5rem' })}>
+          <div
+            className={grid({
+              columns: { base: 1, md: 3 },
+              gap: '6',
+              maxW: '1080px',
+              mx: 'auto',
+            })}
+          >
             <Card
               title="Digital Footprint Audit"
               description="Quantify your emissions and get a prioritized action plan with measurable ROI projections."
@@ -180,8 +202,8 @@ export default function HomePage() {
         className={css({
           py: '4rem',
           px: '1rem',
-          bg: 'gray.900',
-          color: 'gray.100',
+          bg: 'surface.200',
+          color: 'ink',
           textAlign: 'center',
         })}
         aria-label="Call to action"
@@ -194,7 +216,7 @@ export default function HomePage() {
         >
           <h2
             className={css({
-              fontSize: '2xl',
+              fontSize: 'displayMd',
               fontWeight: 'bold',
               mb: '1rem',
             })}
@@ -203,10 +225,10 @@ export default function HomePage() {
           </h2>
           <p
             className={css({
-              fontSize: 'lg',
+              fontSize: 'displaySm',
               mb: '2rem',
               lineHeight: '1.8',
-              color: 'gray.200',
+              color: 'ink.muted',
             })}
           >
             Get a free consultation to discuss how we can help optimize your

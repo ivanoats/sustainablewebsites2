@@ -22,9 +22,10 @@ export default function ContactPage() {
         className={css({
           py: { base: '3rem', md: '4rem' },
           px: '1rem',
-          bg: 'gray.50',
-          borderBottom: '1px solid',
-          borderColor: 'gray.200',
+          bg: 'surface.100',
+          borderBottomWidth: '1px',
+          borderBottomStyle: 'solid',
+          borderColor: 'border',
         })}
         aria-label="Contact us"
       >
@@ -39,12 +40,12 @@ export default function ContactPage() {
               fontSize: { base: '3xl', md: '4xl' },
               fontWeight: 'bold',
               mb: '1rem',
-              color: 'gray.900',
+              color: 'ink',
             })}
           >
             Get in Touch
           </h1>
-          <p className={css({ fontSize: 'lg', color: 'gray.700' })}>
+          <p className={css({ fontSize: 'displaySm', color: 'ink.muted' })}>
             Schedule a free consultation to discuss how we can help optimize
             your digital products.
           </p>
@@ -80,28 +81,47 @@ export default function ContactPage() {
                 </div>
 
                 <Field.Root required>
-                  <Field.Label>
+                  <Field.Label htmlFor="name">
                     Name
                     <Field.RequiredIndicator />
                   </Field.Label>
-                  <Input id="name" name="name" type="text" required />
+                  <Input
+                    id="name"
+                    name="name"
+                    type="text"
+                    autoComplete="name"
+                    required
+                  />
                 </Field.Root>
 
                 <Field.Root required>
-                  <Field.Label>
+                  <Field.Label htmlFor="email">
                     Email
                     <Field.RequiredIndicator />
                   </Field.Label>
-                  <Input id="email" name="email" type="email" required />
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    required
+                  />
                 </Field.Root>
 
                 <Field.Root>
-                  <Field.Label>Company</Field.Label>
-                  <Input id="company" name="company" type="text" />
+                  <Field.Label htmlFor="company">Company</Field.Label>
+                  <Input
+                    id="company"
+                    name="company"
+                    type="text"
+                    autoComplete="organization"
+                  />
                 </Field.Root>
 
                 <Field.Root>
-                  <Field.Label>What service interests you?</Field.Label>
+                  <Field.Label htmlFor="service">
+                    What service interests you?
+                  </Field.Label>
                   <Input
                     id="service"
                     name="service"
@@ -111,7 +131,7 @@ export default function ContactPage() {
                 </Field.Root>
 
                 <Field.Root required>
-                  <Field.Label>
+                  <Field.Label htmlFor="message">
                     Tell us about your project
                     <Field.RequiredIndicator />
                   </Field.Label>
@@ -124,7 +144,7 @@ export default function ContactPage() {
                   </Button>
                 </div>
 
-                <p className={css({ fontSize: 'sm', color: 'gray.500' })}>
+                <p className={css({ fontSize: 'bodySm', color: 'ink.muted' })}>
                   We'll get back to you within 24 hours.
                 </p>
               </form>

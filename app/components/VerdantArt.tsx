@@ -27,24 +27,23 @@ const veinCss = css({
   opacity: '0.55',
 });
 
-// ---- layout wrappers ------------------------------------------------------
+// ---- layout (applied to the <svg> itself) ---------------------------------
 const heroArtCss = css({
-  '& svg': {
-    display: 'block',
-    width: '100%',
-    height: 'auto',
-    maxWidth: '560px',
-    marginInline: 'auto',
-  },
+  display: 'block',
+  width: '100%',
+  height: 'auto',
+  maxWidth: '560px',
+  marginInline: 'auto',
 });
 const meadowCss = css({
   position: 'absolute',
   right: '0',
   bottom: '0',
+  display: 'block',
   width: '600px',
   maxWidth: '100%',
+  height: 'auto',
   pointerEvents: 'none',
-  '& svg': { display: 'block', width: '100%', height: 'auto' },
 });
 
 // ---- one-time grow-in, only when motion is allowed (no loops, WSG 2.10).
@@ -408,116 +407,116 @@ const crownGrow = stagger(leafGrow, 1200);
  */
 export function VerdantValley() {
   return (
-    <div className={heroArtCss} data-testid="verdant-valley">
-      <svg
-        viewBox="0 0 560 440"
-        width="560"
-        height="440"
-        aria-hidden="true"
-        focusable="false"
-      >
-        <LeafDefs id={VALLEY_LEAF} />
-        <clipPath id="vframe">
-          <rect width="560" height="440" rx="28" />
-        </clipPath>
-        <rect className={tone.sky} width="560" height="440" rx="28" />
-        <g clipPath="url(#vframe)">
-          <g className={sunRise}>
-            <circle className={tone.halo} cx="456" cy="84" r="66" />
-            <circle className={tone.sun} cx="456" cy="84" r="44" />
-          </g>
-          <g {...stagger(hillRise, 0)}>
-            <circle className={tone.far} cx="150" cy="560" r="310" />
-            <circle className={tone.far} cx="480" cy="600" r="330" />
-            <Tree x={490} y={274} size={0.42} />
-            <Tree x={530} y={282} size={0.3} />
-          </g>
-          <g {...stagger(hillRise, 120)}>
-            <circle className={tone.mid} cx="440" cy="700" r="372" />
-            <circle className={tone.mid} cx="40" cy="646" r="300" />
-            {shrubs}
-          </g>
-          <Tree x={122} y={356} grow={stagger(sprout, 300)} />
-          <g {...stagger(sprout, 420)}>
-            <Burst
-              defsId={VALLEY_LEAF}
-              x={250}
-              y={360}
-              count={9}
-              len={[30, 58]}
-              seed={3}
-              tones={[tone.deep, tone.leaf, tone.bright]}
-            />
-          </g>
-          <rect
-            className={`${tone.deep} ${stemGrow}`}
-            x={PLANT_X - 5}
-            y={PLANT_TOP}
-            width="10"
-            height={PLANT_BASE - PLANT_TOP}
-            rx="5"
-          />
-          {plantLeaves}
-          <Leaf
-            defsId={VALLEY_LEAF}
-            x={PLANT_X}
-            y={PLANT_TOP + 6}
-            len={50}
-            angle={-90}
-            fill={tone.bright}
-            grow={crownGrow}
-            vein
-          />
-          <Leaf
-            defsId={VALLEY_LEAF}
-            x={PLANT_X}
-            y={PLANT_TOP + 14}
-            len={40}
-            angle={-62}
-            fill={tone.leaf}
-            grow={crownGrow}
-          />
-          <Leaf
-            defsId={VALLEY_LEAF}
-            x={PLANT_X}
-            y={PLANT_TOP + 14}
-            len={40}
-            angle={-118}
-            fill={tone.leaf}
-            grow={crownGrow}
-          />
-          <g {...stagger(hillRise, 240)}>
-            <path className={tone.leaf} d={frontHill} />
-            {grass}
-            {flowers}
-          </g>
-          <g {...stagger(sprout, 540)}>
-            <Burst
-              defsId={VALLEY_LEAF}
-              x={58}
-              y={410}
-              count={11}
-              len={[36, 70]}
-              seed={11}
-              vein
-              tones={[tone.deep, tone.bright, tone.leaf]}
-            />
-          </g>
-          <g {...stagger(sprout, 660)}>
-            <Burst
-              defsId={VALLEY_LEAF}
-              x={506}
-              y={404}
-              count={10}
-              len={[32, 62]}
-              seed={5}
-              vein
-              tones={[tone.leaf, tone.deep, tone.bright]}
-            />
-          </g>
+    <svg
+      className={heroArtCss}
+      data-testid="verdant-valley"
+      viewBox="0 0 560 440"
+      width="560"
+      height="440"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <LeafDefs id={VALLEY_LEAF} />
+      <clipPath id="vframe">
+        <rect width="560" height="440" rx="28" />
+      </clipPath>
+      <rect className={tone.sky} width="560" height="440" rx="28" />
+      <g clipPath="url(#vframe)">
+        <g className={sunRise}>
+          <circle className={tone.halo} cx="456" cy="84" r="66" />
+          <circle className={tone.sun} cx="456" cy="84" r="44" />
         </g>
-      </svg>
-    </div>
+        <g {...stagger(hillRise, 0)}>
+          <circle className={tone.far} cx="150" cy="560" r="310" />
+          <circle className={tone.far} cx="480" cy="600" r="330" />
+          <Tree x={490} y={274} size={0.42} />
+          <Tree x={530} y={282} size={0.3} />
+        </g>
+        <g {...stagger(hillRise, 120)}>
+          <circle className={tone.mid} cx="440" cy="700" r="372" />
+          <circle className={tone.mid} cx="40" cy="646" r="300" />
+          {shrubs}
+        </g>
+        <Tree x={122} y={356} grow={stagger(sprout, 300)} />
+        <g {...stagger(sprout, 420)}>
+          <Burst
+            defsId={VALLEY_LEAF}
+            x={250}
+            y={360}
+            count={9}
+            len={[30, 58]}
+            seed={3}
+            tones={[tone.deep, tone.leaf, tone.bright]}
+          />
+        </g>
+        <rect
+          className={`${tone.deep} ${stemGrow}`}
+          x={PLANT_X - 5}
+          y={PLANT_TOP}
+          width="10"
+          height={PLANT_BASE - PLANT_TOP}
+          rx="5"
+        />
+        {plantLeaves}
+        <Leaf
+          defsId={VALLEY_LEAF}
+          x={PLANT_X}
+          y={PLANT_TOP + 6}
+          len={50}
+          angle={-90}
+          fill={tone.bright}
+          grow={crownGrow}
+          vein
+        />
+        <Leaf
+          defsId={VALLEY_LEAF}
+          x={PLANT_X}
+          y={PLANT_TOP + 14}
+          len={40}
+          angle={-62}
+          fill={tone.leaf}
+          grow={crownGrow}
+        />
+        <Leaf
+          defsId={VALLEY_LEAF}
+          x={PLANT_X}
+          y={PLANT_TOP + 14}
+          len={40}
+          angle={-118}
+          fill={tone.leaf}
+          grow={crownGrow}
+        />
+        <g {...stagger(hillRise, 240)}>
+          <path className={tone.leaf} d={frontHill} />
+          {grass}
+          {flowers}
+        </g>
+        <g {...stagger(sprout, 540)}>
+          <Burst
+            defsId={VALLEY_LEAF}
+            x={58}
+            y={410}
+            count={11}
+            len={[36, 70]}
+            seed={11}
+            vein
+            tones={[tone.deep, tone.bright, tone.leaf]}
+          />
+        </g>
+        <g {...stagger(sprout, 660)}>
+          <Burst
+            defsId={VALLEY_LEAF}
+            x={506}
+            y={404}
+            count={10}
+            len={[32, 62]}
+            seed={5}
+            vein
+            tones={[tone.leaf, tone.deep, tone.bright]}
+          />
+        </g>
+      </g>
+    </svg>
   );
 }
 
@@ -569,17 +568,17 @@ const meadowLeaves = (() => {
 /** Decorative meadow for the bottom edge of a `position: relative` band. */
 export function VerdantMeadow() {
   return (
-    <div className={meadowCss} data-testid="verdant-meadow">
-      <svg
-        viewBox="0 0 600 120"
-        width="600"
-        height="120"
-        aria-hidden="true"
-        focusable="false"
-      >
-        <LeafDefs id={MEADOW_LEAF} />
-        {meadowLeaves}
-      </svg>
-    </div>
+    <svg
+      className={meadowCss}
+      data-testid="verdant-meadow"
+      viewBox="0 0 600 120"
+      width="600"
+      height="120"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <LeafDefs id={MEADOW_LEAF} />
+      {meadowLeaves}
+    </svg>
   );
 }

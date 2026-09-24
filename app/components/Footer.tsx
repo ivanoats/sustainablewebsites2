@@ -16,24 +16,24 @@ export function Footer() {
       })}
     >
       <div
-        className={css({
+        className={stack({
+          gap: '1rem',
+          align: 'center',
           maxW: '1080px',
           mx: 'auto',
           px: '1rem',
         })}
       >
-        <div className={stack({ gap: '1rem', align: 'center' })}>
-          <p className={css({ fontSize: 'bodySm' })}>
-            © {currentYear} Sustainable Websites. All rights reserved.
-          </p>
-          <p className={css({ fontSize: 'bodySm', color: 'ink.muted' })}>
-            Built with performance, accessibility, and sustainability in mind.
-          </p>
-          <p className={css({ fontSize: 'bodySm', color: 'ink.muted' })}>
-            Styled with <a href="https://verdant-design.org">Verdant Design</a>,
-            our design system for the Web Sustainability Guidelines.
-          </p>
-        </div>
+        <p className={css({ fontSize: 'bodySm' })}>
+          © {currentYear} Sustainable Websites. All rights reserved.
+        </p>
+        <p className={css({ fontSize: 'bodySm', color: 'ink.muted' })}>
+          Built with performance, accessibility, and sustainability in mind.
+        </p>
+        <p className={css({ fontSize: 'bodySm', color: 'ink.muted' })}>
+          Styled with <a href="https://verdant-design.org">Verdant Design</a>,
+          our design system for the Web Sustainability Guidelines.
+        </p>
       </div>
     </footer>
   );

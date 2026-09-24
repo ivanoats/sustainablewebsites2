@@ -6,8 +6,8 @@ describe('VerdantValley', () => {
   it('renders a decorative inline SVG hidden from assistive technology', () => {
     render(<VerdantValley />);
 
-    const svg = screen.getByTestId('verdant-valley').querySelector('svg');
-    expect(svg).not.toBeNull();
+    const svg = screen.getByTestId('verdant-valley');
+    expect(svg.tagName).toBe('svg');
     expect(svg).toHaveAttribute('aria-hidden', 'true');
     expect(svg).toHaveAttribute('viewBox', '0 0 560 440');
   });
@@ -23,7 +23,7 @@ describe('VerdantMeadow', () => {
   it('renders a decorative inline SVG hidden from assistive technology', () => {
     render(<VerdantMeadow />);
 
-    const svg = screen.getByTestId('verdant-meadow').querySelector('svg');
+    const svg = screen.getByTestId('verdant-meadow');
     expect(svg).toHaveAttribute('aria-hidden', 'true');
     expect(svg).toHaveAttribute('viewBox', '0 0 600 120');
   });

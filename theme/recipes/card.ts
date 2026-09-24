@@ -1,12 +1,12 @@
 import { defineSlotRecipe } from '@pandacss/dev';
-import { verdantPreset } from '../verdant/preset.mjs';
+import { verdantRecipe } from './verdant';
 
 export const card = defineSlotRecipe({
   className: 'verdant-card',
   slots: ['root', 'header', 'body', 'footer', 'title', 'description'],
   base: {
     root: {
-      ...verdantPreset.theme!.extend!.recipes!.card.base,
+      ...verdantRecipe('card').base,
       display: 'flex',
       flexDirection: 'column',
       height: '100%',

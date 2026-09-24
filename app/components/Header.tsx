@@ -18,49 +18,44 @@ export function Header() {
       })}
     >
       <div
-        className={css({
+        className={flex({
           maxW: '1080px',
           mx: 'auto',
           px: '1rem',
+          justify: 'space-between',
+          align: 'center',
+          wrap: 'wrap',
+          gap: '4',
         })}
       >
-        <div
-          className={flex({
-            justify: 'space-between',
-            align: 'center',
-            wrap: 'wrap',
-            gap: '4',
-          })}
+        <Link
+          href="/"
+          variant="brand"
+          className={flex({ align: 'center', gap: '0.75rem' })}
         >
-          <Link
-            href="/"
-            variant="brand"
-            className={flex({ align: 'center', gap: '0.75rem' })}
-          >
-            <Image
-              src={logo}
-              alt="Sustainable Websites logo"
-              width={40}
-              height={40}
-              priority
-            />
-            <span>{siteConfig.name}</span>
-          </Link>
-          <nav
-            className={flex({
-              gap: { base: '3', md: '6' },
-              wrap: 'wrap',
-              align: 'center',
-            })}
-            aria-label="Primary navigation"
-          >
-            {siteConfig.navbar.map((link: NavLink) => (
-              <Link key={link.href} href={link.href} variant="nav">
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
+          <Image
+            src={logo}
+            alt="Sustainable Websites logo"
+            width={40}
+            height={40}
+            priority
+          />
+          <span>{siteConfig.name}</span>
+        </Link>
+        <nav
+          className={flex({
+            gap: { base: '3', md: '6' },
+            wrap: 'wrap',
+            align: 'center',
+          })}
+          aria-label="Primary navigation"
+        >
+          {siteConfig.navbar.map((link: NavLink) => (
+            <Link key={link.href} href={link.href} variant="nav">
+              {link.label}
+            </Link>
+          ))}
+        </nav>
       </div>
     </header>
   );

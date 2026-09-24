@@ -34,7 +34,7 @@ export default function WSGCheckPage() {
             W3C Web Sustainability Guidelines Check
           </h1>
           <p className={css({ fontSize: 'displaySm', lineHeight: '1.8' })}>
-            Assess your website's alignment with the W3C Web Sustainability
+            Assess your website&apos;s alignment with the W3C Web Sustainability
             Guidelines and discover opportunities to improve.
           </p>
         </div>
@@ -62,8 +62,8 @@ export default function WSGCheckPage() {
           </h2>
           <p className={css({ mb: '2rem', fontSize: 'displaySm' })}>
             This tool will help you understand how your website aligns with the
-            W3C Web Sustainability Guidelines. We're working on integrating an
-            automated audit system that measures:
+            W3C Web Sustainability Guidelines. We&apos;re working on integrating
+            an automated audit system that measures:
           </p>
 
           <ul

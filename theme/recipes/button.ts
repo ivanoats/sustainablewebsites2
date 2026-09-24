@@ -1,7 +1,7 @@
 import { defineRecipe } from '@pandacss/dev';
-import { verdantPreset } from '../verdant/preset.mjs';
+import { verdantRecipe, verdantVariant } from './verdant';
 
-const verdant = verdantPreset.theme!.extend!.recipes!.button;
+const verdant = verdantRecipe('button');
 
 // Preserve the existing public Button API while sharing Verdant's recipes.
 export const button = defineRecipe({
@@ -22,9 +22,9 @@ export const button = defineRecipe({
   },
   variants: {
     variant: {
-      solid: verdant.variants!.variant.primary,
+      solid: verdantVariant(verdant, 'variant', 'primary'),
       surface: {
-        ...verdant.variants!.variant.secondary,
+        ...verdantVariant(verdant, 'variant', 'secondary'),
         background: 'surface.200',
         _hover: {
           borderColor: 'accent',
@@ -41,7 +41,7 @@ export const button = defineRecipe({
           color: 'accent',
         },
       },
-      outline: verdant.variants!.variant.secondary,
+      outline: verdantVariant(verdant, 'variant', 'secondary'),
       plain: {
         background: 'transparent',
         color: 'ink',

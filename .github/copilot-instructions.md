@@ -7,8 +7,8 @@
 - Optimize first for: performance, accessibility, sustainability, and clear
   conversion messaging.
 - Treat these as core content sources:
-  - `services.md`
-  - `about.md`
+  - `content/services.md`
+  - `content/about.md`
   - `README.md`
 
 ## Stack

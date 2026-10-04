@@ -1,16 +1,28 @@
 import { css } from '@/styled-system/css';
-import { stack } from '@/styled-system/patterns';
 import { Link } from '@/components/Link';
+import { Markdown } from '@/components/Markdown';
 import { Card as ParkCard } from '@/components/ui';
+import { loadContent, readList, readString } from '@/lib/content';
 import type { Metadata } from 'next';
 
+const about = loadContent('about', (data, file) => ({
+  title: readString(data, 'title', file),
+  description: readString(data, 'description', file),
+  heading: readString(data, 'heading', file),
+  sources: readList(data, 'sources', file).map((source) => ({
+    label: readString(source, 'label', file),
+    href: readString(source, 'href', file),
+  })),
+}));
+
 export const metadata: Metadata = {
-  title: 'About',
-  description:
-    'Twenty years of environmental advocacy combined with deep architectural expertise.',
+  title: about.data.title,
+  description: about.data.description,
 };
 
 export default function AboutPage() {
+  const { heading, sources } = about.data;
+
   return (
     <div>
       <section
@@ -24,12 +36,7 @@ export default function AboutPage() {
         })}
         aria-label="About us"
       >
-        <div
-          className={css({
-            maxW: '4xl',
-            mx: 'auto',
-          })}
-        >
+        <div className={css({ maxW: '4xl', mx: 'auto' })}>
           <h1
             className={css({
               fontSize: { base: '3xl', md: '4xl' },
@@ -37,205 +44,18 @@ export default function AboutPage() {
               color: 'ink',
             })}
           >
-            About Sustainable Websites
+            {heading}
           </h1>
         </div>
       </section>
 
       <section
-        className={css({
-          py: '4rem',
-          px: '1rem',
-          maxW: '4xl',
-          mx: 'auto',
-        })}
+        className={css({ py: '4rem', px: '1rem', maxW: '4xl', mx: 'auto' })}
       >
         <ParkCard.Root>
           <ParkCard.Body>
-            <article className={stack({ gap: '2rem' })}>
-              <section>
-                <h2
-                  className={css({
-                    fontSize: 'displayMd',
-                    fontWeight: 'bold',
-                    mb: '1rem',
-                    color: 'ink',
-                  })}
-                >
-                  A Twenty-Year Mission
-                </h2>
-                <div className={stack({ gap: '1rem' })}>
-                  <p className={css({ color: 'ink.muted', lineHeight: '1.8' })}>
-                    In 2004, the conversation around "green tech" was just
-                    beginning. I founded Sustainable Websites with a simple but
-                    ambitious goal: to provide a livelihood that was as
-                    environmentally responsible as it was technically sound. At
-                    the time, that meant pioneering carbon-offset web hosting,
-                    thus bridging the gap between the digital world and the
-                    physical planet.
-                  </p>
-                  <p className={css({ color: 'ink.muted', lineHeight: '1.8' })}>
-                    In 2013, after a decade of managing servers, I made a
-                    conscious choice to pivot. I sold the hosting business to{' '}
-                    <Link
-                      href="https://www.greengeeks.com/track/sustainableweb/cp-sw2"
-                      external
-                    >
-                      GreenGeeks
-                    </Link>{' '}
-                    to focus on two other passions: raising my children and
-                    teaching the next generation of developers.
-                  </p>
-                </div>
-              </section>
-
-              <section>
-                <h2
-                  className={css({
-                    fontSize: 'displayMd',
-                    fontWeight: 'bold',
-                    mb: '1rem',
-                    color: 'ink',
-                  })}
-                >
-                  The Evolution of Scale
-                </h2>
-                <div className={stack({ gap: '1rem' })}>
-                  <p className={css({ color: 'ink.muted', lineHeight: '1.8' })}>
-                    Sustainability is as much about people and processes as it
-                    is about power usage. I founded{' '}
-                    <Link href="https://www.codefellows.org/" external>
-                      CodeFellows
-                    </Link>{' '}
-                    to create a more sustainable model for technical education,
-                    moving away from the "gig economy" feel of adjunct
-                    professorship to build a lasting ecosystem for knowledge
-                    sharing.
-                  </p>
-                  <p className={css({ color: 'ink.muted', lineHeight: '1.8' })}>
-                    For the last six years, I have served as a Senior Software
-                    Engineer and Architect at{' '}
-                    <Link href="https://shop.lululemon.com/" external>
-                      lululemon
-                    </Link>
-                    . There, I've operated at the highest levels of digital
-                    scale, learning how to optimize web development teams,
-                    streamline complex processes, and architect systems that
-                    serve millions.
-                  </p>
-                </div>
-              </section>
-
-              <section>
-                <h2
-                  className={css({
-                    fontSize: 'displayMd',
-                    fontWeight: 'bold',
-                    mb: '1rem',
-                    color: 'ink',
-                  })}
-                >
-                  The New Standard: Beyond Offsets
-                </h2>
-                <div className={stack({ gap: '1rem' })}>
-                  <p className={css({ color: 'ink.muted', lineHeight: '1.8' })}>
-                    With the recent release of the{' '}
-                    <Link
-                      href="https://www.w3.org/TR/web-sustainability-guidelines/"
-                      external
-                    >
-                      W3C Web Sustainability Guidelines
-                    </Link>{' '}
-                    (WSG), the industry has reached a turning point. We now have
-                    the framework to move beyond simple carbon offsets and
-                    address the root of the problem: digital waste.
-                  </p>
-                  <ParkCard.Root
-                    className={css({
-                      borderInlineStartWidth: '4px',
-                      borderInlineStartColor: 'accent',
-                    })}
-                  >
-                    <ParkCard.Body>
-                      <p
-                        className={css({
-                          color: 'ink.muted',
-                          lineHeight: '1.8',
-                        })}
-                      >
-                        <strong>The urgency is real.</strong> The digital
-                        industry is now responsible for 2-5% of global
-                        emissions. If the internet were a country, it would rank
-                        among the top five polluters in the world. Between 2015
-                        and 2021, internet visitors increased 60%, while web
-                        traffic increased by 440%. Since the Paris Agreement,
-                        average page sizes have increased by over 70% on desktop
-                        and 140% on mobile.
-                      </p>
-                    </ParkCard.Body>
-                  </ParkCard.Root>
-                  <p className={css({ color: 'ink.muted', lineHeight: '1.8' })}>
-                    These aren't distant problems—they're immediate challenges
-                    that every organization building digital products must face
-                    today.
-                  </p>
-                </div>
-              </section>
-
-              <section>
-                <h2
-                  className={css({
-                    fontSize: 'displayMd',
-                    fontWeight: 'bold',
-                    mb: '1rem',
-                    color: 'ink',
-                  })}
-                >
-                  True Sustainability Is Efficiency
-                </h2>
-                <p className={css({ color: 'ink.muted', lineHeight: '1.8' })}>
-                  True sustainability is found in efficiency. It's in the
-                  architecture of our code, the weight of our pages, and the
-                  logic of our development processes.
-                </p>
-              </section>
-
-              <section>
-                <h2
-                  className={css({
-                    fontSize: 'displayMd',
-                    fontWeight: 'bold',
-                    mb: '1rem',
-                    color: 'ink',
-                  })}
-                >
-                  Consulting for the Future
-                </h2>
-                <div className={stack({ gap: '1rem' })}>
-                  <p className={css({ color: 'ink.muted', lineHeight: '1.8' })}>
-                    Sustainable Websites has returned to help companies navigate
-                    this new frontier. I combine over twenty years of
-                    environmental advocacy with deep architectural expertise to
-                    help organizations build digital platforms that are lean,
-                    performant, and responsible.
-                  </p>
-                  <p
-                    className={css({
-                      fontSize: 'displaySm',
-                      fontWeight: '600',
-                      color: 'accent.strong',
-                    })}
-                  >
-                    We don't just offset your footprint; we help you build a
-                    smaller one from the code up.
-                  </p>
-                  <p className={css({ color: 'ink.muted', lineHeight: '1.8' })}>
-                    Ready to make your digital products part of the solution?{' '}
-                    <Link href="/contact">Get in touch</Link> to discuss how we
-                    can help your organization lead on sustainability.
-                  </p>
-                </div>
-              </section>
+            <article>
+              <Markdown>{about.body}</Markdown>
             </article>
           </ParkCard.Body>
         </ParkCard.Root>
@@ -249,41 +69,14 @@ export default function AboutPage() {
         >
           <p>
             Sources:{' '}
-            <Link
-              href="https://httparchive.org/reports/state-of-the-web#page-weight"
-              external
-              variant="subtle"
-            >
-              HTTP Archive
-            </Link>
-            ,{' '}
-            <Link
-              href="https://www.iea.org/energy-system/buildings/data-centres-and-data-transmission-networks"
-              external
-              variant="subtle"
-            >
-              IEA
-            </Link>
-            ,{' '}
-            <Link
-              href="https://www.greenpeace.org/usa/internet-growing-to-suprass-television-should-be-powered-with-clean-energy/"
-              external
-              variant="subtle"
-            >
-              Greenpeace
-            </Link>
-            ,{' '}
-            <Link href="https://www.ipcc.ch/sr15/" external variant="subtle">
-              IPCC
-            </Link>
-            ,{' '}
-            <Link
-              href="https://www.cell.com/patterns/pdfExtended/S2666-3899(21)00188-4"
-              external
-              variant="subtle"
-            >
-              Lancaster University
-            </Link>
+            {sources.map((source, i) => (
+              <span key={source.href}>
+                {i > 0 && ', '}
+                <Link href={source.href} external variant="subtle">
+                  {source.label}
+                </Link>
+              </span>
+            ))}
           </p>
         </footer>
       </section>

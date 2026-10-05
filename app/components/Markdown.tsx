@@ -48,12 +48,15 @@ const components: Components = {
   ),
   blockquote: ({ children }) => (
     <ParkCard.Root
+      asChild
       className={css({
         borderInlineStartWidth: '4px',
         borderInlineStartColor: 'accent',
       })}
     >
-      <ParkCard.Body>{children}</ParkCard.Body>
+      <blockquote>
+        <ParkCard.Body>{children}</ParkCard.Body>
+      </blockquote>
     </ParkCard.Root>
   ),
   a: ({ href = '', children }) => (
@@ -92,6 +95,7 @@ export function Markdown({ children, checklist: asChecklist }: MarkdownProps) {
   return (
     <div className={stack({ gap: '1rem' })}>
       <ReactMarkdown
+        skipHtml
         components={asChecklist ? { ...components, ...checklist } : components}
       >
         {children}

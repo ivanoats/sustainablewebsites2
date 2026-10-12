@@ -88,12 +88,12 @@ Site-wide footer. Responsibilities:
 
 A call-to-action link rendered as a button. Props:
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `text` | `string` | — | Button label |
-| `href` | `string` | — | Navigation target |
+| Prop      | Type                       | Default     | Description                         |
+| --------- | -------------------------- | ----------- | ----------------------------------- |
+| `text`    | `string`                   | —           | Button label                        |
+| `href`    | `string`                   | —           | Navigation target                   |
 | `variant` | `'primary' \| 'secondary'` | `'primary'` | Maps to Park UI `solid` / `outline` |
-| `size` | `'sm' \| 'md' \| 'lg'` | `'md'` | Button size |
+| `size`    | `'sm' \| 'md' \| 'lg'`     | `'md'`      | Button size                         |
 
 Uses Park UI `Button` with `asChild` to render a native `<a>` element, keeping
 the component accessible and SEO-friendly without client-side navigation
@@ -103,27 +103,42 @@ overhead.
 
 A content card with an optional icon and optional link. Props:
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `title` | `string` | — | Card heading |
-| `description` | `string` | — | Card body text |
-| `icon` | `React.ReactNode` | — | Optional emoji / icon |
-| `href` | `string` | — | Optional: wraps the card in an `<a>` |
-| `children` | `React.ReactNode` | — | Optional additional content |
+| Prop          | Type              | Default | Description                          |
+| ------------- | ----------------- | ------- | ------------------------------------ |
+| `title`       | `string`          | —       | Card heading                         |
+| `description` | `string`          | —       | Card body text                       |
+| `icon`        | `React.ReactNode` | —       | Optional emoji / icon                |
+| `href`        | `string`          | —       | Optional: wraps the card in an `<a>` |
+| `children`    | `React.ReactNode` | —       | Optional additional content          |
 
 Delegates rendering to Park UI `Card.Root` / `Card.Body` / `Card.Title` /
 `Card.Description`.
+
+### `Markdown` — `app/components/Markdown.tsx`
+
+Renders trusted, build-time Markdown with the site's own styling
+([ADR-0005](adr/0005-markdown-content-source.md)). Props:
+
+| Prop        | Type      | Default | Description                                         |
+| ----------- | --------- | ------- | --------------------------------------------------- |
+| `children`  | `string`  | —       | Markdown source (the body of a `content/*.md` file) |
+| `checklist` | `boolean` | `false` | Render lists as ✓ checklists instead of bullets     |
+
+Headings, paragraphs, and lists map to site styles, links use `Link` (external
+links open in a new tab with `rel="noopener noreferrer"`), and a blockquote
+renders as an accent-bordered card while staying a real `<blockquote>`. Raw HTML
+in the source is dropped. Stories are in `Markdown.stories.tsx`.
 
 ### `Link` — `app/components/Link.tsx`
 
 A styled anchor element. Props:
 
-| Prop | Type | Default | Description |
-| --- | --- | --- | --- |
-| `href` | `string` | — | URL |
-| `variant` | `'primary' \| 'nav' \| 'brand' \| 'subtle'` | `'primary'` | Visual style |
-| `external` | `boolean` | `false` | Adds `target="_blank" rel="noopener noreferrer"` |
-| `className` | `string` | — | Additional CSS class |
+| Prop        | Type                                        | Default     | Description                                      |
+| ----------- | ------------------------------------------- | ----------- | ------------------------------------------------ |
+| `href`      | `string`                                    | —           | URL                                              |
+| `variant`   | `'primary' \| 'nav' \| 'brand' \| 'subtle'` | `'primary'` | Visual style                                     |
+| `external`  | `boolean`                                   | `false`     | Adds `target="_blank" rel="noopener noreferrer"` |
+| `className` | `string`                                    | —           | Additional CSS class                             |
 
 ## Park UI Primitives (`app/components/ui/`)
 
@@ -131,38 +146,38 @@ Thin wrappers around [Ark UI](https://ark-ui.com/) components styled with
 PandaCSS slot recipes. All primitives are exported from
 `app/components/ui/index.ts`.
 
-| Export | Underlying Ark UI primitive |
-| --- | --- |
-| `Button`, `ButtonGroup` | `@ark-ui/react` button |
-| `Card` (namespace) | `@ark-ui/react` card |
-| `Field` (namespace) | `@ark-ui/react` field |
-| `Input` | `@ark-ui/react` input |
-| `Textarea` | `@ark-ui/react` textarea |
-| `Select` (namespace) | `@ark-ui/react` select |
-| `Spinner` | `@ark-ui/react` spinner |
-| `Loader` | Spinner-based loader |
-| `Group` | `@ark-ui/react` group |
-| `Span` | Styled `<span>` |
-| `AbsoluteCenter` | Utility centering wrapper |
+| Export                  | Underlying Ark UI primitive |
+| ----------------------- | --------------------------- |
+| `Button`, `ButtonGroup` | `@ark-ui/react` button      |
+| `Card` (namespace)      | `@ark-ui/react` card        |
+| `Field` (namespace)     | `@ark-ui/react` field       |
+| `Input`                 | `@ark-ui/react` input       |
+| `Textarea`              | `@ark-ui/react` textarea    |
+| `Select` (namespace)    | `@ark-ui/react` select      |
+| `Spinner`               | `@ark-ui/react` spinner     |
+| `Loader`                | Spinner-based loader        |
+| `Group`                 | `@ark-ui/react` group       |
+| `Span`                  | Styled `<span>`             |
+| `AbsoluteCenter`        | Utility centering wrapper   |
 
 ## Design Tokens and Theme (`theme/`)
 
 PandaCSS tokens and recipes are defined in `theme/` and referenced by
 `panda.config.ts`. This is the single source of truth for the visual language.
 
-| Directory / File | Contents |
-| --- | --- |
-| `theme/colors/` | Radix-style color scales: `sage`, `green`, `grass`, `blue`, `red` |
-| `theme/tokens/` | Base tokens for `colors`, `durations`, `shadows`, `z-index` (semantic tokens such as `fg.*`, `border`, `error` are defined in `panda.config.ts`) |
-| `theme/recipes/` | Component style recipes for every Park UI primitive |
-| `theme/text-styles.ts` | Global typography scale |
-| `theme/layer-styles.ts` | Reusable layer styles |
-| `theme/keyframes.ts` | CSS animation keyframes |
-| `theme/global-css.ts` | Global CSS reset additions |
-| `theme/conditions.ts` | Custom PandaCSS conditions (e.g. dark mode selectors) |
+| Directory / File        | Contents                                                                                                                                         |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `theme/colors/`         | Radix-style color scales: `sage`, `green`, `grass`, `blue`, `red`                                                                                |
+| `theme/tokens/`         | Base tokens for `colors`, `durations`, `shadows`, `z-index` (semantic tokens such as `fg.*`, `border`, `error` are defined in `panda.config.ts`) |
+| `theme/recipes/`        | Component style recipes for every Park UI primitive                                                                                              |
+| `theme/text-styles.ts`  | Global typography scale                                                                                                                          |
+| `theme/layer-styles.ts` | Reusable layer styles                                                                                                                            |
+| `theme/keyframes.ts`    | CSS animation keyframes                                                                                                                          |
+| `theme/global-css.ts`   | Global CSS reset additions                                                                                                                       |
+| `theme/conditions.ts`   | Custom PandaCSS conditions (e.g. dark mode selectors)                                                                                            |
 
 ## Storybook Coverage
 
-`CTAButton` and `Card` each have a `.stories.tsx` file under
+`CTAButton`, `Card`, and `Markdown` each have a `.stories.tsx` file under
 `app/components/`, providing isolated Storybook stories for visual development
 and review.

@@ -41,8 +41,17 @@ Sustainable Websites 2.0
 
 ## Information Architecture
 
-- Services - based on Services.md
-- About - based on About.md
+- Services - copy in `content/services.md`
+- About - copy in `content/about.md`
 - WSG-Check - tool page describing the W3C Web Sustainability Guidelines auditor
+  (copy in `content/wsg-check.md`)
 - Contact - contact form with Netlify Forms
 - Blog - placeholder for future content on sustainable web development practices
+
+## Architecture Documentation
+
+- [Architecture Overview](docs/architecture.md) — C4 context and containers
+- [Data Flows](docs/data-flows.md) — build, rendering, and form submission
+- [Component Architecture](docs/components.md) — UI components and design tokens
+- [Architecture Decision Log](docs/adr/README.md) — why the system is the way it
+  is, including the open question of moving to Astro

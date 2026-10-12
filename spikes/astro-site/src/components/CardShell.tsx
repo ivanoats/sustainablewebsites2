@@ -7,7 +7,7 @@ import { Card as ParkCard } from '@/components/ui';
  * cross the template: Root and Body must be composed inside one React
  * component. Children arrive from Astro as static HTML.
  */
-export default function CardShell({ children }: { children?: ReactNode }) {
+export default function CardShell({ children }: Readonly<{ children?: ReactNode }>) {
   return (
     <ParkCard.Root>
       <ParkCard.Body>{children}</ParkCard.Body>

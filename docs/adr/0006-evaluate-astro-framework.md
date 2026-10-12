@@ -247,9 +247,10 @@ current Next.js site scored Best Practices 92, which did not reproduce locally.
 ### Findings
 
 - **Component reuse works.** `Header`, `Footer`, `CTAButton`, `Card`, `Link`,
-  `VerdantArt`, and the Ark UI form fields render with no hydration. The home,
-  Services, and Contact pages render the existing React page components
-  unchanged and are pixel-identical. The only Next.js import that needed
+  `VerdantArt`, and the Ark UI form fields render with no hydration. The home and Contact pages render the existing React page components
+  unchanged. Services renders a `ServicesView` component that was extracted
+  from the Next.js page and is now shared by both. All three are
+  pixel-identical. The only Next.js import that needed
   replacing was `next/image`, with a 30-line shim.
 - **Compound components cannot span an `.astro` template.** Park UI's
   `Card.Root` and `Card.Body` share React context, and each React component

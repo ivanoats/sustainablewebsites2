@@ -3,7 +3,6 @@ import { stack } from '@/styled-system/patterns';
 import { CTAButton } from '@/components/CTAButton';
 import { Card as ParkCard } from '@/components/ui';
 
-
 export interface ServicesData {
   heading: string;
   tagline: string;
@@ -21,8 +20,8 @@ export interface ServicesData {
   closing: { heading: string; text: string; cta: string };
 }
 
-/** The Services page body from app/(pages)/services/page.tsx, fed from a content collection. */
-export default function ServicesView({ data }: { data: ServicesData }) {
+/** The Services page body. Takes validated content so any framework can render it. */
+export function ServicesView({ data }: Readonly<{ data: ServicesData }>) {
   const { heading, tagline, intro, closing } = data;
 
   return (

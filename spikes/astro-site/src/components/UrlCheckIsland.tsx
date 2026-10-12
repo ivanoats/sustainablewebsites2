@@ -27,7 +27,7 @@ export default function UrlCheckIsland() {
         placeholder="https://example.com"
       />
       <button type="submit">Check</button>
-      {submitted && <p role="status">Would check {submitted}</p>}
+      {submitted && <output>Would check {submitted}</output>}
     </form>
   );
 }

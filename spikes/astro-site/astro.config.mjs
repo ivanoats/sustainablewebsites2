@@ -30,6 +30,8 @@ const rehypeCallout = () => (tree) => {
 // import in that code is next/image, shimmed below.
 export default defineConfig({
   output: 'static',
+  // Reuse the repository's public/ folder (the Netlify Forms stub) instead of a copy.
+  publicDir: here('../../public'),
   integrations: [react()],
   // Astro 7: plugins go on the unified processor; the built-in default
   // processor does not run rehype plugins.

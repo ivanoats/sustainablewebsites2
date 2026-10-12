@@ -8,7 +8,10 @@ components.
 Significant decisions are recorded in the
 [Architecture Decision Log](adr/README.md). One is open: whether to move to
 Astro ([ADR-0006](adr/0006-evaluate-astro-framework.md)). This document
-describes the system as it is today.
+describes the system as it is today. The site's purpose is set by
+[ADR-0007](adr/0007-umbrella-brand-and-primary-product.md): it is the front door
+for the Sustainable Websites brand and its primary product, WSG-Check, which
+lives in a separate repository and application.
 
 ## C4 Level 1 — System Context
 
@@ -138,13 +141,14 @@ the Markdown content described above. Shared TypeScript interfaces (`SiteConfig`
 
 ## Architecture Decisions
 
-| ADR                                           | Decision                                        |
-| --------------------------------------------- | ----------------------------------------------- |
-| [0002](adr/0002-nextjs-static-generation.md)  | Next.js with static generation                  |
-| [0003](adr/0003-pandacss-park-ui.md)          | PandaCSS and Park UI for styling                |
-| [0004](adr/0004-netlify-hosting-and-forms.md) | Netlify hosting and Netlify Forms               |
-| [0005](adr/0005-markdown-content-source.md)   | Markdown as the content source of truth         |
-| [0006](adr/0006-evaluate-astro-framework.md)  | Evaluate Astro as the site framework (proposed) |
+| ADR                                                    | Decision                                                                     |
+| ------------------------------------------------------ | ---------------------------------------------------------------------------- |
+| [0002](adr/0002-nextjs-static-generation.md)           | Next.js with static generation                                               |
+| [0003](adr/0003-pandacss-park-ui.md)                   | PandaCSS and Park UI for styling                                             |
+| [0004](adr/0004-netlify-hosting-and-forms.md)          | Netlify hosting and Netlify Forms                                            |
+| [0005](adr/0005-markdown-content-source.md)            | Markdown as the content source of truth                                      |
+| [0006](adr/0006-evaluate-astro-framework.md)           | Evaluate Astro as the site framework (proposed)                              |
+| [0007](adr/0007-umbrella-brand-and-primary-product.md) | Sustainable Websites is the umbrella brand; WSG-Check is the primary product |
 
 The full log, statuses, and the template for new records are in
 [`docs/adr/`](adr/README.md).

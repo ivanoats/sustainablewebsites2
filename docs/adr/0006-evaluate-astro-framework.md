@@ -35,6 +35,26 @@ and no throttled load test was run. The point is the order of magnitude, not the
 exact figure: the pages are static documents carrying about 226 KB of script
 they do not use.
 
+### Roadmap drivers
+
+[ADR-0007](0007-umbrella-brand-and-primary-product.md) makes WSG-Check the
+primary product and this site its front door. That raises the weight of
+search performance, content volume (documentation, guideline pages, case
+studies), and page weight, because the site is the main acquisition channel for
+the revenue product. It also keeps accounts, dashboards, and billing in the
+separate `wsg-check` application, which is already a Next.js and PandaCSS app.
+
+This makes the question one of boundaries as much as frameworks:
+
+- If this site stays a marketing and content site, Astro fits it better than
+  Next.js.
+- If the site must host product UI (accounts, dashboards), staying on Next.js is
+  the simpler choice.
+- Migration cost grows with content. Five pages is cheap to move today;
+  documentation and dozens of guideline pages are not.
+- The counterweight is founder bandwidth: two frameworks across two
+  repositories is a real maintenance cost for one maintainer.
+
 ### Coupling to Next.js
 
 Next.js-specific code is small: `next/image` in `Header`, and the `Metadata`
@@ -65,7 +85,8 @@ the spike below confirms it.
 **Not yet decided.** Run a time-boxed spike, then decide.
 
 Recommendation: proceed with Astro if the spike confirms the risks below are
-manageable. It fits a static, content-first site better than Next.js does, and
+manageable and this site stays a marketing and content site, with the product UI
+in the separate `wsg-check` application (ADR-0007). It fits a static, content-first site better than Next.js does, and
 it removes the contradiction of a sustainability consultancy shipping unused
 framework JavaScript. If the spike surfaces a blocking problem, stay on Next.js
 and record that here.
@@ -143,6 +164,13 @@ Markdown pages), keep everything else on Next.js.
 5. Build, then measure script bytes per page and a Lighthouse run against the
    same pages, using the table above as the baseline.
 6. Confirm Netlify Forms still detects `public/forms.html` and the contact form.
+7. Prove the interactive case: embed a URL-check form as a single hydrated
+   island on an otherwise static page, and measure the extra script.
+8. Generate a handful of guideline pages from a content collection, to test the
+   content-volume case.
+9. Check that the Verdant tokens and React components can be shared with the
+   `wsg-check` repository, and look at Astro's documentation tooling for the
+   product docs.
 
 ### Risks to verify
 

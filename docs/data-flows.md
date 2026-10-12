@@ -25,6 +25,7 @@ sequenceDiagram
   Netlify->>NB: npm run build (prebuild → panda:gen → next build)
   NB->>Panda: prebuild: npm run panda:gen (code gen + CSS gen)
   Panda-->>NB: styled-system/ + styles.css
+  NB->>NB: Read and validate content/*.md (fails the build if frontmatter is invalid)
   NB-->>Netlify: .next/ static output (HTML, JS, CSS)
   Netlify->>CDN: Publish static assets
   Browser->>CDN: GET /services (HTTPS)
@@ -40,7 +41,14 @@ sequenceDiagram
   header.
 - Each page exports a `metadata` object (title, description) consumed by
   Next.js to generate `<head>` tags at build time — no runtime metadata
-  resolution.
+  resolution. For Services, About, and WSG Check, the values come from the
+  frontmatter of `content/*.md`.
+- Page copy is read from `content/*.md` by `app/lib/content.ts` during the
+  build. Nothing is read at request time
+  ([ADR-0005](adr/0005-markdown-content-source.md)).
+- Pages are fully static HTML, but the Next.js client runtime is still shipped
+  to the browser; see [ADR-0006](adr/0006-evaluate-astro-framework.md) for
+  measurements.
 - The `Header` component reads navigation links from the static `siteConfig`
   object; no API call is involved.
 

@@ -2,108 +2,46 @@ import { css } from '@/styled-system/css';
 import { stack } from '@/styled-system/patterns';
 import { CTAButton } from '@/components/CTAButton';
 import { Card as ParkCard } from '@/components/ui';
+import { loadContent, readList, readObject, readString } from '@/lib/content';
 import type { Metadata } from 'next';
 
+const services = loadContent('services', (data, file) => {
+  const closing = readObject(data, 'closing', file);
+  return {
+    title: readString(data, 'title', file),
+    description: readString(data, 'description', file),
+    heading: readString(data, 'heading', file),
+    tagline: readString(data, 'tagline', file),
+    intro: readString(data, 'intro', file),
+    services: readList(data, 'services', file).map((service) => ({
+      id: readString(service, 'id', file),
+      title: readString(service, 'title', file),
+      tagline: readString(service, 'tagline', file),
+      summary: readString(service, 'summary', file),
+      benefitsTitle: readString(service, 'benefitsTitle', file),
+      benefits: readList(service, 'benefits', file).map((benefit) => ({
+        label: readString(benefit, 'label', file),
+        text: readString(benefit, 'text', file),
+      })),
+      deliverable: readString(service, 'deliverable', file),
+      cta: readString(service, 'cta', file),
+    })),
+    closing: {
+      heading: readString(closing, 'heading', file),
+      text: readString(closing, 'text', file),
+      cta: readString(closing, 'cta', file),
+    },
+  };
+});
+
 export const metadata: Metadata = {
-  title: 'Services',
-  description:
-    'Digital sustainability consulting: audits, architecture, and DevOps optimization.',
+  title: services.data.title,
+  description: services.data.description,
 };
 
-const services = [
-  {
-    id: 'audit',
-    title: 'Digital Footprint Audit',
-    tagline:
-      "Discover exactly where your digital waste lives—and what it's costing you.",
-    summary:
-      "Most companies don't realize how much energy their digital products consume or where the inefficiencies hide. Our comprehensive technical audit analyzes your entire stack: page weight, data transfer efficiency, server-side energy intensity, and architectural bottlenecks.",
-    listTitle: 'Benefits:',
-    bullets: [
-      {
-        label: 'Quantified baseline',
-        text: 'Know your exact emissions and cost impact',
-      },
-      {
-        label: 'Prioritized action plan',
-        text: 'Focus on changes with the highest ROI',
-      },
-      {
-        label: 'WSG compliance mapping',
-        text: 'Align with W3C Web Sustainability Guidelines standards',
-      },
-      {
-        label: 'Competitive advantage',
-        text: 'Lead your industry with measurable sustainability commitments',
-      },
-    ],
-    deliverable:
-      'A detailed Sustainability Scorecard covering User Experience, Web Development, Hosting/Infrastructure, and Business Strategy—with clear recommendations and projected savings.',
-    ctaText: 'Get Your Free Audit',
-  },
-  {
-    id: 'architecture',
-    title: 'Sustainable Architecture Consulting',
-    tagline:
-      'Transform bloated systems into lean, high-performance platforms that cost less to run.',
-    summary:
-      'Sustainability is performance. Your monolithic architecture is slowing you down, driving up hosting costs, and wasting energy. We redesign systems to be lean, efficient, and built for modern web standards—using edge computing, static-site generation, and optimized data flows that serve millions without waste.',
-    listTitle: 'Benefits:',
-    bullets: [
-      {
-        label: 'Faster page loads',
-        text: 'Improved user experience and conversion rates',
-      },
-      {
-        label: 'Lower infrastructure costs',
-        text: 'Reduced server resources and data egress fees',
-      },
-      {
-        label: 'Reduced emissions',
-        text: 'Significantly reduce energy consumption on refactored paths',
-      },
-      {
-        label: 'Future-proof stack',
-        text: 'Modern architecture using TypeScript, React, and edge computing',
-      },
-    ],
-    deliverable:
-      'A comprehensive refactoring roadmap for your high-traffic paths with implementation priorities and projected cost savings.',
-    ctaText: 'Discuss Your Architecture',
-  },
-  {
-    id: 'devops',
-    title: 'Green DevOps & CI/CD Optimization',
-    tagline:
-      'Stop wasting energy (and developer time) on inefficient build processes.',
-    summary:
-      'Your CI/CD pipeline runs thousands of times per year. Redundant builds, inefficient orchestration, and idling cloud resources drain money and energy without adding value. We optimize your entire development pipeline to be faster, cheaper, and measurably greener.',
-    listTitle: 'What We Optimize:',
-    bullets: [
-      {
-        label: 'Build efficiency',
-        text: 'Eliminate redundant builds and improve cache utilization',
-      },
-      {
-        label: 'Resource management',
-        text: 'Right-size instances and eliminate idle capacity',
-      },
-      {
-        label: 'Deployment strategy',
-        text: 'Optimize delivery pipelines for speed and energy efficiency',
-      },
-      {
-        label: 'Observability',
-        text: 'Track energy metrics alongside performance metrics',
-      },
-    ],
-    deliverable:
-      'An optimized CI/CD blueprint with implementation guidance and projected energy and cost savings.',
-    ctaText: 'Optimize Your Pipeline',
-  },
-];
-
 export default function ServicesPage() {
+  const { heading, tagline, intro, closing } = services.data;
+
   return (
     <div>
       <section
@@ -131,7 +69,7 @@ export default function ServicesPage() {
               color: 'ink',
             })}
           >
-            Services
+            {heading}
           </h1>
           <p
             className={css({
@@ -140,7 +78,7 @@ export default function ServicesPage() {
               lineHeight: '1.8',
             })}
           >
-            Build Faster, Leaner, Greener
+            {tagline}
           </p>
           <p
             className={css({
@@ -149,9 +87,7 @@ export default function ServicesPage() {
               mt: '1rem',
             })}
           >
-            You can't reduce what you don't measure. Cut your digital emissions,
-            improve performance, and reduce hosting costs with sustainable web
-            architecture designed for scale.
+            {intro}
           </p>
         </div>
       </section>
@@ -161,7 +97,7 @@ export default function ServicesPage() {
         aria-label="Service details"
       >
         <div className={stack({ gap: '1.5rem', maxW: '4xl', mx: 'auto' })}>
-          {services.map((service) => (
+          {services.data.services.map((service) => (
             <section
               key={service.id}
               id={service.id}
@@ -202,10 +138,10 @@ export default function ServicesPage() {
                         color: 'ink',
                       })}
                     >
-                      {service.listTitle}
+                      {service.benefitsTitle}
                     </h3>
                     <ul className={css({ pl: '1.25rem', color: 'ink.muted' })}>
-                      {service.bullets.map((item) => (
+                      {service.benefits.map((item) => (
                         <li key={item.label} className={css({ mb: '0.75rem' })}>
                           <strong>{item.label}:</strong> {item.text}
                         </li>
@@ -223,7 +159,7 @@ export default function ServicesPage() {
 
                     <div>
                       <CTAButton
-                        text={service.ctaText}
+                        text={service.cta}
                         href="/contact"
                         variant="primary"
                         size="md"
@@ -260,7 +196,7 @@ export default function ServicesPage() {
               mb: '1rem',
             })}
           >
-            Ready to Get Started?
+            {closing.heading}
           </h2>
           <p
             className={css({
@@ -270,11 +206,10 @@ export default function ServicesPage() {
               color: 'ink.muted',
             })}
           >
-            Schedule a free consultation with our team to discuss which service
-            is right for your organization.
+            {closing.text}
           </p>
           <CTAButton
-            text="Schedule Consultation"
+            text={closing.cta}
             href="/contact"
             variant="primary"
             size="lg"

@@ -1,17 +1,33 @@
 import { css } from '@/styled-system/css';
 import { CTAButton } from '@/components/CTAButton';
+import { Markdown } from '@/components/Markdown';
+import { loadContent, readObject, readString } from '@/lib/content';
 import type { Metadata } from 'next';
 
+const page = loadContent('wsg-check', (data, file) => {
+  const cta = readObject(data, 'cta', file);
+  return {
+    title: readString(data, 'title', file),
+    description: readString(data, 'description', file),
+    heading: readString(data, 'heading', file),
+    intro: readString(data, 'intro', file),
+    cta: {
+      label: readString(cta, 'label', file),
+      href: readString(cta, 'href', file),
+    },
+  };
+});
+
 export const metadata: Metadata = {
-  title: 'WSG Check',
-  description:
-    'W3C Web Sustainability Guidelines audit and assessment tool for your website.',
+  title: page.data.title,
+  description: page.data.description,
 };
 
 export default function WSGCheckPage() {
+  const { heading, intro, cta } = page.data;
+
   return (
     <div className={css({ bg: 'surface.200' })}>
-      {/* Hero Section */}
       <section
         className={css({
           py: '4rem',
@@ -22,91 +38,29 @@ export default function WSGCheckPage() {
         })}
         aria-label="WSG Check tool"
       >
-        <div
-          className={css({
-            maxW: '4xl',
-            mx: 'auto',
-          })}
-        >
+        <div className={css({ maxW: '4xl', mx: 'auto' })}>
           <h1
             className={css({ fontSize: '3xl', fontWeight: 'bold', mb: '1rem' })}
           >
-            W3C Web Sustainability Guidelines Check
+            {heading}
           </h1>
           <p className={css({ fontSize: 'displaySm', lineHeight: '1.8' })}>
-            Assess your website&apos;s alignment with the W3C Web Sustainability
-            Guidelines and discover opportunities to improve.
+            {intro}
           </p>
         </div>
       </section>
 
-      {/* Content Section */}
       <section
-        className={css({
-          py: '4rem',
-          px: '1rem',
-          maxW: '4xl',
-          mx: 'auto',
-        })}
+        className={css({ py: '4rem', px: '1rem', maxW: '4xl', mx: 'auto' })}
       >
-        <div className={css({ color: 'ink.muted', lineHeight: '1.8' })}>
-          <h2
-            className={css({
-              fontSize: 'displayMd',
-              fontWeight: 'bold',
-              mb: '1.5rem',
-              color: 'ink',
-            })}
-          >
-            Coming Soon
-          </h2>
-          <p className={css({ mb: '2rem', fontSize: 'displaySm' })}>
-            This tool will help you understand how your website aligns with the
-            W3C Web Sustainability Guidelines. We&apos;re working on integrating
-            an automated audit system that measures:
-          </p>
-
-          <ul
-            className={css({
-              mb: '2rem',
-              listStyle: 'none',
-            })}
-          >
-            {[
-              'User experience efficiency',
-              'Web development practices',
-              'Hosting and infrastructure impact',
-              'Business strategy alignment',
-            ].map((item) => (
-              <li
-                key={item}
-                className={css({
-                  mb: '0.75rem',
-                  display: 'flex',
-                  gap: '0.75rem',
-                })}
-              >
-                <span className={css({ color: 'accent', fontWeight: 'bold' })}>
-                  ✓
-                </span>
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-
-          <p className={css({ mb: '2rem' })}>
-            In the meantime, we offer manual assessments as part of our Digital
-            Footprint Audit service. Contact us to learn more.
-          </p>
-
-          <div className={css({ textAlign: 'center' })}>
-            <CTAButton
-              text="Schedule an Audit"
-              href="/contact"
-              variant="primary"
-              size="lg"
-            />
-          </div>
+        <Markdown checklist>{page.body}</Markdown>
+        <div className={css({ textAlign: 'center', mt: '2rem' })}>
+          <CTAButton
+            text={cta.label}
+            href={cta.href}
+            variant="primary"
+            size="lg"
+          />
         </div>
       </section>
     </div>

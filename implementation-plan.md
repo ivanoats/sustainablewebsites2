@@ -9,8 +9,8 @@
 - [x] Set up or verify PandaCSS + ParkUI integration
 - [x] Create semantic HTML layout (header, nav, main, footer landmarks)
 - [x] Build **Home** page with value proposition and primary CTA
-- [x] Build **Services** page (from `services.md`)
-- [x] Build **About** page (from `about.md`)
+- [x] Build **Services** page (from `content/services.md`)
+- [x] Build **About** page (from `content/about.md`)
 - [x] Build **Contact** page with Netlify Forms integration
 - [x] Create reusable component library with `.stories.tsx` files (e.g., CTA
       buttons, card, hero)

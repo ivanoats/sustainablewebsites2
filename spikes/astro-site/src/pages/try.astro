@@ -1,0 +1,11 @@
+---
+import UrlCheckIsland from '../components/UrlCheckIsland';
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Try it" description="Spike page: one hydrated island on a static page.">
+  <div class="md" style="max-width:56rem;margin:0 auto;padding:4rem 1rem">
+    <h1>Check a website</h1>
+    <UrlCheckIsland client:load />
+  </div>
+</Base>

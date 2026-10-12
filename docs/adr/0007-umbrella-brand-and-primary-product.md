@@ -73,14 +73,16 @@ Site purpose and content:
   Services stays in the primary navigation, because it funds the first year.
 - The `/wsg-check` page must stop saying "Coming Soon" and point to the released
   tool. This belongs in the planned copy rewrite.
-- The service descriptions should be reconciled with the packages in the
-  business plan (baseline audit, remediation sprint, team training, conformance
-  report). Today the site shows Audit, Architecture Consulting, and Green DevOps.
+- The service packages follow the business plan: baseline audit, remediation
+  sprint, team training, and conformance report. The site's current three cards
+  (Audit, Architecture Consulting, Green DevOps) are replaced in the copy
+  rewrite.
 
 Site features implied by the business plan (candidates, not commitments):
 
-- Product pages, a pricing page, and documentation for the CLI, MCP server,
-  Agent Skill, and GitHub Action.
+- Product overview pages that link to the WSG-Check domain, where the pricing
+  page and the documentation for the CLI, MCP server, Agent Skill, and GitHub
+  Action live.
 - Search-driven guideline-by-guideline content, which could be generated from
   the product's guideline data.
 - Case studies, a changelog, and "Monitor this site" upgrade links.
@@ -94,10 +96,16 @@ Architecture:
 - Sharing the Verdant design tokens and React components between this site and
   the product app becomes a requirement to protect.
 
+## Decisions since acceptance
+
+- **Documentation and pricing live on WSG-Check.com**, the product domain. The
+  Sustainable Websites domain carries the brand, content, and consulting, and
+  links to the product domain for pricing and docs. Both domains stay live.
+- **Service packages:** use the business plan's set, not the site's current
+  three cards.
+
 ## Open questions
 
-- Which domain hosts the documentation and the pricing page. Both domains stay
-  live, so each page needs one clear home to avoid duplicate content.
 - Whether the free check is embedded in this site or links out to the product
   app.
 - Whether to bill in CAD for Vancouver clients, and what that means for

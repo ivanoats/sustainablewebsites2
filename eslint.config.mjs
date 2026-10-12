@@ -3,7 +3,7 @@ import nextTypeScript from 'eslint-config-next/typescript';
 
 const config = [
   {
-    ignores: ['styled-system/**', '.next/**', 'node_modules/**', 'storybook-static/**'],
+    ignores: ['styled-system/**', '.next/**', 'node_modules/**', 'storybook-static/**', 'spikes/**'],
   },
   ...nextCoreWebVitals,
   ...nextTypeScript,

@@ -10,14 +10,14 @@ For how the system is structured today, see [Architecture Overview](../architect
 
 ## Decision log
 
-| ADR                                           | Title                                   | Status                    | Date       |
-| --------------------------------------------- | --------------------------------------- | ------------------------- | ---------- |
-| [0001](0001-record-architecture-decisions.md) | Record architecture decisions           | Accepted                  | 2026-10-12 |
-| [0002](0002-nextjs-static-generation.md)      | Next.js with static generation          | Accepted (retroactive)    | 2026-10-12 |
-| [0003](0003-pandacss-park-ui.md)              | PandaCSS and Park UI for styling        | Accepted (retroactive)    | 2026-10-12 |
-| [0004](0004-netlify-hosting-and-forms.md)     | Netlify hosting and Netlify Forms       | Accepted (retroactive)    | 2026-10-12 |
-| [0005](0005-markdown-content-source.md)       | Markdown as the content source of truth | Accepted (pending PR #83) | 2026-10-12 |
-| [0006](0006-evaluate-astro-framework.md)      | Evaluate Astro as the site framework    | Proposed                  | 2026-10-12 |
+| ADR                                           | Title                                   | Status                 | Date       |
+| --------------------------------------------- | --------------------------------------- | ---------------------- | ---------- |
+| [0001](0001-record-architecture-decisions.md) | Record architecture decisions           | Accepted               | 2026-10-12 |
+| [0002](0002-nextjs-static-generation.md)      | Next.js with static generation          | Accepted (retroactive) | 2026-10-12 |
+| [0003](0003-pandacss-park-ui.md)              | PandaCSS and Park UI for styling        | Accepted (retroactive) | 2026-10-12 |
+| [0004](0004-netlify-hosting-and-forms.md)     | Netlify hosting and Netlify Forms       | Accepted (retroactive) | 2026-10-12 |
+| [0005](0005-markdown-content-source.md)       | Markdown as the content source of truth | Accepted               | 2026-10-12 |
+| [0006](0006-evaluate-astro-framework.md)      | Evaluate Astro as the site framework    | Proposed               | 2026-10-12 |
 
 ## Statuses
 

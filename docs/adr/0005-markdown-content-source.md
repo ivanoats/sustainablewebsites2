@@ -1,6 +1,6 @@
 # ADR-0005: Markdown as the content source of truth
 
-**Status:** Accepted (pending merge of PR #83)
+**Status:** Accepted (implemented in PR #83)
 **Date:** 2026-10-12
 **Deciders:** Ivan Storck
 

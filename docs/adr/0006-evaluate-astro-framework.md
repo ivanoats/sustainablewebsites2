@@ -23,6 +23,12 @@ each gzipped at level 9:
 | `/about`     | 31 KB      | 7            | 737 KB       | 226 KB        |
 | `/services`  | 31 KB      | 7            | 737 KB       | 226 KB        |
 | `/wsg-check` | 20 KB      | 7            | 737 KB       | 226 KB        |
+| `/contact`   | 23 KB      | 7            | 737 KB       | 226 KB        |
+| `/`          | 134 KB     | 7            | 737 KB       | 226 KB        |
+
+All five routes load the same seven script files. The home page's HTML is
+much larger than the others (134 KB); I did not investigate why, and it may be
+the hero art.
 
 The stylesheet is 47 KB raw, 10 KB gzipped. Of the 226 KB of gzipped script, one
 chunk of 71 KB contains React DOM's `hydrateRoot`, and another of 48 KB
@@ -54,6 +60,10 @@ This makes the question one of boundaries as much as frameworks:
   documentation and dozens of guideline pages are not.
 - The counterweight is founder bandwidth: two frameworks across two
   repositories is a real maintenance cost for one maintainer.
+
+The owner has decided to keep both domains live: the Sustainable Websites
+domain and the WSG-Check domain. That keeps the product application and this
+marketing site separate, which supports the marketing-only condition above.
 
 ### Coupling to Next.js
 
@@ -179,8 +189,14 @@ Markdown pages), keep everything else on Next.js.
   pages to MDX. This is my understanding of the Astro documentation and is
   unverified.
 - Ark UI context-based primitives may need a client directive in some cases.
-- Storybook, Vitest, and Playwright use React and Vite and should be
-  unaffected, but the `@/` path aliases and test setup need re-pointing.
+- Tooling is coupled to Next.js more than the source is. Playwright starts the
+  app with `npm run dev` locally and `npm run build && npm run start` in CI,
+  ESLint uses `eslint-config-next`, and `next-env.d.ts` and the `dev`, `build`,
+  and `start` scripts are Next.js-specific. Each needs replacing.
+- Storybook and Vitest use React and Vite and should carry over once the `@/`
+  aliases are re-pointed. Page tests render page components directly (the
+  contact page test imports `./page` as a React component), so any page that
+  becomes an `.astro` file needs a different test approach.
 - Node version support for the current Astro release should be checked against
   `.nvmrc` (22.22.0).
 

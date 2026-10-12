@@ -1,6 +1,6 @@
 # ADR-0005: Markdown as the content source of truth
 
-**Status:** Accepted (implemented in PR #83)
+**Status:** Accepted
 **Date:** 2026-10-12
 **Deciders:** Ivan Storck
 
@@ -13,6 +13,8 @@ different calls to action that the live page did not show. A copy rewrite is
 planned, so each edit needs exactly one place to go.
 
 ## Decision
+
+Implemented in PR #83.
 
 Keep page copy in `content/*.md`: YAML frontmatter for structured fields (title,
 description, headings, calls to action, and the Services cards) and Markdown for

@@ -16,8 +16,14 @@ The owner has now decided:
 
 - Sustainable Websites is the umbrella brand.
 - WSG-Check is the main product and the main driver of revenue.
-- Consulting is a bonus on top. It is not a main source of revenue, and it
-  is a place to find and test new product ideas.
+- Consulting is not the long-term revenue driver, but it is the funding
+  on-ramp for the first year and it stays. It is also a place to find and test
+  new product ideas.
+- The beachhead is US clients, especially on the West Coast, extending to
+  Vancouver, BC. Not France: the owner does not speak French and is best
+  positioned in the US.
+- Both domains stay live: the Sustainable Websites domain and the WSG-Check
+  domain.
 
 The site today reflects the opposite emphasis. It leads with three consulting
 services, and its `/wsg-check` page says "Coming Soon" although WSG-Check
@@ -27,8 +33,10 @@ v0.6.1 (CLI, MCP server, and web UI) is already released.
 
 Treat `sustainablewebsites.com` as the front door for the umbrella brand and
 for WSG-Check. Its first job is to explain, build trust in, and convert visitors
-to WSG-Check (free tool, then paid tiers). Its second job is to present
-consulting and training. The site does not implement the product itself.
+to WSG-Check (free tool, then paid tiers). Its second job, which funds
+the first year, is to win consulting and training work from West Coast and
+Vancouver clients. Consulting stays in the primary navigation. The site does not
+implement the product itself.
 
 The product lives in the `wsg-check` repository, a separate Next.js and
 PandaCSS application with its own API routes and Netlify deploy. Accounts,
@@ -61,8 +69,8 @@ line at the center of the site.
 
 Site purpose and content:
 
-- WSG-Check becomes the primary navigation item and the lead of the home page.
-  Services move to a secondary section.
+- WSG-Check becomes the first navigation item and the lead of the home page.
+  Services stays in the primary navigation, because it funds the first year.
 - The `/wsg-check` page must stop saying "Coming Soon" and point to the released
   tool. This belongs in the planned copy rewrite.
 - The service descriptions should be reconciled with the packages in the
@@ -88,8 +96,9 @@ Architecture:
 
 ## Open questions
 
-- URL structure: product app on a subdomain, a path, or a separate domain, and
-  where the documentation lives.
+- Which domain hosts the documentation and the pricing page. Both domains stay
+  live, so each page needs one clear home to avoid duplicate content.
 - Whether the free check is embedded in this site or links out to the product
   app.
-- Which beachhead the site speaks to first: agencies or French public sector.
+- Whether to bill in CAD for Vancouver clients, and what that means for
+  Canadian sales tax. Check with an accountant.

@@ -251,7 +251,7 @@ current Next.js site scored Best Practices 92, which did not reproduce locally.
   unchanged. Services renders a `ServicesView` component that was extracted
   from the Next.js page and is now shared by both. All three are
   pixel-identical. The only Next.js import that needed
-  replacing was `next/image`, with a 30-line shim.
+  replacing was `next/image`, with a small shim.
 - **Compound components cannot span an `.astro` template.** Park UI's
   `Card.Root` and `Card.Body` share React context, and each React component
   used from an `.astro` file renders separately, so the build failed with

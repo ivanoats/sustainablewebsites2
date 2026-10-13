@@ -27,7 +27,8 @@ export default function UrlCheckIsland() {
         placeholder="https://example.com"
       />
       <button type="submit">Check</button>
-      {submitted && <output>Would check {submitted}</output>}
+      {/* Mounted from the first render so assistive technology registers it. */}
+      <output>{submitted ? `Would check ${submitted}` : ''}</output>
     </form>
   );
 }

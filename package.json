@@ -56,10 +56,10 @@
   },
   "dependencies": {
     "@ark-ui/react": "^5.36.2",
-    "@pandacss/dev": "^1.10.0",
+    "@pandacss/dev": "^2.2.0",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.575.0",
-    "next": "^16.3.6",
+    "next": "^16.3.8",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
     "react-markdown": "^10.1.0"
@@ -86,7 +86,7 @@
     "husky": "^9.1.7",
     "jsdom": "^29.1.0",
     "lint-staged": "^16.4.0",
-    "markdownlint-cli2": "^0.22.1",
+    "markdownlint-cli2": "^0.23.3",
     "prettier": "^3.8.4",
     "storybook": "^10.4.6",
     "typescript": "^5.9.3",

@@ -58,3 +58,7 @@ playwright-report/
 test-results/
 .auth/
 next-env.d.ts
+
+# Astro spike build output
+spikes/*/dist/
+spikes/*/.astro/

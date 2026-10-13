@@ -1,0 +1,18 @@
+{
+  "name": "astro-spike",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "description": "ADR-0006 spike: not part of the product build. Install the repo root first; React and Ark UI resolve from the root node_modules.",
+  "scripts": {
+    "panda": "panda codegen && panda cssgen --outfile styled-system/styles.css",
+    "build": "npm run panda && astro build",
+    "preview": "astro preview --port 4321"
+  },
+  "dependencies": {
+    "@astrojs/markdown-remark": "^7.3.2",
+    "@astrojs/react": "^7.0.1",
+    "astro": "^7.3.8",
+    "rehype-external-links": "^3.0.0"
+  }
+}

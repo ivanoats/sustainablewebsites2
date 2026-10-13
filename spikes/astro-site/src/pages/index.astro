@@ -1,0 +1,9 @@
+---
+import { siteConfig } from '@/lib/config';
+import HomePage from '../../../../app/page';
+import Base from '../layouts/Base.astro';
+---
+
+<Base title={siteConfig.name} description={siteConfig.description}>
+  <HomePage />
+</Base>

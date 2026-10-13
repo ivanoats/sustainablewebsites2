@@ -1,0 +1,45 @@
+---
+import { Header } from '@/components/Header';
+import { Footer } from '@/components/Footer';
+import { siteConfig } from '@/lib/config';
+import { css } from '@/styled-system/css';
+import icon from '../../../../app/icon.svg';
+import '@/styled-system/styles.css';
+import '../../../../app/globals.css';
+import '../styles/markdown.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const fullTitle =
+  title === siteConfig.name ? title : `${title} | ${siteConfig.name}`;
+const bodyClass = css({
+  display: 'flex',
+  flexDirection: 'column',
+  minH: '100vh',
+  bg: 'surface.100',
+});
+const mainClass = css({ flex: '1' });
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href={icon.src} type="image/svg+xml" />
+  </head>
+  <body class={bodyClass}>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <Header />
+    <main id="main-content" tabindex="-1" class={mainClass}>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

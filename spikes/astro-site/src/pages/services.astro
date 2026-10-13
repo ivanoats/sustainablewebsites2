@@ -1,0 +1,12 @@
+---
+import { getEntry } from 'astro:content';
+import { ServicesView } from '@/components/ServicesView';
+import Base from '../layouts/Base.astro';
+
+const entry = await getEntry('services', 'services');
+if (!entry) throw new Error('content/services.md is missing');
+---
+
+<Base title={entry.data.title} description={entry.data.description}>
+  <ServicesView data={entry.data} />
+</Base>

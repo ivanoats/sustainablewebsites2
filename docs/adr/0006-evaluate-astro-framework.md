@@ -200,6 +200,105 @@ Markdown pages), keep everything else on Next.js.
 - Node version support for the current Astro release should be checked against
   `.nvmrc` (22.22.0).
 
+## Spike results
+
+The spike is in `spikes/astro-site/` (Astro 7.3.8 with `@astrojs/react` 7.0.1).
+It reuses the repository's React, Ark UI, theme, and components by path and
+builds all five routes, a hydrated-island page, and 71 generated guideline
+pages (78 pages in about 3.5 seconds). It is excluded from the root lint,
+type-check, and Prettier. It was built and measured on 2026-10-12, locally; it
+has not been deployed.
+
+### Measurements
+
+Same content and production builds. Each Next.js page loads seven script files
+(226 KB gzipped) on every route, plus inline scripts inside the HTML that the
+baseline above did not count.
+
+| Route        | Next scripts (gzip) | Next HTML (inline script) | Astro scripts | Astro HTML |
+| ------------ | ------------------- | ------------------------- | ------------- | ---------- |
+| `/`          | 226 KB              | 134 KB (83 KB)            | 0             | 50 KB      |
+| `/about`     | 226 KB              | 31 KB (20 KB)             | 0             | 9 KB       |
+| `/services`  | 226 KB              | 31 KB (20 KB)             | 0             | 10 KB      |
+| `/wsg-check` | 226 KB              | 20 KB (13 KB)             | 0             | 4 KB       |
+| `/contact`   | 226 KB              | 23 KB (15 KB)             | 0             | 7 KB       |
+
+- Stylesheet: Next.js 47 KB raw, 10 KB gzipped; Astro 38 KB raw, 10 KB gzipped.
+- The island page (`/try`, a URL form hydrated with `client:load`) loads about
+  71 KB gzipped of script: React DOM 66 KB, React 3 KB, the component 0.5 KB, and
+  2 KB inline. Pages without an island load none.
+- Lighthouse on `/about`, three runs each against local production servers
+  (headless Chromium, default simulated mobile throttling):
+
+|         | Performance   | Total blocking time | Largest contentful paint | Page weight |
+| ------- | ------------- | ------------------- | ------------------------ | ----------- |
+| Next.js | 96, 93, 97    | 160 ms              | 2.4 s                    | 204 KiB     |
+| Astro   | 100, 100, 100 | 0 ms                | 0.9 s                    | 33 KiB      |
+
+Best Practices, Accessibility, and SEO were 100 for both. Lighthouse reported
+89 KiB of unused JavaScript on the Next.js page and none on Astro. These are
+local runs of one page. Netlify's deploy-preview Lighthouse runs for the
+current Next.js site scored Best Practices 92, which did not reproduce locally.
+
+- Visual parity: full-page Chromium screenshots at 1280 px wide for all five
+  routes have identical heights and at most 0.02% differing pixels, after the
+  fixes below.
+
+### Findings
+
+- **Component reuse works.** `Header`, `Footer`, `CTAButton`, `Card`, `Link`,
+  `VerdantArt`, and the Ark UI form fields render with no hydration. The home and Contact pages render the existing React page components
+  unchanged. Services renders a `ServicesView` component that was extracted
+  from the Next.js page and is now shared by both. All three are
+  pixel-identical. The only Next.js import that needed
+  replacing was `next/image`, with a small shim.
+- **Compound components cannot span an `.astro` template.** Park UI's
+  `Card.Root` and `Card.Body` share React context, and each React component
+  used from an `.astro` file renders separately, so the build failed with
+  "missing its Provider". The fix is to compose them inside one React component
+  (the spike's `CardShell`). Any compound Park UI or Ark UI component used
+  directly in a template needs the same wrapper.
+- **Markdown presentation needs CSS and rehype plugins, not component mapping.**
+  External links use `rehype-external-links`; the callout is a real
+  `<blockquote>` given the Card recipe classes by a small rehype plugin; the
+  checklist is CSS. Three Astro 7 behaviors had to be handled:
+  - The default Markdown processor does not run rehype plugins. Install
+    `@astrojs/markdown-remark` and pass `unified({...})` to `markdown.processor`.
+  - Smart punctuation is on by default and changed "We're" to "We’re". Set
+    `smartypants: false`.
+  - The Next.js version lays Markdown out as a flex column with a gap, which
+    stops margins collapsing. The CSS wrapper needs `display: flex` to match.
+- **Content collections work.** Zod schemas validate the same three Markdown
+  files and a 71-entry guideline list, and replace `app/lib/content.ts` and
+  `app/components/Markdown.tsx`.
+- **PandaCSS works** through the CLI code generation with the root config
+  spread into a spike config whose `include` covers `../../app` and `.astro`
+  files. The Vite plugin was not tried.
+- **Netlify:** static output needs no adapter. The built contact page keeps
+  `data-netlify`, the honeypot, and `form-name`, and `forms.html` is copied. A
+  real Netlify deploy was not run, so form detection is unverified.
+- **Docs tooling:** Starlight 0.42.6 declares a peer of `astro ^7.2.10`. It was
+  not tried.
+- **Not tested:** sharing tokens and components with the `wsg-check` repository,
+  Storybook, Vitest, Playwright, and ESLint against the Astro app, the dev
+  server (only build and preview ran), and a Netlify deploy.
+
+### Recommendation after the spike
+
+Astro is viable for this site. It removes all script from static pages, cuts
+page weight and blocking time sharply in a local Lighthouse comparison, and
+renders the existing pages without visible change. Migration work is mostly
+mechanical: move routes to `src/pages`, replace the Next.js scripts, Playwright
+server command, ESLint config, and CI steps, re-point Storybook and Vitest
+aliases, change how page components are tested, and update the Netlify build
+settings. The wrapper pattern for compound components is the main new
+convention.
+
+Both domains stay live and documentation and pricing live on WSG-Check.com
+(ADR-0007), which keeps this site a marketing and content site. That is the
+condition under which this ADR recommends Astro. The status stays Proposed
+until the owner decides to migrate.
+
 ## Consequences
 
 If accepted:
@@ -221,7 +320,7 @@ If rejected:
 
 ## Action items
 
-1. [ ] Owner: confirm familiarity and appetite for a one-day spike.
-2. [ ] Run the spike and record measurements in this ADR.
+1. [x] Owner: confirm familiarity and appetite for a one-day spike. Confirmed 2026-10-12.
+2. [x] Run the spike and record measurements in this ADR. See Spike results.
 3. [ ] Decide, then set the status and update the log in `docs/adr/README.md`.
 4. [ ] If accepted, write the migration plan and update the architecture docs.

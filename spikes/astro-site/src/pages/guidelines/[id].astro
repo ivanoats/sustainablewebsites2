@@ -1,0 +1,26 @@
+---
+import type { InferGetStaticPropsType } from 'astro';
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+
+export async function getStaticPaths() {
+  const guidelines = await getCollection('guidelines');
+  return guidelines.map((g) => ({ params: { id: g.id }, props: { g } }));
+}
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { g } = Astro.props;
+---
+
+<Base title={g.data.title} description={g.data.summary}>
+  <article class="md" style="max-width:56rem;margin:0 auto;padding:4rem 1rem">
+    <p>{g.data.section}</p>
+    <h1>{g.data.title}</h1>
+    <p>{g.data.summary}</p>
+    <p>
+      {g.data.criteriaCount} success criteria.
+      <a href={g.data.url}>Read it in the specification</a>
+    </p>
+  </article>
+</Base>

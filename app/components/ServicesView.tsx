@@ -20,6 +20,90 @@ export interface ServicesData {
   closing: { heading: string; text: string; cta: string };
 }
 
+type Service = ServicesData['services'][number];
+
+function BenefitList({
+  benefits,
+}: Readonly<{ benefits: Service['benefits'] }>) {
+  return (
+    <ul className={css({ pl: '1.25rem', color: 'ink.muted' })}>
+      {benefits.map((item) => (
+        <li key={item.label} className={css({ mb: '0.75rem' })}>
+          <strong>{item.label}:</strong> {item.text}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function ServiceDetails({ service }: Readonly<{ service: Service }>) {
+  return (
+    <div className={stack({ gap: '1rem' })}>
+      <h2
+        className={css({
+          fontSize: 'displayMd',
+          fontWeight: 'bold',
+          color: 'ink',
+        })}
+      >
+        {service.title}
+      </h2>
+      <p
+        className={css({
+          fontSize: 'displaySm',
+          color: 'accent.strong',
+          fontWeight: '600',
+        })}
+      >
+        {service.tagline}
+      </p>
+      <p className={css({ color: 'ink.muted', lineHeight: '1.8' })}>
+        {service.summary}
+      </p>
+
+      <h3
+        className={css({
+          fontSize: 'displaySm',
+          fontWeight: 'bold',
+          color: 'ink',
+        })}
+      >
+        {service.benefitsTitle}
+      </h3>
+      <BenefitList benefits={service.benefits} />
+
+      <p className={css({ color: 'ink.muted', fontStyle: 'italic' })}>
+        <strong>Deliverable:</strong> {service.deliverable}
+      </p>
+
+      <div>
+        <CTAButton
+          text={service.cta}
+          href="/contact"
+          variant="primary"
+          size="md"
+        />
+      </div>
+    </div>
+  );
+}
+
+function ServiceCard({ service }: Readonly<{ service: Service }>) {
+  return (
+    <section
+      id={service.id}
+      aria-label={service.title}
+      className={css({ scrollMarginTop: '6rem' })}
+    >
+      <ParkCard.Root>
+        <ParkCard.Body>
+          <ServiceDetails service={service} />
+        </ParkCard.Body>
+      </ParkCard.Root>
+    </section>
+  );
+}
+
 /** The Services page body. Takes validated content so any framework can render it. */
 export function ServicesView({ data }: Readonly<{ data: ServicesData }>) {
   const { heading, tagline, intro, closing } = data;
@@ -80,77 +164,7 @@ export function ServicesView({ data }: Readonly<{ data: ServicesData }>) {
       >
         <div className={stack({ gap: '1.5rem', maxW: '4xl', mx: 'auto' })}>
           {data.services.map((service) => (
-            <section
-              key={service.id}
-              id={service.id}
-              aria-label={service.title}
-              className={css({ scrollMarginTop: '6rem' })}
-            >
-              <ParkCard.Root>
-                <ParkCard.Body>
-                  <div className={stack({ gap: '1rem' })}>
-                    <h2
-                      className={css({
-                        fontSize: 'displayMd',
-                        fontWeight: 'bold',
-                        color: 'ink',
-                      })}
-                    >
-                      {service.title}
-                    </h2>
-                    <p
-                      className={css({
-                        fontSize: 'displaySm',
-                        color: 'accent.strong',
-                        fontWeight: '600',
-                      })}
-                    >
-                      {service.tagline}
-                    </p>
-                    <p
-                      className={css({ color: 'ink.muted', lineHeight: '1.8' })}
-                    >
-                      {service.summary}
-                    </p>
-
-                    <h3
-                      className={css({
-                        fontSize: 'displaySm',
-                        fontWeight: 'bold',
-                        color: 'ink',
-                      })}
-                    >
-                      {service.benefitsTitle}
-                    </h3>
-                    <ul className={css({ pl: '1.25rem', color: 'ink.muted' })}>
-                      {service.benefits.map((item) => (
-                        <li key={item.label} className={css({ mb: '0.75rem' })}>
-                          <strong>{item.label}:</strong> {item.text}
-                        </li>
-                      ))}
-                    </ul>
-
-                    <p
-                      className={css({
-                        color: 'ink.muted',
-                        fontStyle: 'italic',
-                      })}
-                    >
-                      <strong>Deliverable:</strong> {service.deliverable}
-                    </p>
-
-                    <div>
-                      <CTAButton
-                        text={service.cta}
-                        href="/contact"
-                        variant="primary"
-                        size="md"
-                      />
-                    </div>
-                  </div>
-                </ParkCard.Body>
-              </ParkCard.Root>
-            </section>
+            <ServiceCard key={service.id} service={service} />
           ))}
         </div>
       </section>

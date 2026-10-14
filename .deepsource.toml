@@ -1,5 +1,23 @@
 version = 1
 
+# Top-level keys must come before the [[analyzers]] tables: TOML assigns
+# anything after a table header to that table, so these lists were being
+# read as settings of the test-coverage analyzer and ignored.
+exclude_patterns = [
+  ".next/**",
+  "out/**",
+  "node_modules/**",
+  "styled-system/**",
+  "public/**",
+  "**/*.config.{js,ts,mjs}",
+]
+
+test_patterns = [
+  "app/**/*.test.{ts,tsx}",
+  "e2e/**/*.spec.ts",
+  "**/__mocks__/**",
+]
+
 [[analyzers]]
 name = "javascript"
 enabled = true
@@ -12,20 +30,3 @@ enabled = true
 [[analyzers]]
 name = "test-coverage"
 enabled = true
-
-exclude_patterns = [
-  ".next/**",
-  "out/**",
-  "node_modules/**",
-  "styled-system/**",
-  "public/**",
-  "**/*.config.{js,ts,mjs}",
-]
-
-test_patterns = [
-  "tests/**/*.test.{ts,tsx}",
-  "tests/**/*.spec.{ts,tsx}",
-  "src/**/*.test.{ts,tsx}",
-  "src/**/*.spec.{ts,tsx}",
-  "**/__tests__/**/*.{ts,tsx}",
-]

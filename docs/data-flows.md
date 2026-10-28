@@ -54,7 +54,9 @@ sequenceDiagram
 
 ## Contact Form Submission — Netlify Forms
 
-The `/contact` page renders a plain HTML form with `data-netlify="true"`. Form
+The `/contact` page renders the `ContactForm` client component, which submits
+with `fetch` to the static blueprint at `/forms.html`. Netlify's Next.js Runtime
+v5 ignores full-page POSTs to Next.js routes, so the AJAX submit is required. Form
 processing is handled entirely by Netlify's edge network; no custom API route or
 server function is required.
 
@@ -65,9 +67,9 @@ sequenceDiagram
   participant Owner as Site Owner (email)
 
   Browser->>Browser: User fills in Name, Email, Message (optionally Company, Service)
-  Browser->>Netlify: POST /contact (application/x-www-form-urlencoded, includes form-name=contact)
+  Browser->>Netlify: fetch POST /forms.html (application/x-www-form-urlencoded, includes form-name=contact)
   Netlify->>Netlify: Validate submission (honeypot bot-field check)
-  Netlify-->>Browser: Default Netlify success response (no action= set on form)
+  Netlify-->>Browser: 200 OK; ContactForm shows a success message
   Netlify->>Owner: Email notification (configured in Netlify dashboard)
 ```
 
@@ -81,5 +83,6 @@ sequenceDiagram
   submissions without a CAPTCHA.
 - Required fields are `name`, `email`, and `message`; `company` and `service`
   are optional.
-- No JavaScript fetch or client-side state management is involved; the form uses
-  a native HTTP POST.
+- `ContactForm` tracks idle, submitting, success, and error states, and shows
+  an error message if the POST fails so a lost submission is visible to the
+  visitor.

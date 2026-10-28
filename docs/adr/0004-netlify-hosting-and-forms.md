@@ -15,8 +15,10 @@ form, without running a server.
 
 Deploy to Netlify from Git. Pushes to `main` deploy to production and pull
 requests get deploy previews. Handle the contact form with Netlify Forms: a
-native HTML `<form data-netlify="true">` with a honeypot field, plus
-`public/forms.html` so Netlify detects the form at deploy time. GitHub Actions
+`<form data-netlify="true">` with a honeypot field, plus `public/forms.html` so
+Netlify detects the form at deploy time. Because the site runs on Netlify's
+Next.js Runtime v5, the form submits with `fetch` to `/forms.html`; a full-page
+POST to `/contact` reaches the Next.js handler and is silently dropped. GitHub Actions
 (`.github/workflows/ci.yml`) runs lint, type-check, tests, and the build, but
 does not deploy.
 
@@ -36,7 +38,11 @@ Cons: adds a server function or an external dependency for one form.
 
 ## Consequences
 
-- The contact form works with no JavaScript.
+- With JavaScript, the form submits with `fetch` to `/forms.html` and shows an
+  inline success or error message; this is the supported path under Next.js
+  Runtime v5. Without JavaScript, the browser falls back to a native POST to
+  `/forms.html` and the visitor gets no inline feedback; Netlify may not record
+  that submission.
 - Moving off Netlify means replacing form handling.
 - A static site on Netlify needs no framework adapter; this holds for any
   static-output framework, including Astro (ADR-0006).

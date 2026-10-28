@@ -1,12 +1,6 @@
 import { css } from '@/styled-system/css';
-import { stack } from '@/styled-system/patterns';
-import {
-  Button,
-  Card as ParkCard,
-  Field,
-  Input,
-  Textarea,
-} from '@/components/ui';
+import { Card as ParkCard } from '@/components/ui';
+import { ContactForm } from '@/components/ContactForm';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -58,99 +52,16 @@ export default function ContactPage() {
           px: '1rem',
         })}
       >
-        <div
+        <ParkCard.Root
           className={css({
             maxW: '2xl',
             mx: 'auto',
           })}
         >
-          <ParkCard.Root>
-            <ParkCard.Body>
-              <form
-                name="contact"
-                method="POST"
-                netlify-honeypot="bot-field"
-                data-netlify="true"
-                className={stack({ gap: '1.25rem' })}
-              >
-                <input type="hidden" name="form-name" value="contact" />
-
-                <div className={css({ display: 'none' })}>
-                  <label htmlFor="bot-field">Don't fill this out</label>
-                  <input id="bot-field" name="bot-field" />
-                </div>
-
-                <Field.Root required>
-                  <Field.Label htmlFor="name">
-                    Name
-                    <Field.RequiredIndicator />
-                  </Field.Label>
-                  <Input
-                    id="name"
-                    name="name"
-                    type="text"
-                    autoComplete="name"
-                    required
-                  />
-                </Field.Root>
-
-                <Field.Root required>
-                  <Field.Label htmlFor="email">
-                    Email
-                    <Field.RequiredIndicator />
-                  </Field.Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    required
-                  />
-                </Field.Root>
-
-                <Field.Root>
-                  <Field.Label htmlFor="company">Company</Field.Label>
-                  <Input
-                    id="company"
-                    name="company"
-                    type="text"
-                    autoComplete="organization"
-                  />
-                </Field.Root>
-
-                <Field.Root>
-                  <Field.Label htmlFor="service">
-                    What service interests you?
-                  </Field.Label>
-                  <Input
-                    id="service"
-                    name="service"
-                    type="text"
-                    placeholder="Digital Footprint Audit, Architecture, DevOps..."
-                  />
-                </Field.Root>
-
-                <Field.Root required>
-                  <Field.Label htmlFor="message">
-                    Tell us about your project
-                    <Field.RequiredIndicator />
-                  </Field.Label>
-                  <Textarea id="message" name="message" rows={6} required />
-                </Field.Root>
-
-                <div>
-                  <Button type="submit" variant="solid" size="md">
-                    Send Message
-                  </Button>
-                </div>
-
-                <p className={css({ fontSize: 'bodySm', color: 'ink.muted' })}>
-                  We'll get back to you within 24 hours.
-                </p>
-              </form>
-            </ParkCard.Body>
-          </ParkCard.Root>
-        </div>
+          <ParkCard.Body>
+            <ContactForm />
+          </ParkCard.Body>
+        </ParkCard.Root>
       </section>
     </div>
   );

@@ -11,6 +11,14 @@ export const FORM_ENDPOINT = '/forms.html';
 
 type Status = 'idle' | 'submitting' | 'success' | 'error';
 
+function toUrlEncoded(formData: FormData): string {
+  const params = new URLSearchParams();
+  for (const [key, value] of formData.entries()) {
+    if (typeof value === 'string') params.append(key, value);
+  }
+  return params.toString();
+}
+
 export function ContactForm() {
   const [status, setStatus] = useState<Status>('idle');
 
@@ -24,9 +32,7 @@ export function ContactForm() {
       const response = await fetch(FORM_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(
-          formData as unknown as Record<string, string>
-        ).toString(),
+        body: toUrlEncoded(formData),
       });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       form.reset();
@@ -38,7 +44,7 @@ export function ContactForm() {
 
   if (status === 'success') {
     return (
-      <output className={stack({ gap: '0.75rem' })}>
+      <output aria-live="polite" className={stack({ gap: '0.75rem' })}>
         <span
           className={css({ fontSize: 'xl', fontWeight: 'bold', color: 'ink' })}
         >

@@ -12,7 +12,7 @@ function fillAndSubmit() {
   fireEvent.change(screen.getByLabelText('Tell us about your project *'), {
     target: { value: 'Greener servers, please.' },
   });
-  fireEvent.submit(screen.getByRole('button', { name: 'Send Message' }));
+  fireEvent.click(screen.getByRole('button', { name: 'Send Message' }));
 }
 
 describe('ContactForm', () => {

@@ -38,16 +38,16 @@ export function ContactForm() {
 
   if (status === 'success') {
     return (
-      <div role="status" className={stack({ gap: '0.75rem' })}>
-        <h2
+      <output className={stack({ gap: '0.75rem' })}>
+        <span
           className={css({ fontSize: 'xl', fontWeight: 'bold', color: 'ink' })}
         >
           Thanks, your message is on its way.
-        </h2>
-        <p className={css({ color: 'ink.muted' })}>
+        </span>
+        <span className={css({ color: 'ink.muted' })}>
           We&apos;ll get back to you within 24 hours.
-        </p>
-      </div>
+        </span>
+      </output>
     );
   }
 

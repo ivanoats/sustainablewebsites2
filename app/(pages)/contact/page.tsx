@@ -52,18 +52,16 @@ export default function ContactPage() {
           px: '1rem',
         })}
       >
-        <div
+        <ParkCard.Root
           className={css({
             maxW: '2xl',
             mx: 'auto',
           })}
         >
-          <ParkCard.Root>
-            <ParkCard.Body>
-              <ContactForm />
-            </ParkCard.Body>
-          </ParkCard.Root>
-        </div>
+          <ParkCard.Body>
+            <ContactForm />
+          </ParkCard.Body>
+        </ParkCard.Root>
       </section>
     </div>
   );

@@ -45,7 +45,7 @@ export function ContactForm() {
           Thanks, your message is on its way.
         </h2>
         <p className={css({ color: 'ink.muted' })}>
-          We'll get back to you within 24 hours.
+          We&apos;ll get back to you within 24 hours.
         </p>
       </div>
     );
@@ -56,7 +56,7 @@ export function ContactForm() {
       name="contact"
       method="POST"
       action={FORM_ENDPOINT}
-      netlify-honeypot="bot-field"
+      data-netlify-honeypot="bot-field"
       data-netlify="true"
       onSubmit={handleSubmit}
       className={stack({ gap: '1.25rem' })}
@@ -64,7 +64,7 @@ export function ContactForm() {
       <input type="hidden" name="form-name" value="contact" />
 
       <div className={css({ display: 'none' })}>
-        <label htmlFor="bot-field">Don't fill this out</label>
+        <label htmlFor="bot-field">Don&apos;t fill this out</label>
         <input id="bot-field" name="bot-field" />
       </div>
 
@@ -120,7 +120,7 @@ export function ContactForm() {
 
       {status === 'error' && (
         <p role="alert" className={css({ color: 'red.11' })}>
-          Sorry, your message didn't send. Please try again in a moment.
+          Sorry, your message didn&apos;t send. Please try again in a moment.
         </p>
       )}
 
@@ -137,7 +137,7 @@ export function ContactForm() {
       </div>
 
       <p className={css({ fontSize: 'bodySm', color: 'ink.muted' })}>
-        We'll get back to you within 24 hours.
+        We&apos;ll get back to you within 24 hours.
       </p>
     </form>
   );

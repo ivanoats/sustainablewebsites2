@@ -3,7 +3,7 @@
 import { css } from '@/styled-system/css';
 import { stack } from '@/styled-system/patterns';
 import { Button, Field, Input, Textarea } from '@/components/ui';
-import { type FormEvent, useState } from 'react';
+import { type FormEvent, useEffect, useRef, useState } from 'react';
 
 // Netlify's Next.js Runtime v5 only records submissions POSTed to a static
 // file, so we send the form to the blueprint in public/forms.html via fetch.
@@ -21,6 +21,13 @@ function toUrlEncoded(formData: FormData): string {
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>('idle');
+  const successRef = useRef<HTMLOutputElement>(null);
+
+  // The form unmounts on success, so move focus to the confirmation to keep
+  // keyboard users in place and have screen readers announce it.
+  useEffect(() => {
+    if (status === 'success') successRef.current?.focus();
+  }, [status]);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -44,7 +51,12 @@ export function ContactForm() {
 
   if (status === 'success') {
     return (
-      <output aria-live="polite" className={stack({ gap: '0.75rem' })}>
+      <output
+        ref={successRef}
+        tabIndex={-1}
+        aria-live="polite"
+        className={stack({ gap: '0.75rem', outline: 'none' })}
+      >
         <span
           className={css({ fontSize: 'xl', fontWeight: 'bold', color: 'ink' })}
         >
@@ -125,7 +137,10 @@ export function ContactForm() {
       </Field.Root>
 
       {status === 'error' && (
-        <p role="alert" className={css({ color: 'red.11' })}>
+        <p
+          role="alert"
+          className={css({ color: { base: 'red.700', _dark: 'red.300' } })}
+        >
           Sorry, your message didn&apos;t send. Please try again in a moment.
         </p>
       )}

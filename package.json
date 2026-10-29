@@ -13,7 +13,7 @@
     "panda:css": "panda cssgen",
     "panda:gen": "npm run panda:codegen && npm run panda:css",
     "predev": "npm run panda:gen",
-    "pretype-check": "npm run panda:gen",
+    "pretype-check": "npm run panda:gen && next typegen",
     "prebuild": "npm run panda:gen",
     "pretest": "npm run panda:gen",
     "pretest:run": "npm run panda:gen",

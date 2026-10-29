@@ -4,12 +4,12 @@ This project uses Playwright to capture "before" and "after" screenshots for
 visual comparison of design iterations.
 
 For quick test-command reference, see the Testing Notes in
-[README.md](./README.md).
+[README.md](../README.md).
 
 ## Setup
 
-Playwright is configured in [`playwright.config.ts`](./playwright.config.ts) and
-screenshot tests are in [`e2e/screenshots.spec.ts`](./e2e/screenshots.spec.ts).
+Playwright is configured in [`playwright.config.ts`](../playwright.config.ts) and
+screenshot tests are in [`e2e/screenshots.spec.ts`](../e2e/screenshots.spec.ts).
 
 Before running any screenshot scripts, install the required browser binaries:
 
@@ -83,7 +83,7 @@ This opens an interactive HTML report showing test results and any failures.
 
 To add more pages to screenshot:
 
-1. Add a new test in [e2e/screenshots.spec.ts](./e2e/screenshots.spec.ts)
+1. Add a new test in [e2e/screenshots.spec.ts](../e2e/screenshots.spec.ts)
 2. Run `npm run screenshots:before` to regenerate all baseline screenshots (this
    updates all pages, not just the new one) and `npm run screenshots:after` to
    capture the updated state

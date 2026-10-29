@@ -40,9 +40,10 @@ Cons: adds a server function or an external dependency for one form.
 
 - With JavaScript, the form submits with `fetch` to `/forms.html` and shows an
   inline success or error message; this is the supported path under Next.js
-  Runtime v5. Without JavaScript, the browser falls back to a native POST to
-  `/forms.html` and the visitor gets no inline feedback; Netlify may not record
-  that submission.
+  Runtime v5. Without JavaScript, or before the page finishes hydrating, the
+  browser falls back to a native POST to `/forms.html`. Netlify records that
+  submission and shows its default "Thank you!" page instead of the inline
+  message (verified on a deploy preview, 2026-10-29).
 - Moving off Netlify means replacing form handling.
 - A static site on Netlify needs no framework adapter; this holds for any
   static-output framework, including Astro (ADR-0006).

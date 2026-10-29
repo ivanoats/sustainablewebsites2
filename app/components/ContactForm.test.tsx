@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { axe } from 'jest-axe';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ContactForm, FORM_ENDPOINT } from './ContactForm';
@@ -43,7 +43,7 @@ describe('ContactForm', () => {
 
     const confirmation = await screen.findByRole('status');
     expect(confirmation).toHaveTextContent('your message is on its way');
-    expect(confirmation).toHaveFocus();
+    await waitFor(() => expect(confirmation).toHaveFocus());
     expect(await axe(container)).toHaveNoViolations();
     expect(fetchMock).toHaveBeenCalledTimes(1);
     const [url, init] = fetchMock.mock.calls[0];

@@ -3,16 +3,23 @@ import { axe } from 'jest-axe';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { ContactForm, FORM_ENDPOINT } from './ContactForm';
 
+// vitest.config.ts aliases @/components/ui to simplified mocks. Load the real
+// Ark UI primitives here so the axe scans cover their labels and ARIA.
+vi.mock('@/components/ui', () => vi.importActual('./ui/index'));
+
 function fillAndSubmit() {
-  fireEvent.change(screen.getByLabelText('Name *'), {
+  fireEvent.change(screen.getByRole('textbox', { name: 'Name' }), {
     target: { value: 'Ada Lovelace' },
   });
-  fireEvent.change(screen.getByLabelText('Email *'), {
+  fireEvent.change(screen.getByRole('textbox', { name: 'Email' }), {
     target: { value: 'ada@example.com' },
   });
-  fireEvent.change(screen.getByLabelText('Tell us about your project *'), {
-    target: { value: 'Greener servers, please.' },
-  });
+  fireEvent.change(
+    screen.getByRole('textbox', { name: 'Tell us about your project' }),
+    {
+      target: { value: 'Greener servers, please.' },
+    }
+  );
   fireEvent.click(screen.getByRole('button', { name: 'Send Message' }));
 }
 
@@ -62,7 +69,9 @@ describe('ContactForm', () => {
     fillAndSubmit();
 
     expect(await screen.findByRole('alert')).toHaveTextContent("didn't send");
-    expect(screen.getByLabelText('Name *')).toHaveValue('Ada Lovelace');
+    expect(screen.getByRole('textbox', { name: 'Name' })).toHaveValue(
+      'Ada Lovelace'
+    );
     expect(await axe(container)).toHaveNoViolations();
   });
 });
